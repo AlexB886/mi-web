@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Datos básicos de la página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Web personal de Alex Baicu, estudiante de 1º DAM en el IES Simarro.">
+  <meta name="theme-color" content="#0a2540">
+
+  <title>Alex Baicu | Web personal</title>
+
+  <!-- Tipografía Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Cabecera con navegación -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Logo / nombre -->
+      <a href="#inicio" class="logo">Alex Baicu</a>
+
+      <!-- Navegación principal -->
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#hecho">Lo que he hecho</a></li>
+          <li><a href="#me-gusta">Me gusta</a></li>
+<li><a href="#consultas">Consultas</a></li>
+<li><a href="#contacto">Contacto</a></li>
+        </ul>
+          </nav>
+
+      <!-- Botón modo claro/oscuro -->
+      <button
+        id="themeBtn"
+        class="theme-toggle"
+        type="button"
+        aria-label="Cambiar modo claro u oscuro"
+      >
+        🌙 Modo oscuro
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main id="inicio">
+    <!-- Cabecera principal / hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Alex Baicu</h1>
+        <p>        <p>Próximo programador profesional.
+        </p>
+               <div class="hero-buttons">
+          <a href="#contacto" class="button">Contactar</a>
+          <a href="#consultas" class="button button-secondary">Consultas</a>
+        </div>
+    </section>
+
+    <!-- Sección Sobre mí -->
+    <section id="sobre-mi" class="section">
+      <div class="container">
+        <h2>Sobre mí</h2>
+
+        <div class="about-grid">
+          <p>
+            Soy Alex Baicu, estudiante de 1º DAM en el IES Simarro. Me gusta la informática,
+            aprender a programar y descubrir nuevas formas de crear proyectos digitales.
+          </p>
+
+          <p>
+            Actualmente estoy desarrollando mi web personal con HTML, CSS y JavaScript.
+            Me interesa seguir mejorando y, en el futuro, estudiar una carrera de ingeniería informática.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Lo que he hecho -->
+    <section id="hecho" class="section section-alt">
+      <div class="container">
+        <h2>Lo que he hecho</h2>
+
+        <div class="cards">
+          <!-- Tarjeta 1 -->
+          <article class="card">
+            <h3>Página web con Shopify</h3>
+            <p>
+              He diseñado una página web utilizando Shopify, aprendiendo a montar una tienda online
+              y a cuidar la presentación de los productos.
+            </p>
+            <span class="tag">Shopify</span>
+          </article>
+
+          <!-- Tarjeta 2 -->
+          <article class="card">
+            <h3>Página pública en 3.º ESO</h3>
+            <p>
+              Creé una página web pública durante la etapa de ESO, con la que empecé a experimentar
+              con diseño, estructura y publicación de contenidos.
+            </p>
+            <span class="tag">Web</span>
+          </article>
+
+          <!-- Tarjeta 3 -->
+          <article class="card">
+            <h3>Web personal con IA Simarro</h3>
+            <p>
+              Ahora estoy desarrollando esta web personal con la ayuda de la IA Simarro, aplicando
+              HTML, CSS y JavaScript en un proyecto propio.
+            </p>
+            <span class="tag">HTML · CSS · JS</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Me gusta -->
+    <section id="me-gusta" class="section">
+      <div class="container">
+        <h2>Me gusta</h2>
+
+        <div class="cards">
+          <!-- Tarjeta interés 1 -->
+          <article class="card">
+            <div class="emoji">🌍</div>
+            <h3>Salir y explorar el mundo</h3>
+            <p>
+              Me gusta conocer lugares nuevos, descubrir sitios diferentes y aprovechar el tiempo
+              fuera para aprender y desconectar.
+            </p>
+          </article>
+
+          <!-- Tarjeta interés 2 -->
+          <article class="card">
+            <div class="emoji">🐾</div>
+            <h3>Los animales</h3>
+            <p>
+              Tengo debilidad por los animales. Me parece interesante observarlos, entenderlos
+              y disfrutar de su compañía.
+            </p>
+          </article>
+
+          <!-- Tarjeta interés 3 -->
+          <article class="card">
+            <div class="emoji">💻</div>
+            <h3>La informática</h3>
+            <p>
+              Me encanta la informática porque permite crear, resolver problemas, aprender nuevas
+              tecnologías y construir proyectos útiles.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+        <!-- Sección Consultas / formulario -->
+    <section id="consultas" class="section section-alt">
+      <div class="container">
+        <h2>Consultas</h2>
+
+        <p>
+          Puedes rellenar este formulario si quieres preguntarme por contacto,
+          agendar una consulta o gestionar servicios.
+        </p>
+
+        <!-- Formulario -->
+        <form id="formConsultas" class="form-consultas" novalidate>
+          <!-- Nombre -->
+          <div class="form-field">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Tu nombre"
+              required
+            >
+          </div>
+
+          <!-- Correo -->
+          <div class="form-field">
+            <label for="correo">Correo electrónico</label>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              placeholder="tucorreo@ejemplo.com"
+              required
+            >
+          </div>
+
+          <!-- Tipo de consulta -->
+          <div class="form-field">
+            <label for="consulta">Tipo de consulta</label>
+            <select id="consulta" name="consulta" required>
+              <option value="">Selecciona una opción</option>
+              <option value="numero">¿Cuál es tu número de contacto?</option>
+              <option value="agendar">¿Cómo puedo agendar contigo una consulta?</option>
+              <option value="servicios">Me interesan tus servicios, ¿cómo lo gestionamos?</option>
+            </select>
+          </div>
+
+          <!-- Mensaje -->
+          <div class="form-field">
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              placeholder="Cuéntame tu consulta"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Privacidad -->
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="acepto"
+              name="acepto"
+              required
+            >
+            <label for="acepto">
+              Acepto que mis datos se usen para responder a esta consulta.
+            </label>
+          </div>
+
+          <!-- Botón enviar -->
+          <button type="submit" class="button">Enviar consulta</button>
+
+          <!-- Mensaje de confirmación -->
+          <p id="mensajeFormulario" class="form-feedback" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  </main>
+
+  <!-- Pie de página -->
+  <footer id="contacto" class="site-footer">
+    <div class="container footer-inner">
+      <h2>Contacto</h2>
+
+      <address class="contact-list">
+        <a href="mailto:tu.correo@ejemplo.com">tu.correo@ejemplo.com</a>
+        <span>Valencia, España</span>
+      </address>
+
+      <p class="copy">
+        © <span id="anio"></span> Alex Baicu. Web personal creada con HTML, CSS y JavaScript.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="script.js" defer></script>
+</body>
+</html>
