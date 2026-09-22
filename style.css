@@ -625,3 +625,75 @@ body.dark-mode .hero p {
   0%   { background-position: 0% center; }
   100% { background-position: 300% center; }
 }
+/* ==========================================================================
+   FONDO ANIMADO (imagen + respiración lenta + velo de contraste)
+   ========================================================================== */
+
+/* Capa 1: imagen de fondo fija, con zoom suave tipo "respira" */
+.bg-animated {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #0F2747;
+  animation: kenburns 28s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  0%   { background-size: 100% 100%; background-position: center; }
+  100% { background-size: 118% 118%; background-position: 60% 40%; }
+}
+
+/* Capa 2: velo para que el texto se lea sobre la foto */
+.bg-veil {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(248, 250, 252, 0.94) 0%,
+    rgba(248, 250, 252, 0.72) 100%);
+}
+
+/* El body deja de tapar el fondo */
+body { background: transparent; }
+.section { background: transparent; }
+
+/* Paneles translúcidos con desenfoque: texto legible */
+.section-alt {
+  background-color: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-color: rgba(15, 39, 71, 0.08);
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.90);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.hero {
+  background: linear-gradient(135deg,
+    rgba(15, 39, 71, 0.82) 0%,
+    rgba(19, 43, 74, 0.82) 100%);
+}
+
+/* Modo oscuro */
+body.dark-mode .bg-veil {
+  background: linear-gradient(180deg,
+    rgba(11, 18, 32, 0.95) 0%,
+    rgba(11, 18, 32, 0.78) 100%);
+}
+body.dark-mode .section-alt {
+  background-color: rgba(17, 26, 43, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+body.dark-mode .card {
+  background-color: rgba(17, 26, 43, 0.90);
+}
+
+/* Accesibilidad: se para si el usuario pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .bg-animated { animation: none; }
+}
