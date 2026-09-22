@@ -506,14 +506,24 @@ img {
     scroll-behavior: auto !important;
   }
 }/* ==========================================================================
-   10. MODO OSCURO
+  /* ==========================================================================
+   MODO OSCURO (body.dark-mode) + ITERACIONES
    ========================================================================== */
 
-/* ==========================================================================
-   MODO OSCURO
-   Activo cuando el <body> tiene la clase .dark-mode
-   ========================================================================== */
+/* Transición suave al cambiar de tema */
+body,
+.site-header,
+.hero,
+.section-alt,
+.card,
+.site-footer,
+.form-field input,
+.form-field select,
+.form-field textarea {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
+/* Variables en modo oscuro */
 body.dark-mode {
   --color-primario: #93C5FD;
   --color-secundario: #3B82F6;
@@ -522,296 +532,59 @@ body.dark-mode {
   --color-tarjeta: #111A2B;
   --color-texto: #E2E8F0;
   --color-texto-secundario: #94A3B8;
-
   background-color: var(--color-fondo);
   color: var(--color-texto);
 }
 
-/* Títulos principales: azul claro visible en fondo oscuro */
+/* Títulos en azul claro legible */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
   color: var(--color-primario);
 }
 
-/* Tarjetas y secciones */
-body.dark-mode .section-alt,
-body.dark-mode .card {
-  background-color: var(--color-tarjeta);
-  border-color: rgba(255, 255, 255, 0.10);
-}
-
-/* Párrafos */
-body.dark-mode p {
-  color: var(--color-texto-secundario);
-}
-
-/* Tarjetas */
-body.dark-mode .card p {
-  color: var(--color-texto-secundario);
-}
-
 /* Cabecera */
-body.dark-mode .site-header {
-  background-color: #0B1726;
-}
+body.dark-mode .site-header { background-color: #0B1726; }
+body.dark-mode .logo { color: #F8FAFC; }
+body.dark-mode .main-nav a { color: rgba(248,250,252,0.85); }
+body.dark-mode .main-nav a:hover { color: #FFFFFF; }
 
-body.dark-mode .logo {
-  color: #F8FAFC;
-}
+/* Hero (solo el fondo; el texto lo pintan las iteraciones) */
+body.dark-mode .hero { background: linear-gradient(135deg, #0B1726 0%, #132B4A 100%); }
 
-body.dark-mode .main-nav a {
-  color: rgba(248, 250, 252, 0.85);
-}
+/* Secciones y tarjetas */
+body.dark-mode .section-alt { background-color: var(--color-tarjeta); }
+body.dark-mode .card { background-color: var(--color-tarjeta); border-color: rgba(255,255,255,0.10); }
+body.dark-mode .card h3 { color: var(--color-primario); }
+body.dark-mode .card p { color: var(--color-texto-secundario); }
+body.dark-mode .tag { background-color: rgba(59,130,246,0.18); color: #93C5FD; }
 
-body.dark-mode .main-nav a:hover {
-  color: #FFFFFF;
-}
+/* Botones */
+body.dark-mode .button { background-color: var(--color-secundario); color: #FFFFFF; }
+body.dark-mode .button:hover { background-color: var(--color-acento); color: #0B1220; }
+body.dark-mode .button-secondary { background-color: transparent; border-color: rgba(248,250,252,0.75); color: #F8FAFC; }
+body.dark-mode .theme-toggle { background-color: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.30); color: #F8FAFC; }
 
-/* Hero */
-body.dark-mode .hero {
-  background: linear-gradient(135deg, #0B1726 0%, #132B4A 100%);
-}
-
-body.dark-mode .hero h1 {
-  color: #F8FAFC;
-}
-
-body.dark-mode .hero p {
-  color: rgba(248, 250, 252, 0.85);
-}
-
-/* Botón de tema */
-body.dark-mode .theme-toggle {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.30);
-  color: #F8FAFC;
-}
+/* Formulario */
+body.dark-mode .form-field label { color: #E2E8F0; }
+body.dark-mode .form-field input,
+body.dark-mode .form-field select,
+body.dark-mode .form-field textarea { background-color: #0D1728; border-color: rgba(255,255,255,0.14); color: #E2E8F0; }
+body.dark-mode .form-check label { color: var(--color-texto-secundario); }
+body.dark-mode .form-feedback.ok { background-color: rgba(45,212,191,0.12); color: #5EEAD4; border-color: rgba(45,212,191,0.35); }
+body.dark-mode .form-feedback.error { background-color: rgba(248,113,113,0.12); color: #FCA5A5; border-color: rgba(248,113,113,0.35); }
 
 /* Pie */
-body.dark-mode .site-footer {
-  background-color: #0B1726;
-}
-
-body.dark-mode .footer-inner h2 {
-  color: #F8FAFC;
-}
-
-body.dark-mode .copy {
-  color: rgba(248, 250, 252, 0.65);
-}}
-
-/* ==========================================================================
-   11. BOTÓN DE TEMA
-   ========================================================================== */
-
-.theme-toggle {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: rgba(255, 255, 255, 0.10);
-  color: #FFFFFF;
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 10px 14px;
-  border-radius: var(--radio-pastilla);
-  cursor: pointer;
-  transition: var(--transicion);
-}
-
-.theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.18);
-  border-color: var(--color-acento);
-  color: #FFFFFF;
-}
-
-.theme-toggle:focus-visible {
-  outline: 3px solid var(--color-acento);
-  outline-offset: 3px;
-}
-
-.theme-toggle:active {
-  transform: translateY(1px);
-}
-
-/* ==========================================================================
-   12. BOTONES DEL HERO
-   ========================================================================== */
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.button-secondary {
-  background-color: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.75);
-  color: #FFFFFF;
-}
-
-.button-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: #FFFFFF;
-  color: #FFFFFF;
-}
-
-/* ==========================================================================
-   13. FORMULARIO DE CONSULTAS
-   ========================================================================== */
-
-.form-consultas {
-  max-width: 640px;
-  margin-top: var(--espacio-5);
-}
-
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--espacio-2);
-  margin-bottom: var(--espacio-4);
-}
-
-.form-field label {
-  font-weight: 600;
-  color: var(--color-primario);
-}
-
-html.dark .form-field label {
-  color: #E2E8F0;
-}
-
-.form-field input,
-.form-field select,
-.form-field textarea {
-  width: 100%;
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--color-texto);
-  background-color: var(--color-tarjeta);
-  border: 1px solid rgba(15, 39, 71, 0.15);
-  border-radius: var(--radio-suave);
-  padding: 14px 16px;
-  transition: var(--transicion);
-}
-
-html.dark .form-field input,
-html.dark .form-field select,
-html.dark .form-field textarea {
-  background-color: #0D1728;
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #E2E8F0;
-}
-
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
-  outline: none;
-  border-color: var(--color-secundario);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-}
-
-html.dark .form-field input:focus,
-html.dark .form-field select:focus,
-html.dark .form-field textarea:focus {
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
-}
-
-.form-field textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.form-check {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--espacio-2);
-  margin-bottom: var(--espacio-5);
-}
-
-.form-check input {
-  width: auto;
-  margin-top: 4px;
-}
-
-.form-check label {
-  color: var(--color-texto-secundario);
-  font-weight: 400;
-}
-
-.form-feedback {
-  margin-top: var(--espacio-4);
-  padding: 14px 16px;
-  border-radius: var(--radio-suave);
-  font-weight: 600;
-}
-
-.form-feedback.ok {
-  background-color: rgba(20, 184, 166, 0.12);
-  color: #0F766E;
-  border: 1px solid rgba(20, 184, 166, 0.35);
-}
-
-.form-feedback.error {
-  background-color: rgba(239, 68, 68, 0.12);
-  color: #B91C1C;
-  border: 1px solid rgba(239, 68, 68, 0.35);
-}
-
-html.dark .form-feedback.ok {
-  background-color: rgba(45, 212, 191, 0.12);
-  color: #5EEAD4;
-  border-color: rgba(45, 212, 191, 0.35);
-}
-
-html.dark .form-feedback.error {
-  background-color: rgba(248, 113, 113, 0.12);
-  color: #FCA5A5;
-  border-color: rgba(248, 113, 113, 0.35);
-}
-
-/* ==========================================================================
-   14. RESPONSIVE FORMULARIO / BOTÓN TEMA
-   ========================================================================== */
-
-@media (max-width: 768px) {
-  .header-inner {
-    gap: var(--espacio-3);
-  }
-
-  .theme-toggle {
-    width: 100%;
-  }
-
-  .hero-buttons {
-    width: 100%;
-  }
-
-  .hero-buttons .button {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-consultas {
-    margin-top: var(--espacio-4);
-  }
-
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    padding: 12px 14px;
-
-    /* ==========================================================================
-   ITERACIÓN 1 — TÍTULOS CON DEGRADADO
-   ========================================================================== */
+body.dark-mode .site-footer { background-color: #0B1726; }
+body.dark-mode .footer-inner h2 { color: #F8FAFC; }
+body.dark-mode .contact-list a { color: var(--color-acento); }
+body.dark-mode .copy { color: rgba(248,250,252,0.65); }
 
 /* ==========================================================================
    ITERACIÓN 1 — TÍTULOS CON DEGRADADO
    ========================================================================== */
 
-/* 1. Título "Sobre mí" con degradado neón */
+/* Título "Sobre mí" con degradado neón */
 #sobre-mi h2 {
   background-image: linear-gradient(90deg, #2563EB 0%, #14B8A6 30%, #8B5CF6 65%, #EC4899 100%);
   -webkit-background-clip: text;
@@ -819,22 +592,36 @@ html.dark .form-feedback.error {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-
-/* Neón más luminoso en modo oscuro */
 body.dark-mode #sobre-mi h2 {
   background-image: linear-gradient(90deg, #60A5FA 0%, #2DD4BF 30%, #A78BFA 65%, #F472B6 100%);
 }
 
-/* 2. Frase de cabecera con degradado de marca */
+/* Frase de cabecera con degradado de marca */
 .hero p {
-  background-image: linear-gradient(90deg, #0F2747 0%, #2563EB 55%, #14B8A6 100%);
+  background-image: linear-gradient(90deg, #60A5FA 0%, #2563EB 55%, #14B8A6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-
-/* Frase legible en modo oscuro */
 body.dark-mode .hero p {
   background-image: linear-gradient(90deg, #93C5FD 0%, #60A5FA 50%, #2DD4BF 100%);
+}
+
+/* ==========================================================================
+   ITERACIÓN 2 — NOMBRE CON DEGRADADO ANIMADO
+   ========================================================================== */
+
+.hero h1 {
+  background-image: linear-gradient(90deg, #60A5FA 0%, #2DD4BF 25%, #A78BFA 50%, #F472B6 75%, #60A5FA 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: nombre-neon 8s linear infinite;
+}
+@keyframes nombre-neon {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
 }
