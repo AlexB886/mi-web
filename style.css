@@ -735,4 +735,57 @@ body.dark-mode .section-alt {
 }
 body.dark-mode .card {
   background-color: rgba(17, 26, 43, 0.60);
+}/* ==========================================================================
+   FONDO ANIMADO — IMAGEN VISIBLE EN TODA LA PÁGINA (sin cuadros)
+   ========================================================================== */
+
+/* Todo transparente: la imagen se ve detrás de todo */
+.hero,
+.section,
+.section-alt,
+.card,
+.site-footer {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* El velo da contraste suave sin tapar la foto */
+.bg-veil {
+  background: linear-gradient(180deg,
+    rgba(248, 250, 252, 0.28) 0%,
+    rgba(248, 250, 252, 0.20) 100%) !important;
+}
+body.dark-mode .bg-veil {
+  background: linear-gradient(180deg,
+    rgba(11, 18, 32, 0.45) 0%,
+    rgba(11, 18, 32, 0.32) 100%) !important;
+}
+
+/* Sombra de texto para que se lea sobre la imagen en MODO CLARO */
+h1, h2, h3, .hero p, .card p, .logo,
+.main-nav a, .contact-list, .copy, .form-field label {
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* Sombra de texto para que se lea sobre la imagen en MODO OSCURO */
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+body.dark-mode .hero p, body.dark-mode .card p,
+body.dark-mode .logo, body.dark-mode .main-nav a,
+body.dark-mode .contact-list, body.dark-mode .copy,
+body.dark-mode .form-field label {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* El degradado del nombre y la frase no llevan sombra para no perder color */
+.hero h1, .hero p { text-shadow: none !important; }
+
+/* La cabecera y el pie se ven sobre la imagen, sin fondo sólido */
+.site-header {
+  background: rgba(15, 39, 71, 0.55) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+body.dark-mode .site-header {
+  background: rgba(11, 23, 38, 0.60) !important;
 }
