@@ -13,7 +13,7 @@
   --color-texto-secundario: #64748B;
 
   /* Tipografía */
-  --fuente-principal: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+ --fuente-principal: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
   --tamano-base: 1rem;
   --altura-linea: 1.7;
 
