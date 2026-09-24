@@ -1045,3 +1045,28 @@ h1,h2,h3,p,.logo,.main-nav a,.eyebrow,.hero-sub,.hero-desc,.contact-list,.copy,.
 /* Modo oscuro: afina calidez */
 body.dark-mode h3 { color: var(--terracota) !important; }
 body.dark-mode .eyebrow { color: var(--terracota) !important; }
+/* ==========================================================================
+   MODO CLARO — imagen más oscura y nítida
+   ========================================================================== */
+
+/* Velo oscuro (no blanco): baja la exposición de la foto y sube el contraste */
+body:not(.dark-mode) .bg-veil {
+  background: linear-gradient(180deg,
+    rgba(12, 10, 9, 0.62) 0%,
+    rgba(12, 10, 9, 0.50) 100%) !important;
+}
+
+/* Refuerzo de legibilidad: sombra más marcada sobre la foto oscura */
+body:not(.dark-mode) h1,
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3,
+body:not(.dark-mode) p,
+body:not(.dark-mode) .logo,
+body:not(.dark-mode) .main-nav a,
+body:not(.dark-mode) .eyebrow,
+body:not(.dark-mode) .hero-sub,
+body:not(.dark-mode) .hero-desc,
+body:not(.dark-mode) .contact-list,
+body:not(.dark-mode) .copy {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 3px rgba(0, 0, 0, 0.6) !important;
+}
