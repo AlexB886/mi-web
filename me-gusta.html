@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me gusta | Alex Baicu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-animated" aria-hidden="true"></div>
+  <div class="bg-veil" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Alex Baicu</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="lo-que-he-hecho.html">Lo que he hecho</a></li>
+          <li><a href="me-gusta.html" aria-current="page">Me gusta</a></li>
+          <li><a href="consultas.html">Consultas</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button id="themeBtn" class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">🌙 Modo oscuro</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-mini">
+      <div class="hero-content">
+        <p class="eyebrow">Intereses</p>
+        <h1>Me gusta</h1>
+        <p class="hero-sub">Lo que me mueve más allá del código.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cards">
+          <article class="card">
+            <div class="emoji">🌍</div>
+            <h3>Salir y explorar el mundo</h3>
+            <p>Me gusta conocer lugares nuevos, descubrir sitios diferentes y aprovechar el tiempo fuera para aprender y desconectar.</p>
+          </article>
+          <article class="card">
+            <div class="emoji">🐾</div>
+            <h3>Los animales</h3>
+            <p>Tengo debilidad por los animales. Me parece interesante observarlos, entenderlos y disfrutar de su compañía.</p>
+          </article>
+          <article class="card">
+            <div class="emoji">💻</div>
+            <h3>La informática</h3>
+            <p>Me encanta la informática porque permite crear, resolver problemas, aprender nuevas tecnologías y construir proyectos útiles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto" class="site-footer">
+    <div class="container footer-inner">
+      <h2>Contacto</h2>
+      <address class="contact-list">
+        <a href="mailto:baicualex88@gmail.com">baicualex88@gmail.com</a>
+        <a href="https://github.com/AlexB886" target="_blank" rel="noopener" aria-label="GitHub de Alex Baicu" class="gh-link">
+          <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <span>Valencia, España</span>
+      </address>
+      <p class="copy">© <span id="anio"></span> Alex Baicu.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
