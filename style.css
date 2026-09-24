@@ -1245,3 +1245,18 @@ body:not(.dark-mode) .copy {
 }
 .gh-link svg { flex: 0 0 auto; }
 .gh-link:hover { color: var(--beige); }
+/* ==========================================================================
+   HERO ALINEADO A LA IZQUIERDA
+   ========================================================================== */
+.hero-content {
+  text-align: left !important;
+  margin: 0 !important;
+  max-width: 640px !important;
+  padding-left: 8vw !important;
+}
+.hero-desc {
+  margin: 0 0 2.4rem !important;
+}
+.hero-buttons {
+  justify-content: flex-start !important;
+}
