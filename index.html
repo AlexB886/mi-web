@@ -33,7 +33,7 @@
           <li><a href="#sobre-mi">Sobre mí</a></li>
           <li><a href="#hecho">Lo que he hecho</a></li>
           <li><a href="#me-gusta">Me gusta</a></li>
-<li><a href="#consultas">Consultas</a></li>
+<li><a href="consultas.html">Consultas</a></li>
 <li><a href="#contacto">Contacto</a></li>
         </ul>
           </nav>
@@ -61,7 +61,7 @@
         <p class="hero-desc">Estudio de desarrollo web en formación. Diseño interfaces limpias y escribo código para que perduren.</p>
         <div class="hero-buttons">
           <a href="#contacto" class="button">Contactar</a>
-          <a href="#consultas" class="button button-secondary">Consultas</a>
+          <a href="consultas.html" class="button button-secondary">Consultas</a>
         </div>
       </div>
     </section>
@@ -163,85 +163,7 @@
       </div>
     </section>
         <!-- Sección Consultas / formulario -->
-    <section id="consultas" class="section section-alt">
-      <div class="container">
-        <h2>Consultas</h2>
 
-        <p>
-          Puedes rellenar este formulario si quieres preguntarme por contacto,
-          agendar una consulta o gestionar servicios.
-        </p>
-
-        <!-- Formulario -->
-        <form id="formConsultas" class="form-consultas" novalidate>
-          <!-- Nombre -->
-          <div class="form-field">
-            <label for="nombre">Nombre</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              placeholder="Tu nombre"
-              required
-            >
-          </div>
-
-          <!-- Correo -->
-          <div class="form-field">
-            <label for="correo">Correo electrónico</label>
-            <input
-              type="email"
-              id="correo"
-              name="correo"
-              placeholder="tucorreo@ejemplo.com"
-              required
-            >
-          </div>
-
-          <!-- Tipo de consulta -->
-          <div class="form-field">
-            <label for="consulta">Tipo de consulta</label>
-            <select id="consulta" name="consulta" required>
-              <option value="">Selecciona una opción</option>
-              <option value="numero">¿Cuál es tu número de contacto?</option>
-              <option value="agendar">¿Cómo puedo agendar contigo una consulta?</option>
-              <option value="servicios">Me interesan tus servicios, ¿cómo lo gestionamos?</option>
-            </select>
-          </div>
-
-          <!-- Mensaje -->
-          <div class="form-field">
-            <label for="mensaje">Mensaje</label>
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="5"
-              placeholder="Cuéntame tu consulta"
-              required
-            ></textarea>
-          </div>
-
-          <!-- Privacidad -->
-          <div class="form-check">
-            <input
-              type="checkbox"
-              id="acepto"
-              name="acepto"
-              required
-            >
-            <label for="acepto">
-              Acepto que mis datos se usen para responder a esta consulta.
-            </label>
-          </div>
-
-          <!-- Botón enviar -->
-          <button type="submit" class="button">Enviar consulta</button>
-
-          <!-- Mensaje de confirmación -->
-          <p id="mensajeFormulario" class="form-feedback" hidden></p>
-        </form>
-      </div>
-    </section>
   </main>
   </main>
 
