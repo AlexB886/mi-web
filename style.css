@@ -789,3 +789,47 @@ body.dark-mode .form-field label {
 body.dark-mode .site-header {
   background: rgba(11, 23, 38, 0.60) !important;
 }
+/* ==========================================================================
+   FONDO ANIMADO — DEFINITIVO (nítido, sin cuadros, legible en ambos modos)
+   ========================================================================== */
+
+/* Quito el desenfoque de todas las capas: imagen nítida detrás */
+.hero, .section, .section-alt, .card, .site-header,
+body.dark-mode .section-alt, body.dark-mode .card, body.dark-mode .site-header {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Paneles semitransparentes SIN blur (imagen se ve detrás, nítida) */
+.hero, .section, .section-alt, .card, .site-footer {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.card { background-color: rgba(255,255,255,0.55) !important; }
+body.dark-mode .card { background-color: rgba(11,18,32,0.55) !important; }
+.section-alt { background-color: rgba(255,255,255,0.40) !important; }
+body.dark-mode .section-alt { background-color: rgba(11,18,32,0.40) !important; }
+
+/* Velo fino: deja ver la imagen pero da contraste */
+.bg-veil {
+  background: linear-gradient(180deg, rgba(248,250,252,0.28) 0%, rgba(248,250,252,0.18) 100%) !important;
+}
+body.dark-mode .bg-veil {
+  background: linear-gradient(180deg, rgba(11,18,32,0.30) 0%, rgba(11,18,32,0.20) 100%) !important;
+}
+
+/* Header translúcido sin blur */
+.site-header { background: rgba(15,39,71,0.50) !important; }
+body.dark-mode .site-header { background: rgba(11,23,38,0.55) !important; }
+
+/* Sombra de texto para legibilidad sobre la imagen */
+h1,h2,h3,.hero p,.card p,.logo,.main-nav a,.contact-list,.copy,.form-field label {
+  text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+}
+body.dark-mode h1,body.dark-mode h2,body.dark-mode h3,body.dark-mode .hero p,
+body.dark-mode .card p,body.dark-mode .logo,body.dark-mode .main-nav a,
+body.dark-mode .contact-list,body.dark-mode .copy,body.dark-mode .form-field label {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.hero h1, .hero p { text-shadow: none !important; }
