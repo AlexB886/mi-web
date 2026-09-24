@@ -910,3 +910,138 @@ body:not(.dark-mode) .tag {
   background-color: rgba(37, 99, 235, 0.35);
   color: #DBEAFE;
 }
+/* ==========================================================================
+   REDISEÑO EDITORIAL — serif + paleta carbón/beige/dorado/terracota
+   ========================================================================== */
+
+/* Paleta editorial */
+:root {
+  --negro: #0C0A09;
+  --carbon: #14110F;
+  --gris-calido: #6B625A;
+  --beige: #E8E2D6;
+  --blanco-roto: #F5F2EC;
+  --terracota: #B5654A;
+  --dorado: #C9A66B;
+  --fuente-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --fuente-principal: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--blanco-roto);
+}
+
+/* Títulos serif refinados */
+h1, h2, h3 {
+  font-family: var(--fuente-serif) !important;
+  font-weight: 500 !important;
+  color: var(--blanco-roto) !important;
+  letter-spacing: 0.005em;
+  line-height: 1.12 !important;
+}
+h1 { font-size: clamp(3rem, 9vw, 5.5rem) !important; font-weight: 600 !important; }
+h2 { font-size: clamp(1.9rem, 4.5vw, 2.8rem) !important; }
+h3 { font-size: 1.25rem !important; font-weight: 500 !important; color: var(--dorado) !important; }
+
+/* Eyebrow: pequeña, espaciada, mayúsculas */
+.eyebrow {
+  font-family: var(--fuente-principal) !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+  color: var(--dorado) !important;
+  margin: 0 0 1.4rem !important;
+}
+
+/* Subtítulo (serif cursiva) */
+.hero-sub {
+  font-family: var(--fuente-serif) !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem) !important;
+  color: var(--beige) !important;
+  margin: 0 0 1.6rem !important;
+}
+
+/* Descripción (sans ligera, aire) */
+.hero-desc {
+  font-family: var(--fuente-principal) !important;
+  font-weight: 300 !important;
+  font-size: 1.02rem !important;
+  line-height: 1.85 !important;
+  max-width: 42ch !important;
+  margin: 0 auto 2.4rem !important;
+  color: var(--beige) !important;
+}
+
+/* Texto descriptivo general */
+p {
+  font-family: var(--fuente-principal) !important;
+  font-weight: 300 !important;
+  line-height: 1.85 !important;
+  color: var(--beige) !important;
+}
+.card p, .about-grid p { color: var(--beige) !important; }
+
+/* Quito los degradados neón (sobriedad editorial) */
+.hero h1, .hero p, #sobre-mi h2 {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+  animation: none !important;
+}
+
+/* Botones: finos, rectos, acento dorado */
+.button, .button-secondary {
+  font-family: var(--fuente-principal) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-size: 0.78rem !important;
+  padding: 14px 30px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: 1px solid var(--dorado) !important;
+  color: var(--dorado) !important;
+  box-shadow: none !important;
+}
+.button:hover, .button-secondary:hover {
+  background: var(--dorado) !important;
+  color: var(--negro) !important;
+  transform: none !important;
+}
+
+/* Tarjetas: sin fondo, solo filete superior fino */
+.card {
+  border: none !important;
+  border-top: 1px solid rgba(201, 166, 107, 0.35) !important;
+  border-radius: 0 !important;
+  padding: 24px 0 !important;
+  background: transparent !important;
+}
+.tag {
+  background: transparent !important;
+  color: var(--terracota) !important;
+  border: 1px solid rgba(181, 101, 74, 0.5) !important;
+  border-radius: 0 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+}
+
+/* Cabecera y pie: filetes finos */
+.site-header { background: rgba(12, 10, 9, 0.55) !important; border-bottom: 1px solid rgba(201,166,107,0.2) !important; }
+.logo { font-family: var(--fuente-serif) !important; letter-spacing: 0.02em !important; color: var(--blanco-roto) !important; }
+.main-nav a { letter-spacing: 0.14em !important; text-transform: uppercase !important; font-size: 0.74rem !important; color: var(--beige) !important; }
+.main-nav a:hover { color: var(--dorado) !important; }
+.site-footer { background: transparent !important; border-top: 1px solid rgba(201,166,107,0.2) !important; }
+.footer-inner h2 { color: var(--beige) !important; }
+.contact-list a { color: var(--dorado) !important; }
+
+/* Sombra de texto para legibilidad sobre la foto (ambos modos) */
+h1,h2,h3,p,.logo,.main-nav a,.eyebrow,.hero-sub,.hero-desc,.contact-list,.copy,.form-field label {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.75), 0 0 2px rgba(0,0,0,0.5) !important;
+}
+
+/* Modo oscuro: afina calidez */
+body.dark-mode h3 { color: var(--terracota) !important; }
+body.dark-mode .eyebrow { color: var(--terracota) !important; }
