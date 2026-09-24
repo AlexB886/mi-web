@@ -867,3 +867,46 @@ body.dark-mode .form-field label, body.dark-mode .tag {
 /* La etiqueta .tag necesita un fondo mínimo para no perderse */
 .tag { background-color: rgba(37, 99, 235, 0.25) !important; }
 body.dark-mode .tag { background-color: rgba(59, 130, 246, 0.30) !important; }
+/* ==========================================================================
+   MODO CLARO — legible sobre la imagen oscura
+   ========================================================================== */
+
+/* Texto claro + sombra oscura para que resalte sobre la foto */
+body:not(.dark-mode) h1,
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3,
+body:not(.dark-mode) p,
+body:not(.dark-mode) .card p,
+body:not(.dark-mode) .logo,
+body:not(.dark-mode) .main-nav a,
+body:not(.dark-mode) .contact-list,
+body:not(.dark-mode) .copy,
+body:not(.dark-mode) .form-field label,
+body:not(.dark-mode) .form-check label {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Colores claros del texto (sobre la foto) */
+body:not(.dark-mode) h2 { color: #93C5FD; }
+body:not(.dark-mode) h3 { color: #F8FAFC; }
+body:not(.dark-mode) p,
+body:not(.dark-mode) .card p { color: #E2E8F0; }
+body:not(.dark-mode) .copy,
+body:not(.dark-mode) .contact-list span { color: rgba(248, 250, 252, 0.85); }
+body:not(.dark-mode) .form-field label { color: #F8FAFC; }
+body:not(.dark-mode) .form-check label { color: #E2E8F0; }
+body:not(.dark-mode) .main-nav a { color: #F8FAFC; }
+
+/* Mantengo los degradados intactos (color transparente) */
+body:not(.dark-mode) .hero h1,
+body:not(.dark-mode) .hero p,
+body:not(.dark-mode) #sobre-mi h2 {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Etiqueta .tag con fondo para que no se pierda */
+body:not(.dark-mode) .tag {
+  background-color: rgba(37, 99, 235, 0.35);
+  color: #DBEAFE;
+}
