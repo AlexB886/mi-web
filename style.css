@@ -833,3 +833,37 @@ body.dark-mode .contact-list,body.dark-mode .copy,body.dark-mode .form-field lab
   text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 .hero h1, .hero p { text-shadow: none !important; }
+/* ==========================================================================
+   SIN CUADROS — solo imagen nítida + texto con sombra
+   ========================================================================== */
+
+/* Tarjetas y secciones: fondo transparente (se ve la foto detrás) */
+.card,
+.section-alt,
+.hero,
+.site-footer,
+body.dark-mode .card,
+body.dark-mode .section-alt {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Sombra de texto reforzada para legibilidad sobre la imagen */
+h1, h2, h3, .hero p, .card p, p, .logo,
+.main-nav a, .contact-list, .copy, .form-field label, .tag {
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 2px rgba(255, 255, 255, 0.7);
+}
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+body.dark-mode .hero p, body.dark-mode .card p, body.dark-mode p,
+body.dark-mode .logo, body.dark-mode .main-nav a,
+body.dark-mode .contact-list, body.dark-mode .copy,
+body.dark-mode .form-field label, body.dark-mode .tag {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.7);
+}
+.hero h1, .hero p { text-shadow: none !important; }
+
+/* La etiqueta .tag necesita un fondo mínimo para no perderse */
+.tag { background-color: rgba(37, 99, 235, 0.25) !important; }
+body.dark-mode .tag { background-color: rgba(59, 130, 246, 0.30) !important; }
