@@ -18,53 +18,47 @@
 </head>
 
 <body>
-  <!-- Fondo animado + velo -->
+  <!-- Fondo + velo -->
   <div class="bg-animated" aria-hidden="true"></div>
   <div class="bg-veil" aria-hidden="true"></div>
-  <!-- Cabecera con navegación -->
+
+  <!-- Cabecera: solo logo y botón de tema, sin menú -->
   <header class="site-header">
     <div class="header-inner">
-      <!-- Logo / nombre -->
       <a href="#inicio" class="logo">Alex Baicu</a>
-
-      <!-- Navegación principal -->
-      <nav class="main-nav" aria-label="Navegación principal">
-        <ul>
-         <li><a href="sobre-mi.html">Sobre mí</a></li>
-<li><a href="lo-que-he-hecho.html">Lo que he hecho</a></li>
-<li><a href="me-gusta.html">Me gusta</a></li>
-<li><a href="consultas.html">Consultas</a></li>
-<li><a href="#contacto">Contacto</a></li>
-        </ul>
-          </nav>
-
-      <!-- Botón modo claro/oscuro -->
-      <button
-        id="themeBtn"
-        class="theme-toggle"
-        type="button"
-        aria-label="Cambiar modo claro u oscuro"
-      >
-        🌙 Modo oscuro
-      </button>
+      <button id="themeBtn" class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">🌙 Modo oscuro</button>
     </div>
   </header>
 
-  <!-- Contenido principal -->
   <main id="inicio">
-    <!-- Cabecera principal / hero -->
     <section class="hero">
-         <div class="hero-content">
+      <div class="hero-content">
         <p class="eyebrow">Portafolio</p>
-       <h1><span id="nombre"></span></h1>
+        <h1><span id="nombre"></span></h1>
         <p class="hero-sub">Diseño web con criterio, código con intención.</p>
         <p class="hero-desc">Estudio de desarrollo web en formación. Diseño interfaces limpias y escribo código para que perduren.</p>
-        <div class="hero-buttons">
-          <a href="#contacto" class="button">Contactar</a>
-          <a href="consultas.html" class="button button-secondary">Consultas</a>
-        </div>
+        
       </div>
     </section>
+        <!-- Suelo y dinosaurio -->
+        <!-- Suelo con agujeros y dinosaurio -->
+    <div class="pista">
+      <nav class="suelo" aria-label="Navegación principal">
+        <span class="tramo"></span>
+        <a class="agujero" href="sobre-mi.html">Sobre mí</a>
+        <span class="tramo"></span>
+        <a class="agujero" href="lo-que-he-hecho.html">Lo que he hecho</a>
+        <span class="tramo"></span>
+        <a class="agujero" href="me-gusta.html">Me gusta</a>
+        <span class="tramo"></span>
+        <a class="agujero" href="consultas.html">Consultas</a>
+        <span class="tramo"></span>
+        <a class="agujero" href="#contacto">Contacto</a>
+        <span class="tramo"></span>
+      </nav>
+      <img class="dino" src="dino.png" alt="">
+    </div>
+  </main>
 
 
 
