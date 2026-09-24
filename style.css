@@ -559,4 +559,7 @@ body.dark-mode {
 
   /* Que el texto de presentación no toque el borde derecho */
   .hero-content { padding-right: 8vw; }
+}/* Móvil (portada): la cabecera se queda arriba y no sigue al hacer scroll */
+@media (max-width: 768px) {
+  .home .site-header { position: static; }
 }
