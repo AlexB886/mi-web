@@ -531,9 +531,32 @@ body.dark-mode {
   width: auto;
 }
 
-/* Pantallas estrechas: suelo más ancho para que se lean los apartados */
+/* Móvil: el suelo va debajo del texto, encima de Contacto */
 @media (max-width: 768px) {
-  .suelo { left: 5%; width: 90%; }
-  .dino  { left: calc(5% + 8px); }
-  .agujero { flex-basis: 15%; font-size: 0.5rem; letter-spacing: 0.04em; }
+  .pista {
+    position: relative;
+    height: auto;
+    padding: 80px var(--espacio-4) var(--espacio-6);
+  }
+  .suelo {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+  .tramo:first-child { flex: 0 0 16%; }   /* sitio para el dinosaurio */
+  .tramo:last-child  { flex: 1; }
+  .agujero {
+    flex-basis: 15%;
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  .dino {
+    left: calc(var(--espacio-4) + 2px);
+    top: 80px;
+    height: 56px;
+  }
+
+  /* Que el texto de presentación no toque el borde derecho */
+  .hero-content { padding-right: 8vw; }
 }
