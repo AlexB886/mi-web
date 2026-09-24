@@ -130,4 +130,119 @@ function mostrarMensaje(texto, tipo) {
     }
   }
   tick();
+})();/* ==========================================================================
+  ```js
+/* ==========================================================================
+   4. DINOSAURIO: CARRERA + SALTO + NAVEGACIÓN
+   ========================================================================== */
+
+(function () {
+  const dino = document.querySelector(".dino");
+  const pista = document.querySelector(".pista");
+  const agujeros = document.querySelectorAll(".agujero");
+
+  if (!dino || !pista || !agujeros.length) return;
+
+  let animando = false;
+
+  agujeros.forEach((agujero) => {
+
+    agujero.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Evita que se pueda iniciar otra animación mientras está corriendo
+      if (animando) return;
+
+      animando = true;
+
+      const destino = agujero.getAttribute("href");
+
+      // Quitamos el estado anterior
+      agujeros.forEach((a) => a.classList.remove("activo"));
+
+      // Marcamos el botón seleccionado
+      agujero.classList.add("activo");
+
+      // Calculamos dónde está el agujero
+      const rect = agujero.getBoundingClientRect();
+      const pistaRect = pista.getBoundingClientRect();
+
+      const destinoX =
+        rect.left -
+        pistaRect.left +
+        rect.width / 2 -
+        dino.offsetWidth / 2;
+
+      // Posición actual del dinosaurio
+      const dinoRect = dino.getBoundingClientRect();
+
+      const inicioX =
+        dinoRect.left -
+        pistaRect.left;
+
+      // Distancia que tiene que recorrer
+      const distancia = Math.abs(destinoX - inicioX);
+
+      // Más distancia = más tiempo de carrera
+      // Mínimo 500 ms, máximo 1500 ms
+      const tiempoCarrera = Math.min(
+        Math.max(distancia * 2.2, 500),
+        1500
+      );
+
+      // Ponemos el tiempo como variable CSS
+      dino.style.setProperty(
+        "--tiempo-carrera",
+        `${tiempoCarrera}ms`
+      );
+
+      // Guardamos la posición final
+      dino.style.setProperty(
+        "--destino-x",
+        `${destinoX}px`
+      );
+
+      // Iniciamos la carrera
+      dino.classList.add("corriendo");
+
+      // Cuando termina la carrera empieza el salto
+      setTimeout(() => {
+
+        dino.classList.remove("corriendo");
+        dino.classList.add("saltando");
+
+        // El botón se hunde cuando el dinosaurio aterriza
+        setTimeout(() => {
+          dino.classList.remove("saltando");
+
+          // Pequeño retraso para que se vea el aterrizaje
+          setTimeout(() => {
+
+            // Si es un enlace interno
+            if (destino.startsWith("#")) {
+              const elemento = document.querySelector(destino);
+
+              if (elemento) {
+                elemento.scrollIntoView({
+                  behavior: "smooth"
+                });
+              }
+
+            } else {
+              // Si es otra página
+              window.location.href = destino;
+            }
+
+          }, 150);
+
+        }, 500);
+
+      }, tiempoCarrera);
+    });
+
+  });
+
 })();
+
+
+
