@@ -1078,3 +1078,13 @@ body:not(.dark-mode) .copy {
   background-size: cover !important;
   background-position: center !important;
 }
+/* ==========================================================================
+   FONDO ESTÁTICO — imagen completa, sin recortar
+   ========================================================================== */
+.bg-animated {
+  animation: none !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: #0C0A09 !important;
+}
