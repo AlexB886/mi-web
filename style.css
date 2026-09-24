@@ -1223,3 +1223,13 @@ body:not(.dark-mode) .copy {
   font-size: 0.9rem;
 }
 .form-feedback.error { border-left-color: var(--terracota); color: #F3C9BC; }
+/* ==========================================================================
+   FONDO ESTÁTICO — ocupa toda la pantalla, sin huecos
+   ========================================================================== */
+.bg-animated {
+  animation: none !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: #0C0A09 !important;
+}
