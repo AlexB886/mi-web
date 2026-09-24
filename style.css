@@ -1052,8 +1052,8 @@ body.dark-mode .eyebrow { color: var(--terracota) !important; }
 /* Velo oscuro (no blanco): baja la exposición de la foto y sube el contraste */
 body:not(.dark-mode) .bg-veil {
   background: linear-gradient(180deg,
-    rgba(12, 10, 9, 0.62) 0%,
-    rgba(12, 10, 9, 0.50) 100%) !important;
+    rgba(12, 10, 9, 0.50) 0%,
+    rgba(12, 10, 9, 0.40) 100%) !important;
 }
 
 /* Refuerzo de legibilidad: sombra más marcada sobre la foto oscura */
@@ -1069,4 +1069,12 @@ body:not(.dark-mode) .hero-desc,
 body:not(.dark-mode) .contact-list,
 body:not(.dark-mode) .copy {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 3px rgba(0, 0, 0, 0.6) !important;
+}
+/* ==========================================================================
+   FONDO ESTÁTICO — sin animación Ken Burns
+   ========================================================================== */
+.bg-animated {
+  animation: none !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
