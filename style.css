@@ -1154,3 +1154,72 @@ body:not(.dark-mode) .copy {
   font-size: 0.9rem;
 }
 .form-feedback.error { border-left-color: var(--terracota); color: #F3C9BC; }
+/* ==========================================================================
+   FORMULARIO DE CONSULTAS — limpio y editorial
+   ========================================================================== */
+.hero-consultas { padding: 96px 0 40px; }
+
+.form-consultas {
+  max-width: 560px;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.form-field { display: grid; gap: 8px; }
+
+.form-field label {
+  font-family: var(--fuente-principal);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  font-family: var(--fuente-principal);
+  font-size: 1rem;
+  color: var(--blanco-roto);
+  background: rgba(12, 10, 9, 0.55);
+  border: 1px solid rgba(201, 166, 107, 0.4);
+  border-radius: 0;
+  padding: 14px 16px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: rgba(232, 226, 214, 0.5); }
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--dorado);
+  background: rgba(12, 10, 9, 0.75);
+}
+
+.form-field textarea { resize: vertical; min-height: 130px; }
+.form-field select { appearance: none; }
+
+.form-check { display: flex; gap: 10px; align-items: flex-start; }
+.form-check input { width: auto; margin-top: 4px; accent-color: var(--dorado); }
+.form-check label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.85rem;
+  color: var(--beige);
+}
+
+.form-consultas .button { justify-self: start; }
+
+.form-feedback {
+  padding: 14px 16px;
+  border-left: 2px solid var(--dorado);
+  background: rgba(12, 10, 9, 0.6);
+  color: var(--beige);
+  font-size: 0.9rem;
+}
+.form-feedback.error { border-left-color: var(--terracota); color: #F3C9BC; }
