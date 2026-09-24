@@ -1233,3 +1233,15 @@ body:not(.dark-mode) .copy {
   background-repeat: no-repeat !important;
   background-color: #0C0A09 !important;
 }
+/* Enlace GitHub con icono */
+.gh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dorado);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.gh-link svg { flex: 0 0 auto; }
+.gh-link:hover { color: var(--beige); }
