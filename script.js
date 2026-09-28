@@ -58,26 +58,52 @@ const tiposConsulta = {
 
 // Al enviar el formulario
 if (form) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Campos
+    // Validación propia (igual que antes)
     const nombre = form.nombre.value.trim();
     const correo = form.correo.value.trim();
     const consulta = form.consulta.value;
     const mensaje = form.mensaje.value.trim();
     const acepto = form.acepto.checked;
 
-    // Validación básica
     if (!nombre || !correo || !consulta || !mensaje) {
       mostrarMensaje("Rellena todos los campos obligatorios.", "error");
       return;
     }
-
     if (!acepto) {
       mostrarMensaje("Debes aceptar la política de privacidad.", "error");
       return;
     }
+
+    // Envío real a Web3Forms
+    const boton = form.querySelector('button[type="submit"]');
+    const textoOriginal = boton.textContent;
+    boton.disabled = true;
+    boton.textContent = "Enviando...";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        mostrarMensaje(`Gracias, ${nombre}. Tu consulta se ha enviado. Te responderé a ${correo}.`, "ok");
+        form.reset();
+      } else {
+        mostrarMensaje("No se pudo enviar. Revisa tu conexión.", "error");
+      }
+    } catch {
+      mostrarMensaje("Error al enviar. Inténtalo otra vez.", "error");
+    } finally {
+      boton.disabled = false;
+      boton.textContent = textoOriginal;
+    }
+  });
+}
 
     // Mensaje de éxito
     const tipo = tiposConsulta[consulta] || "Consulta general";
