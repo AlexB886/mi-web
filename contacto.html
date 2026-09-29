@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contacto | Alex Baicu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- FONDO -->
+
+  <div class="bg-animated" aria-hidden="true"></div>
+  <div class="bg-veil" aria-hidden="true"></div>
+
+
+  <!-- MODO OSCURO / CLARO -->
+
+  <div class="barra-tema">
+    <button
+      id="themeBtn"
+      class="theme-toggle"
+      type="button"
+      aria-label="Cambiar modo claro u oscuro"
+    >
+      🌙 Modo oscuro
+    </button>
+  </div>
+
+
+  <main>
+
+    <!-- CABECERA -->
+
+    <section class="hero hero-mini">
+
+      <div class="hero-content">
+
+        <p class="eyebrow">CONTACTO</p>
+
+        <h1>Hablemos.</h1>
+
+        <p class="hero-sub">
+          Si quieres contactar conmigo, aquí tienes mis datos.
+        </p>
+
+      </div>
+
+
+      <!-- NAVEGACIÓN + DINOSAURIO -->
+
+      <div class="pista" aria-hidden="true">
+
+        <div class="suelo">
+
+          <span class="tramo"></span>
+
+          <a class="agujero" href="index.html">
+            Inicio
+          </a>
+
+          <span class="tramo"></span>
+
+          <a class="agujero" href="sobre-mi.html">
+            Sobre mí
+          </a>
+
+          <span class="tramo"></span>
+
+          <a class="agujero" href="lo-que-he-hecho.html">
+            He hecho
+          </a>
+
+          <span class="tramo"></span>
+
+          <a class="agujero" href="me-gusta.html">
+            Me gusta
+          </a>
+
+          <span class="tramo"></span>
+
+          <a class="agujero" href="consultas.html">
+            Consultas
+          </a>
+
+          <span class="tramo"></span>
+
+          <a
+            class="agujero"
+            href="contacto.html"
+            aria-current="page"
+          >
+            Contacto
+          </a>
+
+          <span class="tramo"></span>
+
+        </div>
+
+
+        <div class="efecto-dino">
+
+          <img
+            class="dino"
+            src="dino.png"
+            alt=""
+          >
+
+          <span class="polvo polvo1"></span>
+          <span class="polvo polvo2"></span>
+          <span class="polvo polvo3"></span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIVISOR -->
+
+    <div class="divisor" aria-hidden="true">
+
+      <svg viewBox="0 0 200 20" preserveAspectRatio="none">
+
+        <line
+          x1="0"
+          y1="10"
+          x2="85"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+        <rect
+          x="95"
+          y="5"
+          width="10"
+          height="10"
+          transform="rotate(45 100 10)"
+          fill="currentColor"
+        />
+
+        <line
+          x1="115"
+          y1="10"
+          x2="200"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <!-- CONTACTO -->
+
+    <section class="section contacto-section">
+
+      <div class="container">
+
+        <p class="eyebrow">01 — Contacto</p>
+
+        <h2>Encuéntrame</h2>
+
+        <p class="contacto-intro">
+          Ya sea para hablar sobre programación, proyectos,
+          desarrollo web o simplemente para ponernos en contacto.
+        </p>
+
+
+        <!-- TARJETAS -->
+
+        <div class="contacto-grid">
+
+
+          <!-- NOMBRE -->
+
+          <article class="contacto-card contacto-card-grande">
+
+            <div class="contacto-icono">
+              👤
+            </div>
+
+            <div>
+
+              <span class="contacto-label">
+                NOMBRE
+              </span>
+
+              <h3>
+                Alex Baicu
+              </h3>
+
+              <p>
+                Desarrollador en formación
+              </p>
+
+            </div>
+
+          </article>
+
+
+<!-- EMAIL -->
+
+<a
+  class="contacto-card contacto-link"
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=baicualex88@gmail.com"
+  aria-label="Enviar un correo a Alex Baicu"
+>
+
+  <div class="contacto-icono">
+    ✉️
+  </div>
+
+  <div>
+
+    <span class="contacto-label">
+      EMAIL
+    </span>
+
+    <h3>
+      baicualex88@gmail.com
+    </h3>
+
+    <p>
+      Enviar un correo →
+    </p>
+
+  </div>
+
+</a>
+
+
+         <!-- TELÉFONO -->
+
+<a
+  class="contacto-card contacto-link"
+  href="tel:+34642970914"
+  aria-label="Llamar a Alex Baicu"
+>
+
+  <div class="contacto-icono">
+    📱
+  </div>
+
+  <div>
+
+    <span class="contacto-label">
+      TELÉFONO
+    </span>
+
+    <h3>
+      +34 642 97 09 14
+    </h3>
+
+    <p>
+      Llamar ahora →
+    </p>
+
+  </div>
+
+</a>
+          <!-- LINKEDIN -->
+
+          <a
+            class="contacto-card contacto-link linkedin-card"
+            href="https://www.linkedin.com/in/alex-baicu-2120012b8/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de LinkedIn de Alex Baicu"
+          >
+
+            <div class="contacto-icono linkedin-icono">
+
+              <!-- LOGO LINKEDIN -->
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45z"
+                />
+
+              </svg>
+
+            </div>
+
+            <div>
+
+              <span class="contacto-label">
+                LINKEDIN
+              </span>
+
+              <h3>
+                Alex Baicu
+              </h3>
+
+              <p>
+                Ver mi perfil →
+              </p>
+
+            </div>
+
+          </a>
+
+
+          <!-- LOCALIDAD -->
+
+          <article class="contacto-card contacto-localidad">
+
+            <div class="contacto-icono">
+              📍
+            </div>
+
+            <div>
+
+              <span class="contacto-label">
+                LOCALIDAD
+              </span>
+
+              <h3>
+                Manuel, Valencia
+              </h3>
+
+              <p>
+                España
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- MAPA -->
+
+        <div class="mapa-bloque">
+
+          <div class="mapa-cabecera">
+
+            <div>
+
+              <span class="contacto-label">
+                UBICACIÓN
+              </span>
+
+              <h3>
+                ¿Cómo llegar?
+              </h3>
+
+              <p>
+                Consulta la ubicación y calcula tu ruta.
+              </p>
+
+            </div>
+
+
+            <a
+              class="boton-mapa"
+              href="https://www.google.com/maps/dir/?api=1&destination=Manuel%2C%20Valencia%2C%20Spain&travelmode=driving"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🧭 Cómo llegar
+            </a>
+
+          </div>
+
+
+          <div class="mapa-contenedor">
+
+            <iframe
+              src="https://www.google.com/maps?q=Manuel%2C%20Valencia%2C%20Spain&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa de Manuel, Valencia"
+            >
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <h2>Contacto</h2>
+
+      <address class="contact-list">
+
+        <a href="mailto:baicualex88@gmail.com">
+          baicualex88@gmail.com
+        </a>
+
+        <a
+          href="https://github.com/AlexB886"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub de Alex Baicu"
+          class="gh-link"
+        >
+
+          <svg
+            viewBox="0 0 16 16"
+            width="20"
+            height="20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+
+          </svg>
+
+          <span>GitHub</span>
+
+        </a>
+
+        <span>
+          Valencia, España
+        </span>
+
+      </address>
+
+      <p class="copy">
+        © <span id="anio"></span> Alex Baicu.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>

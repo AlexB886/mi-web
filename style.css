@@ -601,13 +601,16 @@ body.dark-mode {
    CARRERA
    -------------------------------------------------------------------------- */
 
+/* ==========================================================================
+   DINOSAURIO — CARRERA + PASOS + SALTO + ENTRADA
+   ========================================================================== */
+
+/* CARRERA DEL CONTENEDOR */
 .efecto-dino.corriendo {
   animation: correrDino var(--tiempo-carrera) linear forwards;
 }
 
-
 @keyframes correrDino {
-
   from {
     transform: translateX(0);
   }
@@ -615,21 +618,15 @@ body.dark-mode {
   to {
     transform: translateX(var(--destino-x));
   }
-
 }
 
 
-/* --------------------------------------------------------------------------
-   PASOS
-   -------------------------------------------------------------------------- */
-
+/* PASOS DEL DINOSAURIO */
 .dino.corriendo {
   animation: pasosDino 0.18s ease-in-out infinite;
 }
 
-
 @keyframes pasosDino {
-
   0% {
     transform:
       scaleX(var(--flip))
@@ -647,37 +644,10 @@ body.dark-mode {
       scaleX(var(--flip))
       translateY(0);
   }
-
 }
 
 
-/* --------------------------------------------------------------------------
-   POLVO
-   -------------------------------------------------------------------------- */
-
-.polvo {
-  position: absolute;
-
-  left: 5px;
-  bottom: 3px;
-
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: rgba(120, 90, 60, 0.5);
-
-  opacity: 0;
-  pointer-events: none;
-}
-
-
-/*
-   Los tres intervalos están separados 0.18 s.
-   Así aparece una partícula aproximadamente con cada paso.
-*/
-
+/* POLVO DURANTE LA CARRERA */
 .efecto-dino.corriendo .polvo1 {
   animation: polvoDino 0.54s ease-out infinite;
 }
@@ -690,9 +660,7 @@ body.dark-mode {
   animation: polvoDino 0.54s ease-out infinite 0.36s;
 }
 
-
 @keyframes polvoDino {
-
   0% {
     opacity: 0;
     transform:
@@ -712,22 +680,16 @@ body.dark-mode {
       translateY(7px)
       scale(1.7);
   }
-
 }
 
 
-/* --------------------------------------------------------------------------
-   SALTO
-   -------------------------------------------------------------------------- */
-
+/* SALTO */
 .dino.saltando {
   animation: saltoDino 0.65s cubic-bezier(.2, .75, .3, 1) forwards;
 }
 
-
 @keyframes saltoDino {
 
-  /* Preparación: se agacha antes de saltar */
   0% {
     transform:
       scaleX(var(--flip))
@@ -735,7 +697,6 @@ body.dark-mode {
       translateY(3px);
   }
 
-  /* Despegue */
   10% {
     transform:
       scaleX(var(--flip))
@@ -743,7 +704,6 @@ body.dark-mode {
       translateY(-8px);
   }
 
-  /* Subida */
   30% {
     transform:
       scaleX(var(--flip))
@@ -751,7 +711,6 @@ body.dark-mode {
       translateY(-42px);
   }
 
-  /* Sigue subiendo */
   45% {
     transform:
       scaleX(var(--flip))
@@ -759,7 +718,6 @@ body.dark-mode {
       translateY(-65px);
   }
 
-  /* Punto más alto */
   55% {
     transform:
       scaleX(var(--flip))
@@ -767,7 +725,6 @@ body.dark-mode {
       translateY(-70px);
   }
 
-  /* Caída */
   75% {
     transform:
       scaleX(var(--flip))
@@ -775,7 +732,6 @@ body.dark-mode {
       translateY(-35px);
   }
 
-  /* Justo antes de tocar */
   88% {
     transform:
       scaleX(var(--flip))
@@ -783,7 +739,6 @@ body.dark-mode {
       translateY(-5px);
   }
 
-  /* Impacto */
   94% {
     transform:
       scaleX(var(--flip))
@@ -791,141 +746,19 @@ body.dark-mode {
       translateY(2px);
   }
 
-  /* Recuperación */
   100% {
     transform:
       scaleX(var(--flip))
       scaleY(1)
       translateY(0);
   }
-
-}
-/* --------------------------------------------------------------------------
-   POLVO AL ATERRIZAR
-   -------------------------------------------------------------------------- */
-
-.efecto-dino.aterrizando .polvo {
-  animation: polvoAterrizaje 0.4s ease-out forwards;
 }
 
 
-.efecto-dino.aterrizando .polvo1 {
-  transform-origin: center;
-  animation-delay: 0s;
-}
-
-.efecto-dino.aterrizando .polvo2 {
-  transform-origin: center;
-  animation-delay: 0.05s;
-}
-
-.efecto-dino.aterrizando .polvo3 {
-  transform-origin: center;
-  animation-delay: 0.1s;
-}
-
-
-@keyframes polvoAterrizaje {
-
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.3);
-  }
-
-  20% {
-    opacity: 0.65;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-18px, -8px) scale(2);
-  }
-
-}
-
-/* --------------------------------------------------------------------------
-   ATERRIZAJE
-   -------------------------------------------------------------------------- */
-
-.agujero.activo {
-  animation: aterrizaje 0.65s ease-out;
-}
-
-
-@keyframes aterrizaje {
-
-  0% {
-    transform: translateY(0);
-  }
-
-  45% {
-    transform: translateY(6px);
-  }
-
-  65% {
-    transform: translateY(2px);
-  }
-
-  80% {
-    transform: translateY(4px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-
-}
-
-
-/* --------------------------------------------------------------------------
-   SOMBRA DURANTE EL SALTO
-   -------------------------------------------------------------------------- */
-
-.dino.saltando {
-  filter: drop-shadow(0 15px 5px rgba(0, 0, 0, 0.18));
-}
-
-
-/* --------------------------------------------------------------------------
-   MÓVIL
-   -------------------------------------------------------------------------- */
-
-@media (max-width: 768px) {
-
-  .efecto-dino {
-    left: 5%;
-    top: 80px;
-
-    width: 65px;
-    height: 56px;
-  }
-
-  .dino {
-    height: 56px;
-  }
-
-}
-
-
-
-/* Botón de tema suelto arriba a la derecha (páginas internas) */
-.barra-tema {
-  position: fixed;
-  top: var(--espacio-4);
-  right: var(--espacio-5);
-  z-index: 200;
-}
-
-/* Pista como navegación en páginas internas */
-.hero .pista { margin-bottom: var(--espacio-8); }
-/* ==========================================================================
-   TRANSICIÓN: DINOSAURIO ENTRA EN EL AGUJERO
-   ========================================================================== */
-
+/* ENTRADA EN EL AGUJERO */
 .dino.entrando {
   animation: entrarAgujero 0.35s ease-in forwards;
 }
-
 
 @keyframes entrarAgujero {
 
@@ -951,6 +784,376 @@ body.dark-mode {
       scaleY(0.2)
       translateY(20px);
     opacity: 0;
+  }
+}
+
+
+/* ATERRIZAJE DEL AGUJERO */
+.agujero.activo {
+  animation: aterrizaje 0.65s ease-out;
+}
+
+@keyframes aterrizaje {
+  0% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(6px);
+  }
+
+  65% {
+    transform: translateY(2px);
+  }
+
+  80% {
+    transform: translateY(4px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* SOMBRA DURANTE EL SALTO */
+.dino.saltando {
+  filter: drop-shadow(0 15px 5px rgba(0, 0, 0, 0.18));
+}
+
+
+/* MÓVIL */
+@media (max-width: 768px) {
+
+  .efecto-dino {
+    left: 5%;
+    top: 80px;
+    width: 65px;
+    height: 56px;
+  }
+
+  .dino {
+    height: 56px;
+  }
+}
+/* ==========================================================================
+   CONTACTO — DISEÑO
+   ========================================================================== */
+
+.contacto-section {
+  padding-top: 70px;
+  padding-bottom: 100px;
+}
+
+.contacto-intro {
+  max-width: 650px;
+  margin: 0 auto 55px;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+
+/* ==========================================================================
+   GRID DE CONTACTO
+   ========================================================================== */
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 70px;
+}
+
+
+/* ==========================================================================
+   TARJETAS
+   ========================================================================== */
+
+.contacto-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  min-height: 150px;
+  padding: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.contacto-card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.2);
+}
+
+
+/* TARJETA PRINCIPAL */
+
+.contacto-card-grande {
+  min-height: 190px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.035)
+    );
+}
+
+
+/* ==========================================================================
+   ICONOS
+   ========================================================================== */
+
+.contacto-icono {
+  flex: 0 0 auto;
+
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  font-size: 30px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+
+/* ==========================================================================
+   TEXTOS
+   ========================================================================== */
+
+.contacto-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+
+  opacity: 0.6;
+}
+
+
+.contacto-card h3 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+
+.contacto-card p {
+  margin: 8px 0 0;
+
+  font-size: 0.92rem;
+
+  opacity: 0.65;
+}
+
+
+/* ==========================================================================
+   LINKEDIN
+   ========================================================================== */
+
+.linkedin-icono {
+  background: #0a66c2;
+  color: white;
+}
+
+
+.linkedin-icono svg {
+  width: 34px;
+  height: 34px;
+
+  fill: currentColor;
+}
+
+
+/* ==========================================================================
+   MAPA
+   ========================================================================== */
+
+.mapa-bloque {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  padding: 32px;
+
+  border-radius: 26px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+
+.mapa-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 25px;
+}
+
+
+.mapa-cabecera h3 {
+  margin: 5px 0;
+
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+}
+
+
+.mapa-cabecera p {
+  margin: 0;
+  opacity: 0.65;
+}
+
+
+/* BOTÓN MAPA */
+
+.boton-mapa {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+.boton-mapa:hover {
+  transform: translateY(-3px);
+  opacity: 0.8;
+}
+
+
+/* CONTENEDOR DEL MAPA */
+
+.mapa-contenedor {
+  width: 100%;
+  height: 400px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+.mapa-contenedor iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  display: block;
+}
+
+
+/* ==========================================================================
+   MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .contacto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-card {
+    min-height: 130px;
+    padding: 22px;
+  }
+
+  .contacto-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .mapa-bloque {
+    padding: 20px;
+  }
+
+  .mapa-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mapa-cabecera h3 {
+    font-size: 1.7rem;
+  }
+
+  .boton-mapa {
+    width: 100%;
+  }
+
+  .mapa-contenedor {
+    height: 320px;
   }
 
 }

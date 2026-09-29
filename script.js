@@ -127,20 +127,20 @@ function mostrarMensaje(texto, tipo) {
 })();
 
 /* ==========================================================================
-   5. DINOSAURIO: CARRERA + SALTO + NAVEGACIÓN
+ 
+/* ==========================================================================
+   5. DINOSAURIO: CARRERA + POLVO + SALTO + NAVEGACIÓN
    ========================================================================== */
 
 (function () {
 
   const dino = document.querySelector(".dino");
   const efectoDino = document.querySelector(".efecto-dino");
-  const pista = document.querySelector(".pista");
   const agujeros = document.querySelectorAll(".agujero");
 
-  if (!dino || !efectoDino || !pista || !agujeros.length) return;
+  if (!dino || !efectoDino || !agujeros.length) return;
 
   let animando = false;
-
 
   agujeros.forEach((agujero) => {
 
@@ -154,10 +154,7 @@ function mostrarMensaje(texto, tipo) {
 
       const destino = agujero.getAttribute("href");
 
-
-      /* --------------------------------------------------------------------
-         DESTINO
-         -------------------------------------------------------------------- */
+      /* DESTINO */
 
       agujeros.forEach((a) => {
         a.classList.remove("activo");
@@ -165,20 +162,11 @@ function mostrarMensaje(texto, tipo) {
 
       agujero.classList.add("activo");
 
-
-      /* --------------------------------------------------------------------
-         CALCULAR POSICIÓN DEL AGUJERO
-         -------------------------------------------------------------------- */
+      /* POSICIONES */
 
       const rectAgujero = agujero.getBoundingClientRect();
-      const rectDino = dino.getBoundingClientRect();
       const rectEfecto = efectoDino.getBoundingClientRect();
-
-
-      /*
-         El destino se calcula respecto al contenedor del dinosaurio.
-         Así no se pasa de largo.
-      */
+      const rectDino = dino.getBoundingClientRect();
 
       const centroAgujero =
         rectAgujero.left + rectAgujero.width / 2;
@@ -186,158 +174,112 @@ function mostrarMensaje(texto, tipo) {
       const destinoX =
         centroAgujero -
         rectEfecto.left -
-        dino.offsetWidth / 2;
-
-
-      /* --------------------------------------------------------------------
-         POSICIÓN ACTUAL
-         -------------------------------------------------------------------- */
+        rectDino.width / 2;
 
       const inicioX =
         rectDino.left -
         rectEfecto.left;
 
-
       const distancia =
         Math.abs(destinoX - inicioX);
 
+      /* DIRECCIÓN */
 
-      /* --------------------------------------------------------------------
-         DIRECCIÓN
-         -------------------------------------------------------------------- */
-
-      const vaIzquierda =
-        destinoX < inicioX;
-
+      const vaIzquierda = destinoX < inicioX;
 
       efectoDino.style.setProperty(
         "--flip",
         vaIzquierda ? "-1" : "1"
       );
 
-
-      /*
-         El polvo siempre sale detrás del dinosaurio.
-      */
-
       efectoDino.style.setProperty(
         "--dust-direction",
         vaIzquierda ? "1" : "-1"
       );
 
-
-      /* --------------------------------------------------------------------
-         VELOCIDAD
-         -------------------------------------------------------------------- */
-
-      /*
-         Más tiempo = dinosaurio más lento.
-      */
+      /* VELOCIDAD */
 
       const tiempoCarrera = Math.min(
         Math.max(distancia * 3.8, 900),
         3000
       );
 
-
       efectoDino.style.setProperty(
         "--tiempo-carrera",
         `${tiempoCarrera}ms`
       );
-
 
       efectoDino.style.setProperty(
         "--destino-x",
         `${destinoX}px`
       );
 
-
-      /* --------------------------------------------------------------------
-         CARRERA
-         -------------------------------------------------------------------- */
+      /* CARRERA */
 
       efectoDino.classList.add("corriendo");
       dino.classList.add("corriendo");
 
-
-      /* --------------------------------------------------------------------
-         TERMINA LA CARRERA
-         -------------------------------------------------------------------- */
+      /* TERMINA LA CARRERA */
 
       setTimeout(() => {
 
         /*
-           Guardamos físicamente la posición alcanzada.
-           Así el contenedor no vuelve al principio.
-        */
+         * MUY IMPORTANTE:
+         * primero fijamos físicamente al dinosaurio
+         * en el destino y DESPUÉS quitamos la animación.
+         */
 
         efectoDino.style.transform =
           `translateX(${destinoX}px)`;
 
-
         efectoDino.classList.remove("corriendo");
         dino.classList.remove("corriendo");
 
-
-        /* ----------------------------------------------------------------
-           SALTO
-           ---------------------------------------------------------------- */
+        /* SALTO */
 
         dino.classList.add("saltando");
 
+        setTimeout(() => {
 
-/* ----------------------------------------------------------------
-   IMPACTO CONTRA EL SUELO
-   ---------------------------------------------------------------- */
+          dino.classList.remove("saltando");
 
-setTimeout(() => {
+          /* ENTRA EN EL AGUJERO */
 
-  dino.classList.remove("saltando");
-  efectoDino.classList.remove("aterrizando");
+          dino.classList.add("entrando");
 
-  /* --------------------------------------------------------------
-     EL DINOSAURIO ENTRA EN EL AGUJERO
-     -------------------------------------------------------------- */
+          setTimeout(() => {
 
-  dino.classList.add("entrando");
+            dino.classList.remove("entrando");
 
+            /* NAVEGACIÓN */
 
-  setTimeout(() => {
+            if (destino.startsWith("#")) {
 
-    dino.classList.remove("entrando");
+              const elemento =
+                document.querySelector(destino);
 
+              if (elemento) {
+                elemento.scrollIntoView({
+                  behavior: "smooth"
+                });
+              }
 
-    /* ------------------------------------------------------------
-       CAMBIO DE PÁGINA
-       ------------------------------------------------------------ */
+              animando = false;
 
-    if (destino.startsWith("#")) {
+            } else {
 
-      const elemento =
-        document.querySelector(destino);
+              window.location.href = destino;
 
-      if (elemento) {
+            }
 
-        elemento.scrollIntoView({
-          behavior: "smooth"
-        });
+          }, 350);
 
-      }
+        }, 650);
 
-      animando = false;
+      }, tiempoCarrera);
 
-    } else {
-
-      window.location.href = destino;
-
-    }
-
-  }, 350);
-
-}, 650);
-  }, tiempoCarrera);
+    });
 
   });
 
-});
 })();
