@@ -562,138 +562,42 @@ body.dark-mode {
 }/* Móvil (portada): la cabecera se queda arriba y no sigue al hacer scroll */
 @media (max-width: 768px) {
   .home .site-header { position: static; }
-}```css
+}css
 /* ==========================================================================
    14. DINOSAURIO: CARRERA + SALTO
    ========================================================================== */
-
 .dino {
   position: absolute;
-
   left: calc(37.5% + 8px);
   top: 48.2%;
-
   height: clamp(70px, 9vh, 105px);
   width: auto;
-
   z-index: 10;
-
-  /* Posición inicial */
   transform: translateX(0);
-
-  /* Evita que interfiera con los botones */
   pointer-events: none;
 }
-
-
-/* --------------------------------------------------------------------------
-   CARRERA
-   -------------------------------------------------------------------------- */
-
-.dino.corriendo {
-  animation: correrDino var(--tiempo-carrera) linear forwards;
-}
-
-
-/*
-   El dinosaurio avanza horizontalmente.
-   La animación termina exactamente en el agujero seleccionado.
-*/
-
+.dino.corriendo { animation: correrDino var(--tiempo-carrera) linear forwards; }
 @keyframes correrDino {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(var(--destino-x));
-  }
-
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--destino-x)); }
 }
-
-
-/* --------------------------------------------------------------------------
-   SALTO
-   -------------------------------------------------------------------------- */
-
-.dino.saltando {
-  animation: saltoDino 0.5s ease-in-out forwards;
-}
-
-
+.dino.saltando { animation: saltoDino 0.5s ease-in-out forwards; }
 @keyframes saltoDino {
-
-  /* Sale del suelo */
-  0% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(0)
-      scale(1);
-  }
-
-  /* Empieza a subir */
-  25% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(-35px)
-      scale(1.03);
-  }
-
-  /* Punto más alto */
-  50% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(-65px)
-      scale(1.05);
-  }
-
-  /* Empieza a caer */
-  75% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(-30px)
-      scale(1.02);
-  }
-
-  /* Aterriza */
-  100% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(0)
-      scale(1);
-  }
-
+  0%   { transform: translateX(var(--destino-x)) translateY(0)    scale(1); }
+  25%  { transform: translateX(var(--destino-x)) translateY(-35px) scale(1.03); }
+  50%  { transform: translateX(var(--destino-x)) translateY(-65px) scale(1.05); }
+  75%  { transform: translateX(var(--destino-x)) translateY(-30px) scale(1.02); }
+  100% { transform: translateX(var(--destino-x)) translateY(0)    scale(1); }
 }
-
-
-/* --------------------------------------------------------------------------
-   BOTÓN AL ATERRIZAR
-   -------------------------------------------------------------------------- */
-
-.agujero.activo {
-  animation: aterrizaje 0.5s ease-out;
-}
-
-
+.agujero.activo { animation: aterrizaje 0.5s ease-out; }
 @keyframes aterrizaje {
-
-  0% {
-    transform: translateY(0);
-  }
-
-  45% {
-    transform: translateY(5px);
-  }
-
-  70% {
-    transform: translateY(2px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(5px); }
+  70%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+@media (max-width: 768px) {
+  .dino { left: calc(var(--espacio-4) + 2px); top: 80px; height: 56px; }
 }
 
 
