@@ -318,4 +318,62 @@ function mostrarMensaje(texto, tipo) {
 
   });
 
+})();/* ==========================================================================
+   6. FILTRO DE PROYECTOS
+   ========================================================================== */
+
+(function () {
+
+  const filtros = document.querySelectorAll(".filtro-proyecto");
+  const proyectos = document.querySelectorAll(".proyecto");
+
+  if (!filtros.length || !proyectos.length) return;
+
+
+  filtros.forEach((filtro) => {
+
+    filtro.addEventListener("click", () => {
+
+      const categoria =
+        filtro.getAttribute("data-filter");
+
+
+      /* BOTÓN ACTIVO */
+
+      filtros.forEach((boton) => {
+
+        boton.classList.remove("activo");
+        boton.setAttribute("aria-pressed", "false");
+
+      });
+
+      filtro.classList.add("activo");
+      filtro.setAttribute("aria-pressed", "true");
+
+
+      /* MOSTRAR / OCULTAR PROYECTOS */
+
+      proyectos.forEach((proyecto) => {
+
+        const categorias =
+          proyecto.getAttribute("data-categories").split(" ");
+
+
+        const mostrar =
+          categoria === "todos" ||
+          categorias.includes(categoria);
+
+
+        if (mostrar) {
+          proyecto.classList.remove("oculto");
+        } else {
+          proyecto.classList.add("oculto");
+        }
+
+      });
+
+    });
+
+  });
+
 })();

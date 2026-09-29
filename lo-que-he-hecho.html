@@ -1,91 +1,683 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Lo que he hecho | Alex Baicu</title>
+
+  <meta
+    name="description"
+    content="Portfolio de Alex Baicu: proyectos, aprendizaje y desarrollo web."
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- FONDO -->
+
   <div class="bg-animated" aria-hidden="true"></div>
   <div class="bg-veil" aria-hidden="true"></div>
 
 
+  <!-- MODO OSCURO / CLARO -->
+
+  <div class="barra-tema">
+    <button
+      id="themeBtn"
+      class="theme-toggle"
+      type="button"
+      aria-label="Cambiar modo claro u oscuro"
+    >
+      🌙 Modo oscuro
+    </button>
+  </div>
+
+
   <main>
-       <section class="hero hero-mini">
+
+    <!-- CABECERA -->
+
+    <section class="hero hero-mini">
+
       <div class="hero-content">
+
         <p class="eyebrow">TRAYECTORIA</p>
+
         <h1>Lo que he hecho</h1>
-        <p class="hero-sub">Proyectos que he construido hasta ahora.</p>
+
+        <p class="hero-sub">
+          Proyectos que me han ayudado a aprender, probar y seguir creciendo.
+        </p>
+
       </div>
+
+
+      <!-- NAVEGACIÓN + DINOSAURIO -->
 
       <div class="pista" aria-hidden="true">
+
         <div class="suelo">
+
           <span class="tramo"></span>
-          <a class="agujero" href="index.html">Inicio</a>
+
+          <a class="agujero" href="index.html">
+            Inicio
+          </a>
+
           <span class="tramo"></span>
-          <a class="agujero" href="sobre-mi.html">Sobre mí</a>
+
+          <a class="agujero" href="sobre-mi.html">
+            Sobre mí
+          </a>
+
           <span class="tramo"></span>
-          <a class="agujero" href="lo-que-he-hecho.html" aria-current="page">He hecho</a>
+
+          <a
+            class="agujero"
+            href="lo-que-he-hecho.html"
+            aria-current="page"
+          >
+            He hecho
+          </a>
+
           <span class="tramo"></span>
-          <a class="agujero" href="me-gusta.html">Me gusta</a>
+
+          <a class="agujero" href="me-gusta.html">
+            Me gusta
+          </a>
+
           <span class="tramo"></span>
-          <a class="agujero" href="consultas.html">Consultas</a>
+
+          <a class="agujero" href="consultas.html">
+            Consultas
+          </a>
+
           <span class="tramo"></span>
-       <a class="agujero" href="contacto.html">Contacto</a>
+
+          <a class="agujero" href="contacto.html">
+            Contacto
+          </a>
+
           <span class="tramo"></span>
+
         </div>
+
+
         <div class="efecto-dino">
 
-  <img class="dino" src="dino.png" alt="">
+          <img
+            class="dino"
+            src="dino.png"
+            alt=""
+          >
 
-  <span class="polvo polvo1"></span>
-  <span class="polvo polvo2"></span>
-  <span class="polvo polvo3"></span>
+          <span class="polvo polvo1"></span>
+          <span class="polvo polvo2"></span>
+          <span class="polvo polvo3"></span>
 
-</div>
+        </div>
+
+      </div>
+
     </section>
+
+
+    <!-- DIVISOR -->
+
+    <div class="divisor" aria-hidden="true">
+
+      <svg
+        viewBox="0 0 200 20"
+        preserveAspectRatio="none"
+      >
+
+        <line
+          x1="0"
+          y1="10"
+          x2="85"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+        <rect
+          x="95"
+          y="5"
+          width="10"
+          height="10"
+          transform="rotate(45 100 10)"
+          fill="currentColor"
+        />
+
+        <line
+          x1="115"
+          y1="10"
+          x2="200"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+      </svg>
+
+    </div>
+
 
     <!-- PROYECTOS -->
-    <section class="section">
+
+    <section class="section proyectos-section">
+
       <div class="container">
+
         <p class="eyebrow">01 — Proyectos</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Página web con Shopify</h3>
-            <p>Intenté diseñar una página web utilizando Shopify, acercándome a cómo se monta una tienda online y se cuida la presentación de los productos.</p>
-            <span class="tag">Shopify</span>
-          </article>
-          <article class="card">
-            <h3>Web personal con IA Simarro</h3>
-            <p>Ahora estoy desarrollando esta web personal con la ayuda de la IA Simarro, aplicando HTML, CSS y JavaScript en un proyecto propio.</p>
-            <span class="tag">HTML · CSS · JS</span>
-          </article>
+
+        <h2>Lo que he construido</h2>
+
+        <p class="proyectos-intro">
+          Cada proyecto ha sido una forma diferente de aprender:
+          desde crear una tienda online hasta desarrollar mi propia web
+          utilizando HTML, CSS, JavaScript e inteligencia artificial.
+        </p>
+
+
+        <!-- FILTROS -->
+
+        <div
+          class="filtros-proyectos"
+          role="group"
+          aria-label="Filtrar proyectos"
+        >
+
+          <button
+            class="filtro-proyecto activo"
+            type="button"
+            data-filter="todos"
+            aria-pressed="true"
+          >
+            Todos
+          </button>
+
+          <button
+            class="filtro-proyecto"
+            type="button"
+            data-filter="ecommerce"
+            aria-pressed="false"
+          >
+            E-commerce
+          </button>
+
+          <button
+            class="filtro-proyecto"
+            type="button"
+            data-filter="web"
+            aria-pressed="false"
+          >
+            Web
+          </button>
+
+          <button
+            class="filtro-proyecto"
+            type="button"
+            data-filter="ia"
+            aria-pressed="false"
+          >
+            IA
+          </button>
+
+          <button
+            class="filtro-proyecto"
+            type="button"
+            data-filter="codigo"
+            aria-pressed="false"
+          >
+            HTML · CSS · JS
+          </button>
+
         </div>
+
+
+        <!-- LISTADO DE PROYECTOS -->
+
+        <div class="proyectos-lista">
+
+
+          <!-- PROYECTO 01 -->
+
+          <article
+            class="proyecto"
+            data-categories="ecommerce"
+          >
+
+            <div class="proyecto-numero">
+              01
+            </div>
+
+            <div class="proyecto-cabecera">
+
+              <div>
+
+                <span class="proyecto-tipo">
+                  E-COMMERCE · SHOPIFY
+                </span>
+
+                <h3>
+                  Dermalux
+                </h3>
+
+              </div>
+
+              <span class="proyecto-estado">
+                Exploración
+              </span>
+
+            </div>
+
+
+            <div class="proyecto-contenido">
+
+
+              <!-- RETO -->
+
+              <div class="proyecto-bloque">
+
+                <span class="proyecto-label">
+                  EL RETO
+                </span>
+
+                <p>
+                  Cuando empecé a crear mi primera página con Shopify,
+                  me encontré con muchas configuraciones que todavía no
+                  dominaba: e-commerce, elección del nicho y diseño.
+                  No sabía programar, pero tenía clara una cosa:
+                  quería sacarle el máximo rendimiento posible a la página.
+                </p>
+
+              </div>
+
+
+              <!-- QUÉ HICE -->
+
+              <div class="proyecto-bloque">
+
+                <span class="proyecto-label">
+                  QUÉ HICE
+                </span>
+
+                <p>
+                  Empecé formándome por mi cuenta con tutoriales de
+                  YouTube y cursos gratuitos. Después pasé a la práctica,
+                  explorando los menús y configuraciones de Shopify.
+                  Creé una marca llamada Dermalux, elegí como nicho una
+                  crema para la piel y empecé a plantear la estructura
+                  de la tienda y su identidad.
+                </p>
+
+              </div>
+
+
+              <!-- HERRAMIENTAS -->
+
+              <div class="proyecto-bloque proyecto-herramientas">
+
+                <span class="proyecto-label">
+                  HERRAMIENTAS
+                </span>
+
+                <div class="proyecto-tags">
+
+                  <span class="tag">
+                    Shopify
+                  </span>
+
+                  <span class="tag">
+                    AutoDS
+                  </span>
+
+                  <span class="tag">
+                    Shopify Collective
+                  </span>
+
+                  <span class="tag">
+                    Shopify Magic
+                  </span>
+
+                  <span class="tag">
+                    Sidekick
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- APRENDIZAJE -->
+
+              <div class="proyecto-bloque proyecto-aprendizaje">
+
+                <span class="proyecto-label">
+                  RESULTADO / APRENDIZAJE
+                </span>
+
+                <p>
+                  El proyecto no llegó a completarse. En ese momento
+                  estaba en 1.º de Bachillerato y lo estaba desarrollando
+                  como hobby, por lo que llegó a menos del 15% de su
+                  desarrollo.
+                </p>
+
+                <p>
+                  Aun así, aprendí mucho sobre cómo se estructura una
+                  tienda online, cómo cuidar su diseño, cómo funciona el
+                  e-commerce, cómo plantear campañas de publicidad y
+                  conceptos relacionados con stock y dropshipping.
+                </p>
+
+                <blockquote>
+                  "No terminé la tienda, pero aprendí mucho más de lo
+                  que esperaba."
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROYECTO 02 -->
+
+          <article
+            class="proyecto proyecto-destacado"
+            data-categories="web ia codigo"
+          >
+
+            <div class="proyecto-numero">
+              02
+            </div>
+
+            <div class="proyecto-cabecera">
+
+              <div>
+
+                <span class="proyecto-tipo">
+                  WEB · IA · HTML · CSS · JS
+                </span>
+
+                <h3>
+                  Mi web personal
+                </h3>
+
+              </div>
+
+              <span class="proyecto-estado">
+                En desarrollo
+              </span>
+
+            </div>
+
+
+            <div class="proyecto-contenido">
+
+
+              <!-- RETO -->
+
+              <div class="proyecto-bloque">
+
+                <span class="proyecto-label">
+                  EL RETO
+                </span>
+
+                <p>
+                  Con esta web personal quiero aprender más sobre el mundo
+                  de la programación aprovechando también una herramienta
+                  que está cobrando cada vez más importancia:
+                  la inteligencia artificial.
+                </p>
+
+                <p>
+                  Mi objetivo es crear una página que reúna información
+                  sobre mí, mis proyectos, mis intereses y mi evolución,
+                  cuidando tanto el funcionamiento como cada detalle
+                  visual.
+                </p>
+
+              </div>
+
+
+              <!-- QUÉ HICE -->
+
+              <div class="proyecto-bloque">
+
+                <span class="proyecto-label">
+                  QUÉ HICE
+                </span>
+
+                <p>
+                  La página empezó a cobrar vida a partir del
+                  <strong>commit 16</strong>, cuando ya tenía una estética
+                  mucho más definida. Desde entonces he seguido
+                  desarrollándola y escalándola mediante diferentes
+                  iteraciones.
+                </p>
+
+                <p>
+                  Durante el proceso he trabajado con
+                  <strong>HTML, CSS y JavaScript</strong>, utilizando la IA
+                  local del centro como apoyo para generar, modificar y
+                  mejorar el código.
+                </p>
+
+              </div>
+
+
+              <!-- HERRAMIENTAS -->
+
+              <div class="proyecto-bloque proyecto-herramientas">
+
+                <span class="proyecto-label">
+                  HERRAMIENTAS
+                </span>
+
+                <div class="proyecto-tags">
+
+                  <span class="tag">
+                    HTML
+                  </span>
+
+                  <span class="tag">
+                    CSS
+                  </span>
+
+                  <span class="tag">
+                    JavaScript
+                  </span>
+
+                  <span class="tag">
+                    IA local
+                  </span>
+
+                  <span class="tag">
+                    GitHub
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- RESULTADO -->
+
+              <div class="proyecto-bloque proyecto-aprendizaje">
+
+                <span class="proyecto-label">
+                  RESULTADO / APRENDIZAJE
+                </span>
+
+                <p>
+                  El proyecto continúa en desarrollo y ha evolucionado
+                  considerablemente desde sus primeras versiones.
+                  Actualmente reúne diferentes páginas, navegación,
+                  formulario de contacto, modo claro/oscuro,
+                  diseño responsive y elementos interactivos.
+                </p>
+
+                <p>
+                  Este proyecto me ha enseñado que, al crear una página
+                  web, muchas veces el límite está en lo que eres capaz
+                  de imaginar y desarrollar.
+                </p>
+
+                <blockquote>
+                  "La gracia está en seguir pensando qué se puede crear."
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
       </div>
+
     </section>
+
+
+    <!-- DIVISOR -->
+
+    <div class="divisor" aria-hidden="true">
+
+      <svg
+        viewBox="0 0 200 20"
+        preserveAspectRatio="none"
+      >
+
+        <line
+          x1="0"
+          y1="10"
+          x2="85"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+        <rect
+          x="95"
+          y="5"
+          width="10"
+          height="10"
+          transform="rotate(45 100 10)"
+          fill="currentColor"
+        />
+
+        <line
+          x1="115"
+          y1="10"
+          x2="200"
+          y2="10"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <!-- CIERRE -->
+
+    <section class="section proyectos-cierre">
+
+      <div class="container">
+
+        <p class="eyebrow">
+          02 — Evolución
+        </p>
+
+        <h2>
+          Todavía estoy construyendo.
+        </h2>
+
+        <p>
+          No considero estos proyectos como trabajos terminados,
+          sino como puntos de partida que me han permitido aprender,
+          probar nuevas herramientas y seguir desarrollando ideas.
+        </p>
+
+      </div>
+
+    </section>
+
   </main>
 
-  <footer id="contacto" class="site-footer">
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
     <div class="container footer-inner">
+
       <h2>Contacto</h2>
-      <p class="contact-name"></p>
+
       <address class="contact-list">
-        
-        <a href="mailto:baicualex88@gmail.com">baicualex88@gmail.com</a>
-        <a href="https://github.com/AlexB886" target="_blank" rel="noopener" aria-label="GitHub de Alex Baicu" class="gh-link">
-          <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          <span>GitHub</span>
+
+        <a href="mailto:baicualex88@gmail.com">
+          baicualex88@gmail.com
         </a>
-        <span>Manuel, Valencia</span>
+
+        <a
+          href="https://github.com/AlexB886"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub de Alex Baicu"
+          class="gh-link"
+        >
+
+          <svg
+            viewBox="0 0 16 16"
+            width="20"
+            height="20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+
+          </svg>
+
+          <span>GitHub</span>
+
+        </a>
+
+        <span>
+          Manuel, Valencia
+        </span>
+
       </address>
-      <p class="copy">© <span id="anio"></span> Alex Baicu.</p>
+
+      <p class="copy">
+        © <span id="anio"></span> Alex Baicu.
+      </p>
+
     </div>
+
   </footer>
 
+
   <script src="script.js" defer></script>
+
 </body>
 </html>
