@@ -244,18 +244,14 @@ img {
 }
 
 /* Nombre con cursor de máquina de escribir */
-.hero h1 { white-space: nowrap; overflow: hidden; }
-.hero h1::after {
+..hero h1:has(#nombre) { white-space: nowrap; overflow: hidden; }
+.hero h1:has(#nombre)::after {
   content: "|";
   display: inline-block;
   margin-left: 6px;
   font-weight: 400;
   color: var(--dorado);
   animation: parpadeo 1s steps(2) infinite;
-}
-@keyframes parpadeo {
-  0%, 49%   { opacity: 1; }
-  50%, 100% { opacity: 0; }
 }
 
 /* 6. BOTONES ------------------------------------------------------------- */
