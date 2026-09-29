@@ -468,8 +468,11 @@ body.dark-mode {
   left: 37.5%;
   width: 53%;
   top: 48.2%;
+
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
 /* Trozos de suelo entre agujeros */
@@ -484,30 +487,111 @@ body.dark-mode {
 .tramo:first-child { flex: 2.2; }   /* sitio para el dinosaurio */
 .tramo:last-child  { flex: 0.6; }
 
-/* BOTONES DORADOS */
+/* ==========================================================================
+   BOTONES DE NAVEGACIÓN — ESTILO BOTÓN ROJO
+   ========================================================================== */
+
 .agujero {
-  flex: 0 0 11%;
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 6px;
-  font-size: clamp(0.55rem, 0.9vw, 0.75rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--negro);
-  background: var(--dorado);
-  border: 2px solid var(--dorado);
-  border-radius: 6px;
-  pointer-events: auto;
-  transition: transform 0.25s, box-shadow 0.25s;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.35);
+
+  width: 76px;
+  height: 76px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  /* Botón rojo */
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #ff7777 0%,
+      #ff2929 35%,
+      #d90000 68%,
+      #8f0000 100%
+    );
+
+  /* Borde metálico */
+  border: 5px solid #555;
+
+  /* Brillo y profundidad */
+  box-shadow:
+    inset 0 5px 8px rgba(255, 255, 255, 0.45),
+    inset 0 -8px 12px rgba(70, 0, 0, 0.55),
+    0 5px 8px rgba(0, 0, 0, 0.45);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  letter-spacing: 0.04em;
+
+  text-align: center;
+
+  line-height: 1.05;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
 }
 
-.agujero:hover,
-.agujero:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 rgba(0,0,0,0.35);
+
+/* BRILLO DEL BOTÓN */
+
+.agujero::before {
+  content: "";
+
+  position: absolute;
+
+  top: 9px;
+  left: 13px;
+
+  width: 30px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.32);
+
+  transform: rotate(-20deg);
+
+  pointer-events: none;
+}
+
+
+/* AL PASAR EL RATÓN */
+
+.agujero:hover {
+  transform: scale(1.06);
+
+  filter: brightness(1.12);
+
+  box-shadow:
+    inset 0 5px 8px rgba(255, 255, 255, 0.5),
+    inset 0 -8px 12px rgba(70, 0, 0, 0.55),
+    0 7px 14px rgba(0, 0, 0, 0.55);
+}
+
+
+/* BOTÓN ACTIVO CUANDO ATERRIZA EL DINOSAURIO */
+
+.agujero.activo {
+  filter: brightness(1.18);
+
+  box-shadow:
+    0 0 12px rgba(255, 30, 30, 0.8),
+    0 0 28px rgba(255, 0, 0, 0.45),
+    inset 0 5px 8px rgba(255, 255, 255, 0.45),
+    inset 0 -8px 12px rgba(70, 0, 0, 0.55);
 }
 
 /* Cuando el dinosaurio cae encima */
@@ -1156,4 +1240,37 @@ body.dark-mode {
     height: 320px;
   }
 
+}@media (max-width: 768px) {
+
+  .suelo {
+    gap: 8px;
+  }
+
+  .suelo .agujero {
+    width: 52px;
+    height: 52px;
+
+    border-width: 3px;
+
+    font-size: 0.48rem;
+    letter-spacing: 0.02em;
+  }
+
+  .agujero::before {
+    top: 6px;
+    left: 8px;
+
+    width: 20px;
+    height: 9px;
+  }
+
+  .suelo .tramo {
+    min-width: 4px;
+  }
+
+}/* Los botones de navegación sí deben poder recibir clics */
+
+.suelo,
+.agujero {
+  pointer-events: auto;
 }

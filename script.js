@@ -126,9 +126,8 @@ function mostrarMensaje(texto, tipo) {
   tick();
 })();
 
-/* ==========================================================================
- 
-/* ==========================================================================
+
+ /* ==========================================================================
    5. DINOSAURIO: CARRERA + POLVO + SALTO + NAVEGACIÓN
    ========================================================================== */
 
@@ -154,7 +153,9 @@ function mostrarMensaje(texto, tipo) {
 
       const destino = agujero.getAttribute("href");
 
-      /* DESTINO */
+      /* --------------------------------------------------------------
+         BOTÓN DESTINO
+         -------------------------------------------------------------- */
 
       agujeros.forEach((a) => {
         a.classList.remove("activo");
@@ -162,115 +163,150 @@ function mostrarMensaje(texto, tipo) {
 
       agujero.classList.add("activo");
 
-      /* POSICIONES */
 
-      const rectAgujero = agujero.getBoundingClientRect();
-      const rectEfecto = efectoDino.getBoundingClientRect();
-      const rectDino = dino.getBoundingClientRect();
+      /* --------------------------------------------------------------
+         CALCULAR POSICIONES
+         -------------------------------------------------------------- */
+
+      const rectAgujero =
+        agujero.getBoundingClientRect();
+
+      const rectEfecto =
+        efectoDino.getBoundingClientRect();
+
+      const rectDino =
+        dino.getBoundingClientRect();
+
+
+      /* Centro exacto del botón */
 
       const centroAgujero =
-        rectAgujero.left + rectAgujero.width / 2;
+        rectAgujero.left +
+        rectAgujero.width / 2;
+
+
+      /* Posición que debe alcanzar el dinosaurio */
 
       const destinoX =
         centroAgujero -
         rectEfecto.left -
         rectDino.width / 2;
 
+
+      /* Posición actual */
+
       const inicioX =
         rectDino.left -
         rectEfecto.left;
 
+
       const distancia =
         Math.abs(destinoX - inicioX);
 
-      /* DIRECCIÓN */
 
-      const vaIzquierda = destinoX < inicioX;
+      /* --------------------------------------------------------------
+         DIRECCIÓN
+         -------------------------------------------------------------- */
+
+      const vaIzquierda =
+        destinoX < inicioX;
+
 
       efectoDino.style.setProperty(
         "--flip",
         vaIzquierda ? "-1" : "1"
       );
 
+
+      /*
+       * El polvo aparece detrás del dinosaurio.
+       */
+
       efectoDino.style.setProperty(
         "--dust-direction",
         vaIzquierda ? "1" : "-1"
       );
 
-      /* VELOCIDAD */
 
-      const tiempoCarrera = Math.min(
-        Math.max(distancia * 3.8, 900),
-        3000
-      );
+      /* --------------------------------------------------------------
+         VELOCIDAD
+         -------------------------------------------------------------- */
+
+      const tiempoCarrera =
+        Math.min(
+          Math.max(distancia * 3.8, 900),
+          3000
+        );
+
 
       efectoDino.style.setProperty(
         "--tiempo-carrera",
         `${tiempoCarrera}ms`
       );
 
+
       efectoDino.style.setProperty(
         "--destino-x",
         `${destinoX}px`
       );
 
-      /* CARRERA */
+
+      /* --------------------------------------------------------------
+         CARRERA
+         -------------------------------------------------------------- */
 
       efectoDino.classList.add("corriendo");
       dino.classList.add("corriendo");
 
-      /* TERMINA LA CARRERA */
+
+      /* --------------------------------------------------------------
+         CUANDO TERMINA LA CARRERA
+         -------------------------------------------------------------- */
 
       setTimeout(() => {
 
         /*
-         * MUY IMPORTANTE:
-         * primero fijamos físicamente al dinosaurio
-         * en el destino y DESPUÉS quitamos la animación.
+         * Fijamos al dinosaurio exactamente donde ha llegado.
+         * Así no vuelve al principio al quitar la animación.
          */
 
         efectoDino.style.transform =
           `translateX(${destinoX}px)`;
 
+
         efectoDino.classList.remove("corriendo");
         dino.classList.remove("corriendo");
 
-        /* SALTO */
+
+        /* ----------------------------------------------------------
+           SALTO
+           ---------------------------------------------------------- */
 
         dino.classList.add("saltando");
+
 
         setTimeout(() => {
 
           dino.classList.remove("saltando");
 
-          /* ENTRA EN EL AGUJERO */
+
+          /* --------------------------------------------------------
+             ENTRADA EN EL BOTÓN
+             -------------------------------------------------------- */
 
           dino.classList.add("entrando");
+
 
           setTimeout(() => {
 
             dino.classList.remove("entrando");
 
-            /* NAVEGACIÓN */
 
-            if (destino.startsWith("#")) {
+            /* ------------------------------------------------------
+               CAMBIAR DE PÁGINA
+               ------------------------------------------------------ */
 
-              const elemento =
-                document.querySelector(destino);
-
-              if (elemento) {
-                elemento.scrollIntoView({
-                  behavior: "smooth"
-                });
-              }
-
-              animando = false;
-
-            } else {
-
-              window.location.href = destino;
-
-            }
+            window.location.href = destino;
 
           }, 350);
 
