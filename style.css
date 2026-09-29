@@ -918,4 +918,39 @@ body.dark-mode {
 
 /* Pista como navegación en páginas internas */
 .hero .pista { margin-bottom: var(--espacio-8); }
+/* ==========================================================================
+   TRANSICIÓN: DINOSAURIO ENTRA EN EL AGUJERO
+   ========================================================================== */
 
+.dino.entrando {
+  animation: entrarAgujero 0.35s ease-in forwards;
+}
+
+
+@keyframes entrarAgujero {
+
+  0% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(1)
+      translateY(0);
+    opacity: 1;
+  }
+
+  60% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(0.85)
+      translateY(8px);
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(0.2)
+      translateY(20px);
+    opacity: 0;
+  }
+
+}

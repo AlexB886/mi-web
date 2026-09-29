@@ -292,51 +292,52 @@ function mostrarMensaje(texto, tipo) {
 
 setTimeout(() => {
 
-  efectoDino.classList.add("aterrizando");
-
-}, 500);
-
-
-setTimeout(() => {
-
   dino.classList.remove("saltando");
   efectoDino.classList.remove("aterrizando");
 
-          /* --------------------------------------------------------------
-             CAMBIO DE PÁGINA
-             -------------------------------------------------------------- */
+  /* --------------------------------------------------------------
+     EL DINOSAURIO ENTRA EN EL AGUJERO
+     -------------------------------------------------------------- */
 
-          setTimeout(() => {
+  dino.classList.add("entrando");
 
-            if (destino.startsWith("#")) {
 
-              const elemento =
-                document.querySelector(destino);
+  setTimeout(() => {
 
-              if (elemento) {
+    dino.classList.remove("entrando");
 
-                elemento.scrollIntoView({
-                  behavior: "smooth"
-                });
 
-              }
+    /* ------------------------------------------------------------
+       CAMBIO DE PÁGINA
+       ------------------------------------------------------------ */
 
-              animando = false;
+    if (destino.startsWith("#")) {
 
-            } else {
+      const elemento =
+        document.querySelector(destino);
 
-              window.location.href = destino;
+      if (elemento) {
 
-            }
+        elemento.scrollIntoView({
+          behavior: "smooth"
+        });
 
-          }, 150);
+      }
 
-        }, 650);
+      animando = false;
 
-      }, tiempoCarrera);
+    } else {
 
-    });
+      window.location.href = destino;
+
+    }
+
+  }, 350);
+
+}, 650);
+  }, tiempoCarrera);
 
   });
 
+});
 })();
