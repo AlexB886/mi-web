@@ -40,24 +40,31 @@ const form = document.getElementById("formConsultas");
 const mensajeFormulario = document.getElementById("mensajeFormulario");
 
 if (form) {
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+<<<<<<< Updated upstream
+=======
+    // Campos
+>>>>>>> Stashed changes
     const nombre = form.nombre.value.trim();
     const correo = form.correo.value.trim();
     const consulta = form.consulta.value;
     const mensaje = form.mensaje.value.trim();
     const acepto = form.acepto.checked;
 
+    // Validación básica
     if (!nombre || !correo || !consulta || !mensaje) {
       mostrarMensaje("Rellena todos los campos obligatorios.", "error");
       return;
     }
+
     if (!acepto) {
       mostrarMensaje("Debes aceptar la política de privacidad.", "error");
       return;
     }
 
+<<<<<<< Updated upstream
     const boton = form.querySelector('button[type="submit"]');
     const textoOriginal = boton.textContent;
     boton.disabled = true;
@@ -85,6 +92,22 @@ if (form) {
   });
 }
 
+=======
+    // Mensaje de éxito
+    const tipo = tiposConsulta[consulta] || "Consulta general";
+
+    mostrarMensaje(
+      `Gracias, ${nombre}. Tu consulta sobre “${tipo}” se ha enviado correctamente. Te responderé a ${correo}.`,
+      "ok"
+    );
+
+    // Limpia el formulario
+    form.reset();
+  });
+}
+
+// Muestra mensaje de éxito o error
+>>>>>>> Stashed changes
 function mostrarMensaje(texto, tipo) {
   if (!mensajeFormulario) return;
 
