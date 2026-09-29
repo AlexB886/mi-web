@@ -131,13 +131,16 @@ function mostrarMensaje(texto, tipo) {
    ========================================================================== */
 
 (function () {
+
   const dino = document.querySelector(".dino");
+  const efectoDino = document.querySelector(".efecto-dino");
   const pista = document.querySelector(".pista");
   const agujeros = document.querySelectorAll(".agujero");
 
-  if (!dino || !pista || !agujeros.length) return;
+  if (!dino || !efectoDino || !pista || !agujeros.length) return;
 
   let animando = false;
+
 
   agujeros.forEach((agujero) => {
 
@@ -145,86 +148,170 @@ function mostrarMensaje(texto, tipo) {
 
       e.preventDefault();
 
-      // Evitar varios clics mientras corre
       if (animando) return;
 
       animando = true;
 
       const destino = agujero.getAttribute("href");
 
-      // Quitar selección anterior
-      agujeros.forEach((a) => a.classList.remove("activo"));
 
-      // Marcar el destino
+      /* --------------------------------------------------------------------
+         DESTINO
+         -------------------------------------------------------------------- */
+
+      agujeros.forEach((a) => {
+        a.classList.remove("activo");
+      });
+
       agujero.classList.add("activo");
 
-      // Posición del agujero
-      const rect = agujero.getBoundingClientRect();
-      const pistaRect = pista.getBoundingClientRect();
+
+      /* --------------------------------------------------------------------
+         CALCULAR POSICIÓN DEL AGUJERO
+         -------------------------------------------------------------------- */
+
+      const rectAgujero = agujero.getBoundingClientRect();
+      const rectDino = dino.getBoundingClientRect();
+      const rectEfecto = efectoDino.getBoundingClientRect();
+
+
+      /*
+         El destino se calcula respecto al contenedor del dinosaurio.
+         Así no se pasa de largo.
+      */
+
+      const centroAgujero =
+        rectAgujero.left + rectAgujero.width / 2;
 
       const destinoX =
-        rect.left -
-        pistaRect.left +
-        rect.width / 2 -
+        centroAgujero -
+        rectEfecto.left -
         dino.offsetWidth / 2;
 
-      // Posición actual del dinosaurio
-      const dinoRect = dino.getBoundingClientRect();
+
+      /* --------------------------------------------------------------------
+         POSICIÓN ACTUAL
+         -------------------------------------------------------------------- */
 
       const inicioX =
-        dinoRect.left -
-        pistaRect.left;
+        rectDino.left -
+        rectEfecto.left;
 
-      // Calcular distancia
-      const distancia = Math.abs(destinoX - inicioX);
 
-      // Calcular dirección
-      const vaIzquierda = destinoX < inicioX;
+      const distancia =
+        Math.abs(destinoX - inicioX);
 
-      // Girar dinosaurio según dirección
-      dino.style.setProperty(
+
+      /* --------------------------------------------------------------------
+         DIRECCIÓN
+         -------------------------------------------------------------------- */
+
+      const vaIzquierda =
+        destinoX < inicioX;
+
+
+      efectoDino.style.setProperty(
         "--flip",
         vaIzquierda ? "-1" : "1"
       );
 
-      // Tiempo de carrera
-      const tiempoCarrera = Math.min(
-        Math.max(distancia * 2.2, 500),
-        1500
+
+      /*
+         El polvo siempre sale detrás del dinosaurio.
+      */
+
+      efectoDino.style.setProperty(
+        "--dust-direction",
+        vaIzquierda ? "1" : "-1"
       );
 
-      // Guardar valores
-      dino.style.setProperty(
+
+      /* --------------------------------------------------------------------
+         VELOCIDAD
+         -------------------------------------------------------------------- */
+
+      /*
+         Más tiempo = dinosaurio más lento.
+      */
+
+      const tiempoCarrera = Math.min(
+        Math.max(distancia * 3.8, 900),
+        3000
+      );
+
+
+      efectoDino.style.setProperty(
         "--tiempo-carrera",
         `${tiempoCarrera}ms`
       );
 
-      dino.style.setProperty(
+
+      efectoDino.style.setProperty(
         "--destino-x",
         `${destinoX}px`
       );
 
-      // Empezar a correr
+
+      /* --------------------------------------------------------------------
+         CARRERA
+         -------------------------------------------------------------------- */
+
+      efectoDino.classList.add("corriendo");
       dino.classList.add("corriendo");
 
-      // Cuando termina de correr → saltar
+
+      /* --------------------------------------------------------------------
+         TERMINA LA CARRERA
+         -------------------------------------------------------------------- */
+
       setTimeout(() => {
 
+        /*
+           Guardamos físicamente la posición alcanzada.
+           Así el contenedor no vuelve al principio.
+        */
+
+        efectoDino.style.transform =
+          `translateX(${destinoX}px)`;
+
+
+        efectoDino.classList.remove("corriendo");
         dino.classList.remove("corriendo");
+
+
+        /* ----------------------------------------------------------------
+           SALTO
+           ---------------------------------------------------------------- */
+
         dino.classList.add("saltando");
 
-        // Esperar a que termine el salto
-        setTimeout(() => {
 
-          dino.classList.remove("saltando");
+/* ----------------------------------------------------------------
+   IMPACTO CONTRA EL SUELO
+   ---------------------------------------------------------------- */
 
-          // Pequeño retraso antes de cambiar
+setTimeout(() => {
+
+  efectoDino.classList.add("aterrizando");
+
+}, 500);
+
+
+setTimeout(() => {
+
+  dino.classList.remove("saltando");
+  efectoDino.classList.remove("aterrizando");
+
+          /* --------------------------------------------------------------
+             CAMBIO DE PÁGINA
+             -------------------------------------------------------------- */
+
           setTimeout(() => {
 
-            // Si es un enlace dentro de la misma página
             if (destino.startsWith("#")) {
 
-              const elemento = document.querySelector(destino);
+              const elemento =
+                document.querySelector(destino);
 
               if (elemento) {
 
@@ -234,19 +321,17 @@ function mostrarMensaje(texto, tipo) {
 
               }
 
-              // Permitir volver a clicar
               animando = false;
 
             } else {
 
-              // Ir a la nueva página
               window.location.href = destino;
 
             }
 
           }, 150);
 
-        }, 500);
+        }, 650);
 
       }, tiempoCarrera);
 

@@ -244,7 +244,7 @@ img {
 }
 
 /* Nombre con cursor de máquina de escribir */
-..hero h1:has(#nombre) { white-space: nowrap; overflow: hidden; }
+.hero h1:has(#nombre) { white-space: nowrap; overflow: hidden; }
 .hero h1:has(#nombre)::after {
   content: "|";
   display: inline-block;
@@ -547,39 +547,53 @@ body.dark-mode {
     font-size: 0.5rem;
     letter-spacing: 0.04em;
   }
-  .dino {
-    left: calc(var(--espacio-4) + 2px);
-    top: 80px;
-    height: 56px;
-  }
+  
 
   /* Que el texto de presentación no toque el borde derecho */
   .hero-content { padding-right: 8vw; }
 }/* Móvil (portada): la cabecera se queda arriba y no sigue al hacer scroll */
 @media (max-width: 768px) {
   .home .site-header { position: static; }
-}css
+}
 /* ==========================================================================
-   14. DINOSAURIO: CARRERA + SALTO
+   14. DINOSAURIO
    ========================================================================== */
+
+.efecto-dino {
+  position: absolute;
+
+  /* El dinosaurio empieza bastante antes de los apartados */
+  left: 8%;
+  top: 48.2%;
+
+  width: 110px;
+  height: 105px;
+
+  z-index: 10;
+  pointer-events: none;
+
+  --flip: 1;
+  --dust-direction: -1;
+}
+
+
+/* --------------------------------------------------------------------------
+   DINOSAURIO
+   -------------------------------------------------------------------------- */
 
 .dino {
   position: absolute;
 
-  left: calc(37.5% + 8px);
-  top: 48.2%;
+  left: 0;
+  bottom: 0;
 
   height: clamp(70px, 9vh, 105px);
   width: auto;
 
-  z-index: 10;
-
-  pointer-events: none;
-
-  /* Dirección inicial: hacia la derecha */
-  --flip: 1;
-
+  transform-origin: center bottom;
   transform: scaleX(var(--flip));
+
+  filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.25));
 }
 
 
@@ -587,7 +601,7 @@ body.dark-mode {
    CARRERA
    -------------------------------------------------------------------------- */
 
-.dino.corriendo {
+.efecto-dino.corriendo {
   animation: correrDino var(--tiempo-carrera) linear forwards;
 }
 
@@ -595,15 +609,108 @@ body.dark-mode {
 @keyframes correrDino {
 
   from {
-    transform:
-      translateX(0)
-      scaleX(var(--flip));
+    transform: translateX(0);
   }
 
   to {
+    transform: translateX(var(--destino-x));
+  }
+
+}
+
+
+/* --------------------------------------------------------------------------
+   PASOS
+   -------------------------------------------------------------------------- */
+
+.dino.corriendo {
+  animation: pasosDino 0.18s ease-in-out infinite;
+}
+
+
+@keyframes pasosDino {
+
+  0% {
     transform:
-      translateX(var(--destino-x))
-      scaleX(var(--flip));
+      scaleX(var(--flip))
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      scaleX(var(--flip))
+      translateY(-4px);
+  }
+
+  100% {
+    transform:
+      scaleX(var(--flip))
+      translateY(0);
+  }
+
+}
+
+
+/* --------------------------------------------------------------------------
+   POLVO
+   -------------------------------------------------------------------------- */
+
+.polvo {
+  position: absolute;
+
+  left: 5px;
+  bottom: 3px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: rgba(120, 90, 60, 0.5);
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/*
+   Los tres intervalos están separados 0.18 s.
+   Así aparece una partícula aproximadamente con cada paso.
+*/
+
+.efecto-dino.corriendo .polvo1 {
+  animation: polvoDino 0.54s ease-out infinite;
+}
+
+.efecto-dino.corriendo .polvo2 {
+  animation: polvoDino 0.54s ease-out infinite 0.18s;
+}
+
+.efecto-dino.corriendo .polvo3 {
+  animation: polvoDino 0.54s ease-out infinite 0.36s;
+}
+
+
+@keyframes polvoDino {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateX(0)
+      translateY(0)
+      scale(0.4);
+  }
+
+  15% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translateX(calc(30px * var(--dust-direction)))
+      translateY(7px)
+      scale(1.7);
   }
 
 }
@@ -614,61 +721,134 @@ body.dark-mode {
    -------------------------------------------------------------------------- */
 
 .dino.saltando {
-  animation: saltoDino 0.5s ease-in-out forwards;
+  animation: saltoDino 0.65s cubic-bezier(.2, .75, .3, 1) forwards;
 }
 
 
 @keyframes saltoDino {
 
+  /* Preparación: se agacha antes de saltar */
   0% {
     transform:
-      translateX(var(--destino-x))
-      translateY(0)
       scaleX(var(--flip))
-      scale(1);
+      scaleY(0.88)
+      translateY(3px);
   }
 
-  25% {
+  /* Despegue */
+  10% {
     transform:
-      translateX(var(--destino-x))
-      translateY(-35px)
       scaleX(var(--flip))
-      scale(1.03);
+      scaleY(1.04)
+      translateY(-8px);
   }
 
-  50% {
+  /* Subida */
+  30% {
     transform:
-      translateX(var(--destino-x))
-      translateY(-65px)
       scaleX(var(--flip))
-      scale(1.05);
+      scaleY(1.06)
+      translateY(-42px);
   }
 
+  /* Sigue subiendo */
+  45% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(1.03)
+      translateY(-65px);
+  }
+
+  /* Punto más alto */
+  55% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(1)
+      translateY(-70px);
+  }
+
+  /* Caída */
   75% {
     transform:
-      translateX(var(--destino-x))
-      translateY(-30px)
       scaleX(var(--flip))
-      scale(1.02);
+      scaleY(0.97)
+      translateY(-35px);
+  }
+
+  /* Justo antes de tocar */
+  88% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(0.94)
+      translateY(-5px);
+  }
+
+  /* Impacto */
+  94% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(0.82)
+      translateY(2px);
+  }
+
+  /* Recuperación */
+  100% {
+    transform:
+      scaleX(var(--flip))
+      scaleY(1)
+      translateY(0);
+  }
+
+}
+/* --------------------------------------------------------------------------
+   POLVO AL ATERRIZAR
+   -------------------------------------------------------------------------- */
+
+.efecto-dino.aterrizando .polvo {
+  animation: polvoAterrizaje 0.4s ease-out forwards;
+}
+
+
+.efecto-dino.aterrizando .polvo1 {
+  transform-origin: center;
+  animation-delay: 0s;
+}
+
+.efecto-dino.aterrizando .polvo2 {
+  transform-origin: center;
+  animation-delay: 0.05s;
+}
+
+.efecto-dino.aterrizando .polvo3 {
+  transform-origin: center;
+  animation-delay: 0.1s;
+}
+
+
+@keyframes polvoAterrizaje {
+
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+
+  20% {
+    opacity: 0.65;
   }
 
   100% {
-    transform:
-      translateX(var(--destino-x))
-      translateY(0)
-      scaleX(var(--flip))
-      scale(1);
+    opacity: 0;
+    transform: translate(-18px, -8px) scale(2);
   }
 
 }
 
-
 /* --------------------------------------------------------------------------
-   BOTÓN AL ATERRIZAR
+   ATERRIZAJE
    -------------------------------------------------------------------------- */
 
 .agujero.activo {
-  animation: aterrizaje 0.5s ease-out;
+  animation: aterrizaje 0.65s ease-out;
 }
 
 
@@ -679,11 +859,15 @@ body.dark-mode {
   }
 
   45% {
-    transform: translateY(5px);
+    transform: translateY(6px);
   }
 
-  70% {
+  65% {
     transform: translateY(2px);
+  }
+
+  80% {
+    transform: translateY(4px);
   }
 
   100% {
@@ -694,20 +878,33 @@ body.dark-mode {
 
 
 /* --------------------------------------------------------------------------
+   SOMBRA DURANTE EL SALTO
+   -------------------------------------------------------------------------- */
+
+.dino.saltando {
+  filter: drop-shadow(0 15px 5px rgba(0, 0, 0, 0.18));
+}
+
+
+/* --------------------------------------------------------------------------
    MÓVIL
    -------------------------------------------------------------------------- */
 
 @media (max-width: 768px) {
 
-  .dino {
-    left: calc(var(--espacio-4) + 2px);
+  .efecto-dino {
+    left: 5%;
     top: 80px;
+
+    width: 65px;
+    height: 56px;
+  }
+
+  .dino {
     height: 56px;
   }
 
 }
-
-
 
 
 
