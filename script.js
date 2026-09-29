@@ -140,51 +140,118 @@ function mostrarMensaje(texto, tipo) {
   let animando = false;
 
   agujeros.forEach((agujero) => {
+
     agujero.addEventListener("click", (e) => {
+
       e.preventDefault();
+
+      // Evitar varios clics mientras corre
       if (animando) return;
+
       animando = true;
 
       const destino = agujero.getAttribute("href");
 
+      // Quitar selección anterior
       agujeros.forEach((a) => a.classList.remove("activo"));
+
+      // Marcar el destino
       agujero.classList.add("activo");
 
+      // Posición del agujero
       const rect = agujero.getBoundingClientRect();
       const pistaRect = pista.getBoundingClientRect();
 
-      const destinoX = rect.left - pistaRect.left + rect.width / 2 - dino.offsetWidth / 2;
+      const destinoX =
+        rect.left -
+        pistaRect.left +
+        rect.width / 2 -
+        dino.offsetWidth / 2;
 
+      // Posición actual del dinosaurio
       const dinoRect = dino.getBoundingClientRect();
-      const inicioX = dinoRect.left - pistaRect.left;
 
+      const inicioX =
+        dinoRect.left -
+        pistaRect.left;
+
+      // Calcular distancia
       const distancia = Math.abs(destinoX - inicioX);
-      const tiempoCarrera = Math.min(Math.max(distancia * 2.2, 500), 1500);
 
-      dino.style.setProperty("--tiempo-carrera", `${tiempoCarrera}ms`);
-      dino.style.setProperty("--destino-x", `${destinoX}px`);
+      // Calcular dirección
+      const vaIzquierda = destinoX < inicioX;
 
+      // Girar dinosaurio según dirección
+      dino.style.setProperty(
+        "--flip",
+        vaIzquierda ? "-1" : "1"
+      );
+
+      // Tiempo de carrera
+      const tiempoCarrera = Math.min(
+        Math.max(distancia * 2.2, 500),
+        1500
+      );
+
+      // Guardar valores
+      dino.style.setProperty(
+        "--tiempo-carrera",
+        `${tiempoCarrera}ms`
+      );
+
+      dino.style.setProperty(
+        "--destino-x",
+        `${destinoX}px`
+      );
+
+      // Empezar a correr
       dino.classList.add("corriendo");
 
+      // Cuando termina de correr → saltar
       setTimeout(() => {
+
         dino.classList.remove("corriendo");
         dino.classList.add("saltando");
 
+        // Esperar a que termine el salto
         setTimeout(() => {
+
           dino.classList.remove("saltando");
 
+          // Pequeño retraso antes de cambiar
           setTimeout(() => {
+
+            // Si es un enlace dentro de la misma página
             if (destino.startsWith("#")) {
+
               const elemento = document.querySelector(destino);
+
               if (elemento) {
-                elemento.scrollIntoView({ behavior: "smooth" });
+
+                elemento.scrollIntoView({
+                  behavior: "smooth"
+                });
+
               }
+
+              // Permitir volver a clicar
+              animando = false;
+
             } else {
+
+              // Ir a la nueva página
               window.location.href = destino;
+
             }
+
           }, 150);
+
         }, 500);
+
       }, tiempoCarrera);
+
     });
+
   });
+
 })();

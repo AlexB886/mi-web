@@ -562,38 +562,134 @@ body.dark-mode {
 /* ==========================================================================
    14. DINOSAURIO: CARRERA + SALTO
    ========================================================================== */
+
 .dino {
   position: absolute;
+
   left: calc(37.5% + 8px);
   top: 48.2%;
+
   height: clamp(70px, 9vh, 105px);
   width: auto;
+
   z-index: 10;
-  transform: translateX(0);
+
   pointer-events: none;
+
+  /* Dirección inicial: hacia la derecha */
+  --flip: 1;
+
+  transform: scaleX(var(--flip));
 }
-.dino.corriendo { animation: correrDino var(--tiempo-carrera) linear forwards; }
+
+
+/* --------------------------------------------------------------------------
+   CARRERA
+   -------------------------------------------------------------------------- */
+
+.dino.corriendo {
+  animation: correrDino var(--tiempo-carrera) linear forwards;
+}
+
+
 @keyframes correrDino {
-  from { transform: translateX(0); }
-  to   { transform: translateX(var(--destino-x)); }
+
+  from {
+    transform:
+      translateX(0)
+      scaleX(var(--flip));
+  }
+
+  to {
+    transform:
+      translateX(var(--destino-x))
+      scaleX(var(--flip));
+  }
+
 }
-.dino.saltando { animation: saltoDino 0.5s ease-in-out forwards; }
+
+
+/* --------------------------------------------------------------------------
+   SALTO
+   -------------------------------------------------------------------------- */
+
+.dino.saltando {
+  animation: saltoDino 0.5s ease-in-out forwards;
+}
+
+
 @keyframes saltoDino {
-  0%   { transform: translateX(var(--destino-x)) translateY(0)    scale(1); }
-  25%  { transform: translateX(var(--destino-x)) translateY(-35px) scale(1.03); }
-  50%  { transform: translateX(var(--destino-x)) translateY(-65px) scale(1.05); }
-  75%  { transform: translateX(var(--destino-x)) translateY(-30px) scale(1.02); }
-  100% { transform: translateX(var(--destino-x)) translateY(0)    scale(1); }
+
+  0% {
+    transform:
+      translateX(var(--destino-x))
+      translateY(0)
+      scaleX(var(--flip))
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translateX(var(--destino-x))
+      translateY(-35px)
+      scaleX(var(--flip))
+      scale(1.03);
+  }
+
+  50% {
+    transform:
+      translateX(var(--destino-x))
+      translateY(-65px)
+      scaleX(var(--flip))
+      scale(1.05);
+  }
+
+  75% {
+    transform:
+      translateX(var(--destino-x))
+      translateY(-30px)
+      scaleX(var(--flip))
+      scale(1.02);
+  }
+
+  100% {
+    transform:
+      translateX(var(--destino-x))
+      translateY(0)
+      scaleX(var(--flip))
+      scale(1);
+  }
+
 }
-.agujero.activo { animation: aterrizaje 0.5s ease-out; }
+
+
+/* --------------------------------------------------------------------------
+   BOTÓN AL ATERRIZAR
+   -------------------------------------------------------------------------- */
+
+.agujero.activo {
+  animation: aterrizaje 0.5s ease-out;
+}
+
+
 @keyframes aterrizaje {
-  0%   { transform: translateY(0); }
-  45%  { transform: translateY(5px); }
-  70%  { transform: translateY(2px); }
-  100% { transform: translateY(0); }
-}
-@media (max-width: 768px) {
-  .dino { left: calc(var(--espacio-4) + 2px); top: 80px; height: 56px; }
+
+  0% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(5px);
+  }
+
+  70% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
 }
 
 
@@ -610,6 +706,11 @@ body.dark-mode {
   }
 
 }
+
+
+
+
+
 /* Botón de tema suelto arriba a la derecha (páginas internas) */
 .barra-tema {
   position: fixed;
