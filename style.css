@@ -610,4 +610,14 @@ body.dark-mode {
   }
 
 }
+/* Botón de tema suelto arriba a la derecha (páginas internas) */
+.barra-tema {
+  position: fixed;
+  top: var(--espacio-4);
+  right: var(--espacio-5);
+  z-index: 200;
+}
+
+/* Pista como navegación en páginas internas */
+.hero .pista { margin-bottom: var(--espacio-8); }
 
