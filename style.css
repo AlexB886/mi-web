@@ -130,33 +130,9 @@ img {
   position: fixed;
   inset: 0;
   z-index: -2;
-
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(53, 215, 255, 0.28),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 18%,
-      rgba(255, 79, 216, 0.24),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 78% 82%,
-      rgba(255, 212, 71, 0.18),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 18% 85%,
-      rgba(92, 255, 176, 0.16),
-      transparent 26%
-    ),
-    #08111F;
-
-  background-size: 140% 140%;
-  animation: fondoVivo 18s ease-in-out infinite alternate;
+  background: url("fondo-voxel.png") center center / cover no-repeat;
 }
+
 
 @keyframes fondoVivo {
   0% {
@@ -2317,4 +2293,23 @@ body.dark-mode {
     padding-bottom: 70px;
   }
 
+}/* ==========================================================================
+   PORTADA — FONDO VOXEL
+   ========================================================================== */
+
+.home .bg-animated {
+  background:
+    url("fondo-voxel.png")
+    center center / cover
+    no-repeat;
+  background-color: #78c9f5;
+}
+
+.home .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 18, 30, 0.08) 0%,
+      rgba(5, 18, 30, 0.22) 100%
+    );
 }
