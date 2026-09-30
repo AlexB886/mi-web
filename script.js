@@ -65,11 +65,16 @@ if (form) {
     boton.textContent = "Enviando...";
 
     try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      });
-      const data = await res.json();
+const res = await fetch(form.action, {
+  method: "POST",
+  body: new FormData(form),
+});
+
+if (!res.ok) {
+  throw new Error("Error HTTP al enviar el formulario");
+}
+
+const data = await res.json();
       if (data.success) {
         mostrarMensaje(`Gracias, ${nombre}. Tu consulta se ha enviado. Te responderé a ${correo}.`, "ok");
         form.reset();

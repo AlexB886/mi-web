@@ -6,16 +6,25 @@
 
 /* 1. VARIABLES ----------------------------------------------------------- */
 :root {
-  --negro: #0C0A09;
-  --blanco-roto: #F5F2EC;
-  --beige: #E8E2D6;
-  --terracota: #B5654A;
-  --dorado: #C9A66B;
+  /* Colores base */
+  --negro: #08111F;
+  --blanco-roto: #FFF9F0;
+  --beige: #EAF2FF;
 
+  /* Colores vivos */
+  --terracota: #FF6B57;
+  --dorado: #FFD447;
+  --azul-vivo: #35D7FF;
+  --verde-vivo: #5CFFB0;
+  --rosa-vivo: #FF4FD8;
+  --morado-vivo: #A978FF;
+
+  /* Tipografía */
   --fuente-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --fuente-principal: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --radio-suave: 8px;
+  /* Espaciado */
+  --radio-suave: 12px;
   --espacio-1: 4px;
   --espacio-2: 8px;
   --espacio-3: 12px;
@@ -26,14 +35,25 @@
   --espacio-8: 64px;
   --espacio-9: 96px;
 
+  /* Sistema visual */
   --transicion: all 0.25s ease;
-  --sombra-texto: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 3px rgba(0, 0, 0, 0.6);
-  --velo: linear-gradient(180deg, rgba(12, 10, 9, 0.50) 0%, rgba(12, 10, 9, 0.40) 100%);
-  --fondo-cabecera: rgba(12, 10, 9, 0.55);
-  --color-titulo-h3: var(--dorado);
-  --color-eyebrow: var(--dorado);
-}
 
+  --sombra-texto:
+    0 2px 10px rgba(0, 0, 0, 0.85),
+    0 0 14px rgba(53, 215, 255, 0.08);
+
+  --velo:
+    linear-gradient(
+      180deg,
+      rgba(8, 17, 31, 0.38) 0%,
+      rgba(8, 17, 31, 0.58) 100%
+    );
+
+  --fondo-cabecera: rgba(8, 17, 31, 0.68);
+
+  --color-titulo-h3: var(--azul-vivo);
+  --color-eyebrow: var(--rosa-vivo);
+}
 /* 2. RESET Y BASE -------------------------------------------------------- */
 *,
 *::before,
@@ -102,19 +122,69 @@ img {
   display: block;
 }
 
-/* Fondo: imagen fija a pantalla completa + velo oscuro para contraste */
+/* ==========================================================================
+   FONDO ANIMADO
+   ========================================================================== */
+
 .bg-animated {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: var(--negro) url("fondo.jpg") center / 100% 100% no-repeat;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(53, 215, 255, 0.28),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 18%,
+      rgba(255, 79, 216, 0.24),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 78% 82%,
+      rgba(255, 212, 71, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 18% 85%,
+      rgba(92, 255, 176, 0.16),
+      transparent 26%
+    ),
+    #08111F;
+
+  background-size: 140% 140%;
+  animation: fondoVivo 18s ease-in-out infinite alternate;
+}
+
+@keyframes fondoVivo {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 40%;
+  }
+
+  100% {
+    background-position: 20% 100%;
+  }
 }
 
 .bg-veil {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--velo);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 17, 31, 0.18),
+      rgba(8, 17, 31, 0.42)
+    );
+
+  pointer-events: none;
 }
 
 /* 3. LAYOUT -------------------------------------------------------------- */
@@ -1395,7 +1465,30 @@ body.dark-mode {
       rgba(255, 255, 255, 0.02)
     );
 }
+/* ACENTOS DE COLOR EN LOS PROYECTOS */
 
+.proyecto[data-categories="ecommerce"] {
+  border-color: rgba(255, 107, 74, 0.45);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 107, 74, 0.12), transparent 30%),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+}
+
+.proyecto-destacado {
+  border-color: rgba(92, 200, 255, 0.5);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(92, 200, 255, 0.14), transparent 30%),
+    radial-gradient(circle at 10% 90%, rgba(125, 255, 178, 0.08), transparent 28%),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+}
 
 /* PROYECTO OCULTO */
 
@@ -1537,6 +1630,61 @@ body.dark-mode {
 /* ==========================================================================
    APRENDIZAJE
    ========================================================================== */
+/* ==========================================================================
+   RECURSOS VISUALES
+   ========================================================================== */
+
+.proyecto-visuales {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 5px;
+}
+
+.visual-item {
+  overflow: hidden;
+  border: 1px solid rgba(201, 166, 107, 0.22);
+  background: rgba(12, 10, 9, 0.35);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visual-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 166, 107, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.visual-item img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.visual-item:hover img {
+  transform: scale(1.03);
+}
+
+.visual-item span {
+  display: block;
+  padding: 13px 16px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+@media (max-width: 768px) {
+  .proyecto-visuales {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+}
 
 .proyecto-aprendizaje {
   grid-column: span 2;
