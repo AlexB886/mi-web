@@ -524,7 +524,7 @@ body.dark-mode {
   --color-titulo-h3: #ffd166;
   --color-eyebrow: #ff7658;
 }
-}/* 14. PORTADA: suelo con agujeros y dinosaurio */
+/* 14. PORTADA: suelo con agujeros y dinosaurio */
 .pista {
   --suelo: #F5C04A;
   position: relative;
@@ -2952,7 +2952,7 @@ body:has(.form-consultas) .pista {
     font-size: clamp(0.40rem, 1.8vw, 0.60rem);
   }
 
-}//* ==========================================================================
+}/* ==========================================================================
    FONDO VOXEL — MODO CLARO / MODO OSCURO
    ========================================================================== */
 
@@ -3062,4 +3062,127 @@ body.dark-mode .bg-veil {
       rgba(2, 6, 20, 0.05) 0%,
       rgba(2, 6, 20, 0.12) 100%
     ) !important;
+}/* ==========================================================================
+   FONDOS VOXEL — CLARO / OSCURO
+   ========================================================================== */
+
+/* ☀️ MODO CLARO */
+body:not(.dark-mode) .bg-animated {
+  background-image: url("fondo-voxel.png") !important;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
+/* 🌙 MODO OSCURO */
+body.dark-mode .bg-animated {
+  background-image: url("fondo-voxel-noche.png") !important;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #050b1c;
+}
+
+/* Velo claro */
+body:not(.dark-mode) .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 18, 30, 0.04),
+      rgba(5, 18, 30, 0.12)
+    ) !important;
+}
+
+/* Velo oscuro */
+body.dark-mode .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 6, 20, 0.05),
+      rgba(2, 6, 20, 0.12)
+    ) !important;
+}
+/* ==========================================================================
+   PLAYLIST DE SPOTIFY — PORTADA
+   ========================================================================== */
+
+.spotify-playlist {
+  position: relative;
+  z-index: 5;
+
+  width: 300px;
+  max-width: calc(100% - 32px);
+
+  margin: -20px 8vw 5px auto;
+}
+
+.spotify-playlist iframe {
+  display: block;
+
+  width: 300px;
+  max-width: 100%;
+  height: 300px;
+
+  border: 0;
+  border-radius: 12px;
+}
+
+/* MÓVIL */
+@media (max-width: 768px) {
+
+  .spotify-playlist {
+    width: 280px;
+    max-width: calc(100% - 24px);
+    margin: -10px auto 10px;
+  }
+
+  .spotify-playlist iframe {
+    width: 280px;
+    height: 280px;
+  }
+
+}
+/* ==========================================================================
+   AJUSTE FINO — SOLO MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* MENÚ — más arriba y más a la derecha */
+  .suelo {
+    transform: translate(18px, -18px) !important;
+  }
+
+  /* DINOSAURIO — más arriba y un poco más a la derecha */
+  @media (max-width: 768px) {
+
+  /* MENÚ — se mantiene a la derecha */
+  .suelo {
+    transform: translate(18px, -18px) !important;
+  }
+
+  /* DINOSAURIO — más a la izquierda y con separación */
+  .efecto-dino {
+    left: 3% !important;
+    top: 42px !important;
+  }
+
+}
+
+}
+
+
+/* MÓVILES MUY PEQUEÑOS */
+@media (max-width: 360px) {
+
+  .suelo {
+    transform: translate(12px, -14px) !important;
+  }
+
+  .efecto-dino {
+    left: 2% !important;
+    top: 40px !important;
+  }
+
+}
+
