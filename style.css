@@ -131,6 +131,7 @@ img {
   inset: 0;
   z-index: -2;
   background: url("fondo-voxel.png") center center / cover no-repeat;
+    overflow: hidden;
 }
 
 
@@ -486,17 +487,43 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .hero h1::after { content: ""; }
-}/* 12. MODO CLARO suave: foto más visible, mismo estilo */
-body:not(.dark-mode) {
-  --velo: linear-gradient(180deg, rgba(40, 28, 18, 0.30) 0%, rgba(40, 28, 18, 0.22) 100%);
-  --fondo-cabecera: rgba(40, 28, 18, 0.50);
+
+  .hero h1::after {
+    content: "";
+  }
 }
 
-/* 13. MODO OSCURO: más profundo */
+/* ==========================================================================
+   COLORES DEL MUNDO VOXEL
+   ========================================================================== */
+
+body:not(.dark-mode) {
+  --velo:
+    linear-gradient(
+      180deg,
+      rgba(18, 25, 35, 0.10) 0%,
+      rgba(18, 25, 35, 0.18) 100%
+    );
+
+  --fondo-cabecera: rgba(12, 18, 25, 0.32);
+
+  --color-titulo-h3: #ffd166;
+  --color-eyebrow: #ff6b4a;
+}
+
 body.dark-mode {
-  --velo: linear-gradient(180deg, rgba(6, 10, 20, 0.72) 0%, rgba(6, 10, 20, 0.62) 100%);
-  --fondo-cabecera: rgba(6, 10, 20, 0.70);
+  --velo:
+    linear-gradient(
+      180deg,
+      rgba(4, 10, 18, 0.42) 0%,
+      rgba(4, 10, 18, 0.58) 100%
+    );
+
+  --fondo-cabecera: rgba(4, 10, 18, 0.58);
+
+  --color-titulo-h3: #ffd166;
+  --color-eyebrow: #ff7658;
+}
 }/* 14. PORTADA: suelo con agujeros y dinosaurio */
 .pista {
   --suelo: #F5C04A;
@@ -2312,4 +2339,617 @@ body.dark-mode {
       rgba(5, 18, 30, 0.08) 0%,
       rgba(5, 18, 30, 0.22) 100%
     );
+}/* ==========================================================================
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(100vw + 600px));
+  }
+}/* ==========================================================================
+   MÓVIL — NAVEGACIÓN + DINOSAURIO
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* La navegación aprovecha mejor el ancho disponible */
+  .pista {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    overflow: visible;
+  }
+
+  .suelo {
+    width: 100%;
+    gap: clamp(2px, 1.2vw, 6px);
+  }
+
+  /* Reducimos solo lo necesario para que entre incluso en móviles pequeños */
+  .tramo:first-child {
+    flex: 0 0 8%;
+  }
+
+  .tramo {
+    min-width: 2px;
+  }
+
+  .suelo .agujero {
+    width: clamp(44px, 14vw, 58px);
+    height: clamp(48px, 14vw, 58px);
+
+    flex: 0 0 auto;
+    border-width: 3px;
+
+    padding: 3px;
+
+    font-size: clamp(0.38rem, 1.9vw, 0.50rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+
+    overflow-wrap: break-word;
+    text-align: center;
+  }
+
+  .agujero::before {
+    top: 5px;
+    left: 7px;
+
+    width: 18px;
+    height: 8px;
+  }
+
+  /* Dinosaurio un poco más visible */
+  .efecto-dino {
+    left: 4%;
+    top: 76px;
+
+    width: 72px;
+    height: 62px;
+  }
+
+  .dino {
+    height: clamp(54px, 15vw, 64px);
+  }
+
+  /* Botón de modo claro/oscuro */
+  .theme-toggle {
+    padding: 7px 10px;
+    font-size: 0.68rem;
+  }
+}
+
+/* Móviles especialmente estrechos: iPhone SE y similares */
+@media (max-width: 360px) {
+
+  .suelo {
+    gap: 2px;
+  }
+
+  .suelo .agujero {
+    width: 44px;
+    height: 48px;
+    font-size: 0.38rem;
+  }
+
+  .efecto-dino {
+    left: 3%;
+    width: 66px;
+    height: 58px;
+  }
+
+  .dino {
+    height: 54px;
+  }
+}/* ==========================================================================
+   RESPONSIVE — BARRA DINOSAURIO EN MÓVIL Y TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* La pista ocupa todo el ancho disponible */
+  .pista {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    overflow: visible;
+  }
+
+  /* Solo quedan los 5 botones; eliminamos los tramos intermedios
+     para que no aprieten la navegación */
+  .suelo {
+    position: relative;
+    left: auto;
+    top: auto;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    justify-items: center;
+
+    gap: clamp(4px, 2vw, 12px);
+  }
+
+  .suelo .tramo {
+    display: none;
+  }
+
+  /* Botones más grandes y legibles */
+  .suelo .agujero {
+    width: clamp(46px, 14vw, 68px);
+    height: clamp(46px, 14vw, 68px);
+
+    flex: none;
+
+    padding: 4px;
+
+    border-width: 3px;
+
+    font-size: clamp(0.46rem, 1.9vw, 0.62rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+
+    text-align: center;
+  }
+
+  .suelo .agujero::before {
+    top: 7px;
+    left: 9px;
+
+    width: 22px;
+    height: 10px;
+  }
+
+  /* Dinosaurio más visible */
+  .efecto-dino {
+    left: 4%;
+    top: 78px;
+
+    width: 76px;
+    height: 66px;
+  }
+
+  .efecto-dino .dino {
+    height: clamp(58px, 16vw, 72px);
+  }
+}
+
+/* ==========================================================================
+   MÓVILES MUY PEQUEÑOS
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+  .pista {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .suelo {
+    gap: 4px;
+  }
+
+  .suelo .agujero {
+    width: 46px;
+    height: 46px;
+
+    font-size: 0.44rem;
+  }
+
+  .efecto-dino {
+    left: 3%;
+    width: 68px;
+    height: 60px;
+  }
+
+  .efecto-dino .dino {
+    height: 56px;
+  }
+}/* ==========================================================================
+   BARRA DINOSAURIO — MÓVIL Y TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .pista {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    padding: 80px 4px 24px;
+    overflow: visible;
+  }
+
+  /* Los 6 botones permanecen siempre en una sola fila */
+  .suelo {
+    position: relative;
+    left: auto;
+    top: auto;
+
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: clamp(2px, 1vw, 8px);
+
+    padding-left: clamp(56px, 15vw, 78px);
+  }
+
+  /* Quitamos los tramos solo en móvil */
+  .suelo .tramo {
+    display: none;
+  }
+
+  /* Los 6 botones */
+  .suelo .agujero {
+    width: clamp(40px, 11.5vw, 62px);
+    height: clamp(40px, 11.5vw, 62px);
+
+    flex: 0 0 auto;
+
+    padding: 3px;
+
+    border-width: 3px;
+
+    font-size: clamp(0.40rem, 1.8vw, 0.60rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+
+    text-align: center;
+  }
+
+  /* Dinosaurio: separado a la izquierda de la fila */
+  .efecto-dino {
+    position: absolute;
+
+    left: 2px;
+    top: 80px;
+
+    width: clamp(52px, 14vw, 70px);
+    height: clamp(52px, 15vw, 72px);
+
+    z-index: 10;
+  }
+
+  .efecto-dino .dino {
+    height: clamp(50px, 14vw, 66px);
+  }
+
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+
+  .pista {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .suelo {
+    gap: 2px;
+    padding-left: 55px;
+  }
+
+  .suelo .agujero {
+    width: 40px;
+    height: 40px;
+    font-size: 0.39rem;
+  }
+
+  .efecto-dino {
+    left: 1px;
+    width: 51px;
+    height: 55px;
+  }
+
+  .efecto-dino .dino {
+    height: 50px;
+  }
+}/* ==========================================================================
+   NUBES VOXEL — MOVIMIENTO INDEPENDIENTE
+   ========================================================================== */
+
+.nubes-voxel {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+
+  background-image: url("nubes-voxel.png");
+  background-repeat: repeat-x;
+  background-size: auto 38%;
+  background-position: 0 12%;
+
+  opacity: 0.9;
+
+  animation: moverNubesVoxel 75s linear infinite;
+}
+
+@keyframes moverNubesVoxel {
+  from {
+    background-position: 0 12%;
+  }
+
+  to {
+    background-position: -1800px 12%;
+  }
+}/* ==========================================================================
+   BOTÓN MODO CLARO / OSCURO — ESTILO UNIFICADO
+   ========================================================================== */
+
+.theme-toggle {
+  margin-left: auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 14px;
+
+  font-family: var(--fuente-principal);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--beige);
+  background: rgba(8, 17, 31, 0.35);
+
+  border: 1px solid rgba(255, 212, 71, 0.45);
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 212, 71, 0.12);
+  border-color: var(--dorado);
+  color: var(--dorado);
+  transform: translateY(-1px);
+}@media (max-width: 768px) {
+  .theme-toggle {
+    margin-left: auto;
+    padding: 7px 10px;
+    font-size: 0.68rem;
+  }
+}/* ==========================================================================
+   CORRECCIÓN — NAVEGACIÓN DINOSAURIO EN CONSULTAS
+   ========================================================================== */
+
+.hero-consultas {
+  padding-bottom: 180px;
+}
+
+.hero-consultas .pista {
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .hero-consultas {
+    padding-bottom: 140px;
+  }
+}/* ==========================================================================
+   CORRECCIÓN DEFINITIVA — CONSULTAS
+   ========================================================================== */
+
+/* Reservamos espacio real para la barra del dinosaurio */
+body:has(.form-consultas) .pista {
+  min-height: 125px;
+  margin-bottom: 25px;
+}
+
+/* En móvil dejamos algo más de espacio */
+@media (max-width: 900px) {
+  body:has(.form-consultas) .pista {
+    min-height: 145px;
+    margin-bottom: 20px;
+  }
+}/* ==========================================================================
+   CORRECCIÓN FINAL — BARRA DINOSAURIO
+   ========================================================================== */
+
+.pista {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  margin-top: 35px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.suelo {
+  position: absolute;
+  left: 37.5%;
+  top: 50%;
+  width: 53%;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  transform: translateY(-50%);
+}
+
+/* Conectores entre botones */
+.tramo {
+  flex: 1;
+  height: 3px;
+
+  border: 0;
+  background: rgba(245, 192, 74, 0.45);
+
+  box-shadow:
+    0 0 8px rgba(245, 192, 74, 0.25);
+
+  background-image: none;
+}
+
+.tramo:first-child {
+  flex: 0.75;
+}
+
+.tramo:last-child {
+  flex: 0.45;
+}
+
+/* Botones */
+.suelo .agujero {
+  position: relative;
+
+  width: 76px;
+  height: 76px;
+
+  flex: 0 0 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border-radius: 50%;
+  border: 5px solid #555;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #ff7777 0%,
+      #ff2929 35%,
+      #d90000 68%,
+      #8f0000 100%
+    );
+
+  color: white;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+
+  box-shadow:
+    inset 0 5px 8px rgba(255, 255, 255, 0.45),
+    inset 0 -8px 12px rgba(70, 0, 0, 0.55),
+    0 5px 8px rgba(0, 0, 0, 0.45);
+
+  pointer-events: auto;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+/* Brillo */
+.suelo .agujero::before {
+  content: "";
+
+  position: absolute;
+
+  top: 9px;
+  left: 13px;
+
+  width: 30px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.32);
+
+  transform: rotate(-20deg);
+
+  pointer-events: none;
+}
+
+/* Hover */
+.suelo .agujero:hover {
+  transform: scale(1.06);
+
+  filter: brightness(1.12);
+
+  box-shadow:
+    inset 0 5px 8px rgba(255, 255, 255, 0.5),
+    inset 0 -8px 12px rgba(70, 0, 0, 0.55),
+    0 7px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* Activo */
+.suelo .agujero.activo {
+  transform: translateY(4px);
+}
+
+/* IMPORTANTE:
+   eliminamos cualquier rombo/forma extra que pudiera venir
+   de reglas antiguas */
+.pista::before,
+.pista::after,
+.suelo::before,
+.suelo::after,
+.tramo::before,
+.tramo::after {
+  content: none !important;
+}
+
+/* Móvil */
+@media (max-width: 900px) {
+
+  .pista {
+    height: auto;
+    min-height: 150px;
+    padding: 80px 4px 24px;
+  }
+
+  .suelo {
+    position: relative;
+
+    left: auto;
+    top: auto;
+
+    width: 100%;
+    height: auto;
+
+    transform: none;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    gap: clamp(2px, 1vw, 8px);
+
+    padding-left: clamp(56px, 15vw, 78px);
+  }
+
+  .suelo .tramo {
+    display: none;
+  }
+
+  .suelo .agujero {
+    width: clamp(40px, 11.5vw, 62px);
+    height: clamp(40px, 11.5vw, 62px);
+
+    flex: 0 0 auto;
+
+    border-width: 3px;
+
+    font-size: clamp(0.40rem, 1.8vw, 0.60rem);
+  }
+
 }
