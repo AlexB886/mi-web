@@ -2952,4 +2952,114 @@ body:has(.form-consultas) .pista {
     font-size: clamp(0.40rem, 1.8vw, 0.60rem);
   }
 
+}//* ==========================================================================
+   FONDO VOXEL — MODO CLARO / MODO OSCURO
+   ========================================================================== */
+
+/* ☀️ MODO CLARO */
+.bg-animated {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url("fondo-voxel.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  background-color: #78c9f5;
+}
+
+
+/* 🌙 MODO OSCURO */
+body.dark-mode .bg-animated {
+  background-image: url("fondo-voxel-noche.png") !important;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  background-color: #050b1c;
+}
+
+
+/* Velo del modo claro */
+body:not(.dark-mode) .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 18, 30, 0.08) 0%,
+      rgba(5, 18, 30, 0.18) 100%
+    );
+}
+
+
+/* Velo del modo oscuro
+   Muy transparente para NO tapar las estrellas, luna y luces */
+body.dark-mode .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 6, 20, 0.05) 0%,
+      rgba(2, 6, 20, 0.12) 100%
+    ) !important;
+}/* ==========================================================================
+   BOTÓN DE TEMA — CONSULTAS
+   ========================================================================== */
+
+.barra-tema {
+  position: fixed;
+  top: 18px;
+  right: 30px;
+  z-index: 200;
+}
+
+.barra-tema .theme-toggle {
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  .barra-tema {
+    top: 12px;
+    right: 12px;
+  }
+}/* ==========================================================================
+   FONDOS VOXEL — MODO CLARO / MODO OSCURO
+   ========================================================================== */
+
+/* ☀️ MODO CLARO */
+body:not(.dark-mode) .bg-animated {
+  background-image: url("fondo-voxel.png") !important;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #78c9f5;
+}
+
+/* 🌙 MODO OSCURO */
+body.dark-mode .bg-animated {
+  background-image: url("fondo-voxel-noche.png") !important;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #050b1c;
+}
+
+/* Velo claro — deja que se vean los colores */
+body:not(.dark-mode) .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 18, 30, 0.04) 0%,
+      rgba(5, 18, 30, 0.12) 100%
+    ) !important;
+}
+
+/* Velo oscuro — muy transparente para conservar estrellas y luna */
+body.dark-mode .bg-veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 6, 20, 0.05) 0%,
+      rgba(2, 6, 20, 0.12) 100%
+    ) !important;
 }
