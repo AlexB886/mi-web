@@ -1,150 +1,819 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <!-- Datos básicos de la página -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Web personal de Alex Baicu, estudiante de 1º DAM en el IES Simarro.">
-  <meta name="theme-color" content="#0a2540">
 
-  <title>Alex Baicu | Web personal</title>
+  <title>Alex Baicu | Start</title>
 
-  <!-- Tipografía Inter -->
+  <meta
+    name="description"
+    content="Bienvenido al mundo de Alex Baicu."
+  >
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Hoja de estilos -->
 
-   <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
-
 </head>
 
+<body class="pantalla-inicio">
+<audio
+  id="gameStartSound"
+  <audio id="gameStartSound" src="GAME-START-arcade-final.wav" preload="auto"></audio>
+  preload="auto"
+></audio>
+  <main class="intro-screen">
 
-<body class="home">
-  <!-- Fondo + velo -->
-  <div class="bg-animated" aria-hidden="true"></div>
-  <div class="nubes-voxel" aria-hidden="true"></div>
-  <div class="bg-veil" aria-hidden="true"></div>
+    <!-- =====================================================
+         VÍDEO DE FONDO
+         ===================================================== -->
 
-  <!-- Cabecera: solo logo y botón de tema, sin menú -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#inicio" class="logo">Alex Baicu</a>
-      <button id="themeBtn" class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">🌙 Modo oscuro</button>
-    </div>
-  </header>
-
-  <main id="inicio">
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Portafolio</p>
-        <h1><span id="nombre">Alex Baicu</span></h1>
-        <p class="hero-sub">Diseño web con criterio, código con intención.</p>
-        <p class="hero-desc">Estudio de desarrollo web en formación. Diseño interfaces limpias y escribo código para que perduren.</p>
-        
-      </div>
-    </section>
-    
-
-       <!-- PLAYLIST DE SPOTIFY -->
-<div class="spotify-playlist">
-
- <iframe
-  src="https://open.spotify.com/embed/playlist/7LcNRiZLltsq85UQuaISpb?utm_source=generator&theme=0&si=6d60a36fa5824f05"
-  width="100%"
-  height="352"
-  frameborder="0"
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy"
-  title="Playlist de Spotify de Alex Baicu">
-</iframe>
-
-</div>
-
-<!-- Suelo y dinosaurio -->
-<div class="pista">
-
-  <nav class="suelo" aria-label="Navegación principal">
-
-    <span class="tramo"></span>
-
-    <a class="agujero" href="sobre-mi.html">
-      Sobre mí
-    </a>
-
-    <span class="tramo"></span>
-
-    <a class="agujero" href="lo-que-he-hecho.html">
-      Lo que he hecho
-    </a>
-
-    <span class="tramo"></span>
-
-    <a class="agujero" href="me-gusta.html">
-      Me gusta
-    </a>
-
-    <span class="tramo"></span>
-
-    <a class="agujero" href="consultas.html">
-      Consultas
-    </a>
-
-    <span class="tramo"></span>
-
-    <a class="agujero" href="contacto.html">
-      Contacto
-    </a>
-
-    <span class="tramo"></span>
-
-  </nav>
-
-  <div class="efecto-dino">
-
-    <img
-      class="dino"
-      src="dino.png"
-      alt=""
+    <video
+      class="intro-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
     >
+      <source src="intro.mp4" type="video/mp4">
+    </video>
 
-    <span class="polvo polvo1"></span>
-    <span class="polvo polvo2"></span>
-    <span class="polvo polvo3"></span>
+    <!-- Capa oscura muy suave -->
+    <div
+      class="intro-video-overlay"
+      aria-hidden="true"
+    ></div>
 
-  </div>
 
-</div>
+    <!-- =====================================================
+         DECORACIÓN
+         ===================================================== -->
+
+    <span class="intro-corner top-left"></span>
+    <span class="intro-corner top-right"></span>
+    <span class="intro-corner bottom-left"></span>
+    <span class="intro-corner bottom-right"></span>
+
+
+    <!-- =====================================================
+         CONTENIDO
+         ===================================================== -->
+
+    <div class="intro-content">
+
+      <p class="intro-small">
+        SYSTEM ONLINE
+      </p>
+
+      <h1 class="intro-title" id="introTitle">
+  <span id="introTitleText">ALEX BAICU</span>
+  <canvas
+    id="nameParticles"
+    class="name-particles"
+    aria-hidden="true"
+  ></canvas>
+</h1>
+
+      <p class="intro-subtitle">
+        — BIENVENIDO A MI MUNDO —
+      </p>
+
+      <button
+        class="intro-start"
+        id="startBtn"
+        type="button"
+      >
+        ▶ START
+      </button>
+
+      <p class="intro-hint">
+        PRESS ENTER
+      </p>
+
+    </div>
 
   </main>
 
 
+  <!-- =====================================================
+       INTRO JS
+       ===================================================== -->
+
+ <script>
+
+  const startBtn = document.getElementById("startBtn");
+  const introTitle = document.getElementById("introTitle");
+  const introTitleText = document.getElementById("introTitleText");
+  const canvas = document.getElementById("nameParticles");
+
+ /* ==========================================================
+   ALEX BAICU — RGB + ESCRITURA + GLITCH
+   ========================================================== */
+
+if (introTitle && introTitleText) {
+
+  const texto = "ALEX BAICU";
+
+  const colores = [
+    "#FF0055",
+    "#FF7A00",
+    "#FFE600",
+    "#35FF00",
+    "#00F6FF",
+    "#0066FF",
+    "#8A2BFF",
+    "#FF00E6"
+  ];
+
+  let posicion = 0;
+  let escribiendo = true;
+
+  /*
+   * Crea las letras visibles una a una.
+   */
+  function pintarTexto(cantidad) {
+
+    introTitleText.innerHTML = "";
+
+    for (let i = 0; i < cantidad; i++) {
+
+      const caracter = texto[i];
+
+      const letra =
+        document.createElement("span");
+
+      if (caracter === " ") {
+
+        letra.className = "name-space";
+        letra.innerHTML = "&nbsp;";
+
+      } else {
+
+        letra.className = "name-letter";
+
+        letra.style.setProperty(
+          "--i",
+          i
+        );
+
+        letra.style.setProperty(
+          "--letter-color",
+          colores[
+            (i + colorOffset) %
+            colores.length
+          ]
+        );
+
+        letra.textContent =
+          caracter;
+
+      }
+
+      introTitleText.appendChild(
+        letra
+      );
+
+    }
+
+  }
 
 
+  /*
+   * Reserva siempre el espacio del nombre completo.
+   * Así la página NO se mueve mientras se escribe/borrar.
+   */
+  introTitleText.style.width = "11ch";
+  introTitleText.style.minWidth = "11ch";
 
+
+  let colorOffset = 0;
+
+
+  /* ========================================================
+     CICLO ESCRIBIR / BORRAR
+     ======================================================== */
+
+  function animarNombre() {
+
+    if (escribiendo) {
+
+      posicion++;
+
+      pintarTexto(posicion);
+
+      if (posicion >= texto.length) {
+
+        escribiendo = false;
+
+        setTimeout(
+          animarNombre,
+          1100
+        );
+
+        return;
+
+      }
+
+      setTimeout(
+        animarNombre,
+        95
+      );
+
+    } else {
+
+      posicion--;
+
+      pintarTexto(posicion);
+
+      if (posicion <= 0) {
+
+        escribiendo = true;
+
+        setTimeout(
+          animarNombre,
+          350
+        );
+
+        return;
+
+      }
+
+      setTimeout(
+        animarNombre,
+        60
+      );
+
+    }
+
+  }
+
+
+  /* ========================================================
+     CAMBIO RÁPIDO DE COLORES
+     ======================================================== */
+
+  setInterval(() => {
+
+    colorOffset++;
+
+    const letras =
+      introTitleText.querySelectorAll(
+        ".name-letter"
+      );
+
+    letras.forEach(
+      (letra, index) => {
+
+        letra.style.setProperty(
+          "--letter-color",
+          colores[
+            (
+              index +
+              colorOffset
+            ) %
+            colores.length
+          ]
+        );
+
+      }
+    );
+
+  }, 180);
+
+
+  /* ========================================================
+     GLITCH — SIN SACUDIR LA PÁGINA
+     ======================================================== */
+
+  function activarGlitch() {
+
+    introTitle.classList.remove(
+      "glitch"
+    );
+
+    void introTitle.offsetWidth;
+
+    introTitle.classList.add(
+      "glitch"
+    );
+
+    setTimeout(() => {
+
+      introTitle.classList.remove(
+        "glitch"
+      );
+
+    }, 160);
+
+  }
+
+
+  function glitchAleatorio() {
+
+    activarGlitch();
+
+    setTimeout(
+      glitchAleatorio,
+      1600 +
+      Math.random() * 2600
+    );
+
+  }
+
+
+  setTimeout(
+    glitchAleatorio,
+    1800
+  );
+
+
+  /* ========================================================
+     RATÓN
+     ======================================================== */
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+
+      const rect =
+        introTitle.getBoundingClientRect();
+
+      const centroX =
+        rect.left +
+        rect.width / 2;
+
+      const centroY =
+        rect.top +
+        rect.height / 2;
+
+      const distancia =
+        Math.hypot(
+          event.clientX - centroX,
+          event.clientY - centroY
+        );
+
+      if (distancia < 320) {
+
+        introTitle.classList.add(
+          "pointer-near"
+        );
+
+      } else {
+
+        introTitle.classList.remove(
+          "pointer-near"
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+   * Arranca la animación.
+   */
+  pintarTexto(0);
+  animarNombre();
+
+}
+
+
+  /* ==========================================================
+     PARTÍCULAS CANVAS 2D
+     ========================================================== */
+
+  if (canvas && introTitle) {
+
+    const ctx =
+      canvas.getContext("2d");
+
+    const particles = [];
+
+    let mouse = {
+      x: null,
+      y: null,
+      active: false
+    };
+
+
+    function resizeCanvas() {
+
+      const rect =
+        introTitle.getBoundingClientRect();
+
+      const dpr =
+        Math.min(
+          window.devicePixelRatio || 1,
+          2
+        );
+
+      canvas.width =
+        rect.width * dpr + 90 * dpr;
+
+      canvas.height =
+        rect.height * dpr + 60 * dpr;
+
+      canvas.style.width =
+        `${rect.width + 90}px`;
+
+      canvas.style.height =
+        `${rect.height + 60}px`;
+
+      ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+      );
+
+    }
+
+
+    function crearParticula(
+      x,
+      y,
+      fuerzaX = 0,
+      fuerzaY = 0
+    ) {
+
+      particles.push({
+
+        x,
+        y,
+
+        vx:
+          (Math.random() - 0.5) * 0.8 +
+          fuerzaX,
+
+        vy:
+          (Math.random() - 0.5) * 0.8 +
+          fuerzaY,
+
+        vida: 1,
+
+        decay:
+          0.008 +
+          Math.random() * 0.018,
+
+        size:
+          1 +
+          Math.random() * 2.5,
+
+        hue:
+          Math.random() * 360
+
+      });
+
+    }
+
+
+    function emitirParticulas() {
+
+      const width =
+        canvas.clientWidth;
+
+      const height =
+        canvas.clientHeight;
+
+      /* bordes del título */
+
+      const cantidad =
+        2 + Math.floor(
+          Math.random() * 3
+        );
+
+      for (let i = 0; i < cantidad; i++) {
+
+        const borde =
+          Math.floor(
+            Math.random() * 4
+          );
+
+        let x;
+        let y;
+
+        if (borde === 0) {
+          x = Math.random() * width;
+          y = 18;
+        }
+
+        else if (borde === 1) {
+          x = width - 18;
+          y = Math.random() * height;
+        }
+
+        else if (borde === 2) {
+          x = Math.random() * width;
+          y = height - 18;
+        }
+
+        else {
+          x = 18;
+          y = Math.random() * height;
+        }
+
+        crearParticula(
+          x,
+          y,
+          (Math.random() - 0.5) * 0.8,
+          (Math.random() - 0.5) * 0.8
+        );
+
+      }
+
+    }
+
+
+    function animarParticulas() {
+
+      const width =
+        canvas.clientWidth;
+
+      const height =
+        canvas.clientHeight;
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      if (
+        Math.random() <
+        0.35
+      ) {
+        emitirParticulas();
+      }
+
+
+      for (
+        let i = particles.length - 1;
+        i >= 0;
+        i--
+      ) {
+
+        const p =
+          particles[i];
+
+        /* interacción con ratón */
+
+        if (
+          mouse.active &&
+          mouse.x !== null &&
+          mouse.y !== null
+        ) {
+
+          const dx =
+            p.x - mouse.x;
+
+          const dy =
+            p.y - mouse.y;
+
+          const distancia =
+            Math.hypot(dx, dy);
+
+          if (
+            distancia < 90 &&
+            distancia > 0
+          ) {
+
+            const fuerza =
+              (90 - distancia) / 90;
+
+            p.vx +=
+              (dx / distancia) *
+              fuerza *
+              0.08;
+
+            p.vy +=
+              (dy / distancia) *
+              fuerza *
+              0.08;
+
+          }
+
+        }
+
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        p.vx *= 0.992;
+        p.vy *= 0.992;
+
+        p.vida -= p.decay;
+
+
+        const alpha =
+          Math.max(
+            0,
+            p.vida
+          );
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+          p.x,
+          p.y,
+          p.size,
+          0,
+          Math.PI * 2
+        );
+
+
+        ctx.fillStyle =
+          `hsla(${p.hue}, 100%, 70%, ${alpha})`;
+
+        ctx.shadowBlur = 10;
+
+        ctx.shadowColor =
+          `hsla(${p.hue}, 100%, 65%, ${alpha})`;
+
+        ctx.fill();
+
+
+        if (
+          p.vida <= 0 ||
+          p.x < -50 ||
+          p.x > width + 50 ||
+          p.y < -50 ||
+          p.y > height + 50
+        ) {
+
+          particles.splice(
+            i,
+            1
+          );
+
+        }
+
+      }
+
+
+      requestAnimationFrame(
+        animarParticulas
+      );
+
+    }
+
+
+    canvas.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const rect =
+          canvas.getBoundingClientRect();
+
+        mouse.x =
+          event.clientX -
+          rect.left;
+
+        mouse.y =
+          event.clientY -
+          rect.top;
+
+        mouse.active = true;
+
+      }
+    );
+
+
+    canvas.addEventListener(
+      "mouseleave",
+      () => {
+
+        mouse.active = false;
+
+        mouse.x = null;
+        mouse.y = null;
+
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
+
+
+    resizeCanvas();
+
+    animarParticulas();
+
+  }
+
+
+  /* ==========================================================
+     START
+     ========================================================== */
+
+  /* ==========================================================
+   SONIDO ARCADE AL PULSAR START
+   ========================================================== */
+
+function sonidoStart() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  const ahora = audioCtx.currentTime;
+
+  // Tono principal
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = "square";
+
+  osc.frequency.setValueAtTime(180, ahora);
+  osc.frequency.exponentialRampToValueAtTime(850, ahora + 0.12);
+
+  gain.gain.setValueAtTime(0.0001, ahora);
+  gain.gain.exponentialRampToValueAtTime(0.28, ahora + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ahora + 0.18);
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(ahora);
+  osc.stop(ahora + 0.2);
+
+  // Segundo golpe grave
+  const bass = audioCtx.createOscillator();
+  const bassGain = audioCtx.createGain();
+
+  bass.type = "sawtooth";
+
+  bass.frequency.setValueAtTime(90, ahora);
+  bass.frequency.exponentialRampToValueAtTime(45, ahora + 0.18);
+
+  bassGain.gain.setValueAtTime(0.0001, ahora);
+  bassGain.gain.exponentialRampToValueAtTime(0.18, ahora + 0.01);
+  bassGain.gain.exponentialRampToValueAtTime(0.0001, ahora + 0.2);
+
+  bass.connect(bassGain);
+  bassGain.connect(audioCtx.destination);
+
+  bass.start(ahora);
+  bass.stop(ahora + 0.2);
+}
+
+
+/* ==========================================================
+   START + SONIDO ARCADE
+   ========================================================== */
+
+const gameStartSound =
+  document.getElementById("gameStartSound");
+
+startBtn.addEventListener(
+  "click",
+  () => {
+
+    /* Reiniciar el sonido por si se pulsa otra vez */
+    if (gameStartSound) {
+      gameStartSound.currentTime = 0;
+      gameStartSound.volume = 0.40;
+
+      gameStartSound.play().catch(() => {});
+    }
+
+    /* Animación de salida */
+    document.body.classList.add(
+      "intro-exit"
+    );
+
+    /* Ir a portada */
+    setTimeout(
+      () => {
+
+        window.location.href =
+          "portada.html";
+
+      },
+      2580
+    );
+
+  }
+);
   
 
-  <!-- Pie de página -->
-   <footer id="contacto" class="site-footer">
-    <div class="container footer-inner">
-
-
-      <address class="contact-list">
-
-        <a href="mailto:baicualex88@gmail.com">baicualex88@gmail.com</a>
-        <a href="https://github.com/AlexB886" target="_blank" rel="noopener" aria-label="GitHub de Alex Baicu" class="gh-link">
-          <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          <span>GitHub</span>
-        </a>
-        <span>Manuel, Valencia</span>
-      </address>
-      <p class="copy">
-        © <span id="anio"></span> Alex Baicu. Web personal creada con HTML, CSS y JavaScript.
-      </p>
-    </div>
-  </footer>
-  <!-- Script principal -->
-  <script src="script.js" defer></script>
+</script>
 </body>
 </html>

@@ -3185,4 +3185,1339 @@ body.dark-mode .bg-veil {
   }
 
 }
+/* AJUSTE PORTADA — subir dino y menú solo en escritorio */
+@media (min-width: 769px) {
+  .home .pista {
+    transform: translateY(-170px);
+  }
+}/* ==========================================================================
+   PORTADA — MENSAJE DE VIDEOJUEGO
+   ========================================================================== */
 
+.bienvenida {
+  margin-top: 1.2rem;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.75rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: #fff3c4;
+
+  text-shadow:
+    3px 3px 0 rgba(47, 24, 10, 0.95),
+    0 0 12px rgba(255, 193, 72, 0.45);
+
+  animation: bienvenidaEntrada 0.8s ease-out both;
+}
+
+@keyframes bienvenidaEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/* Evita que la portada se mueva durante el efecto de escritura */
+.hero h1#nombre {
+  display: block;
+  width: 11ch;
+  min-width: 11ch;
+  white-space: nowrap;
+}/* NOMBRE: espacio completamente fijo para evitar saltos */
+.hero h1#nombre {
+  display: block;
+  width: 11ch;
+  min-width: 11ch;
+  height: 1.12em;
+  min-height: 1.12em;
+  line-height: 1.12;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.hero h1#nombre #nombreTexto {
+  display: inline-block;
+  width: 11ch;
+}
+/* ==========================================================
+   FONDO INTRO — AVANCE HACIA EL SOL
+   ========================================================== */
+
+.pantalla-inicio .intro-screen {
+  position: relative;
+  overflow: hidden;
+  background: #080014;
+}
+
+/* Imagen del fondo */
+.intro-bg-image {
+  position: absolute;
+  inset: -4%;
+
+  background-image: url("intro-fondo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  z-index: -3;
+  pointer-events: none;
+
+  animation: avanzarHaciaElSol 12s ease-in-out infinite;
+  transform-origin: center center;
+
+  will-change: transform;
+}
+
+/* Acercamiento muy suave */
+@keyframes avanzarHaciaElSol {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.055);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}/* ==========================================================
+   PERSPECTIVA DEL SUELO
+   ========================================================== */
+
+.intro-bg-image::after {
+  content: "";
+
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -30%;
+  height: 60%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 58px,
+      rgba(255, 0, 180, 0.16) 59px,
+      transparent 61px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 44px,
+      rgba(0, 220, 255, 0.12) 45px,
+      transparent 47px
+    );
+
+  transform:
+    perspective(500px)
+    rotateX(62deg);
+
+  transform-origin: center bottom;
+
+  opacity: 0.5;
+
+  animation: sueloAvanza 2.8s linear infinite;
+}
+
+@keyframes sueloAvanza {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      58px 0,
+      0 88px;
+  }
+}/* ==========================================================
+   INTRO — FONDO ANIMADO TIPO VIDEOJUEGO
+   ========================================================== */
+
+.pantalla-inicio .intro-screen {
+  position: relative;
+  overflow: hidden;
+  background: #080014;
+}
+
+.intro-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------
+   MUNDO PRINCIPAL
+   ---------------------------------------------------------- */
+
+.intro-world {
+  position: absolute;
+  inset: 0;
+
+  background-image: url("intro-fondo-limpio.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  transform: scale(1.03);
+  transform-origin: center center;
+
+  animation: mundoRespira 10s ease-in-out infinite;
+}
+
+@keyframes mundoRespira {
+
+  0%,
+  100% {
+    transform: scale(1.03);
+  }
+
+  50% {
+    transform: scale(1.045);
+  }
+
+}
+
+/* ----------------------------------------------------------
+   SUELO EN MOVIMIENTO
+   ---------------------------------------------------------- */
+
+.intro-speed {
+  position: absolute;
+
+  left: -15%;
+  right: -15%;
+  bottom: -20%;
+
+  height: 58%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 70px,
+      rgba(255, 0, 190, 0.65) 71px 73px,
+      transparent 74px 140px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 42px,
+      rgba(0, 220, 255, 0.45) 43px 45px,
+      transparent 46px 84px
+    );
+
+  transform:
+    perspective(650px)
+    rotateX(64deg)
+    scale(1.25);
+
+  transform-origin: center bottom;
+
+  opacity: 0.55;
+
+  mix-blend-mode: screen;
+
+  animation: sueloHaciaJugador 2.2s linear infinite;
+
+  will-change: background-position;
+}
+
+/* El suelo viene hacia nosotros */
+@keyframes sueloHaciaJugador {
+
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      140px 0,
+      0 84px;
+  }
+
+}
+
+/* ----------------------------------------------------------
+   PROFUNDIDAD / BRILLO DEL HORIZONTE
+   ---------------------------------------------------------- */
+
+.intro-background::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58%;
+
+  height: 3px;
+
+  background: #ff38c7;
+
+  box-shadow:
+    0 0 8px #ff38c7,
+    0 0 25px rgba(255, 56, 199, 0.8),
+    0 0 60px rgba(255, 56, 199, 0.35);
+
+  opacity: 0.9;
+}
+
+/* ----------------------------------------------------------
+   REDUCCIÓN DE MOVIMIENTO
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .intro-world,
+  .intro-speed {
+    animation: none;
+  }
+
+}.intro-content {
+  position: relative;
+  z-index: 5;
+}.intro-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.08);
+
+  z-index: 0;
+  pointer-events: none;
+}@media (max-width: 768px) {
+  .intro-video {
+    transform: scale(1.12);
+  }
+}/* ==========================================================
+   PANTALLA START — VÍDEO RETRO
+   ========================================================== */
+
+.pantalla-inicio {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #05000c;
+}
+
+
+/* ==========================================================
+   PANTALLA
+   ========================================================== */
+
+.pantalla-inicio .intro-screen {
+
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: #05000c;
+}
+
+
+/* ==========================================================
+   VÍDEO
+   ========================================================== */
+
+.pantalla-inicio .intro-video {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center center;
+
+  /*
+    Aumentamos ligeramente el vídeo para
+    esconder los elementos de los bordes.
+  */
+  transform: scale(1.08);
+
+  transform-origin: center center;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* ==========================================================
+   CAPA SOBRE EL VÍDEO
+   ========================================================== */
+
+.pantalla-inicio .intro-video-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 0, 15, 0.08),
+      rgba(5, 0, 15, 0.12)
+    );
+
+}
+
+
+/* ==========================================================
+   CONTENIDO
+   ========================================================== */
+
+.pantalla-inicio .intro-content {
+
+  position: relative;
+
+  z-index: 5;
+
+  width: min(90%, 900px);
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+/* ==========================================================
+   SYSTEM ONLINE
+   ========================================================== */
+
+.pantalla-inicio .intro-small {
+
+  margin: 0 0 24px;
+
+  font-family: "Press Start 2P", monospace;
+
+  font-size: clamp(
+    0.45rem,
+    0.9vw,
+    0.7rem
+  );
+
+  letter-spacing: 0.18em;
+
+  color: #ff6b4a;
+
+  text-shadow:
+    2px 0 rgba(0, 255, 255, 0.35),
+    -2px 0 rgba(255, 0, 72, 0.35);
+
+}
+
+
+/* ==========================================================
+   ALEX BAICU
+   ========================================================== */
+
+.pantalla-inicio .intro-title {
+
+  position: relative;
+
+  margin: 0;
+
+  min-height: 1.2em;
+
+  font-family: "Press Start 2P", monospace;
+
+  font-size: clamp(
+    2rem,
+    6vw,
+    5.5rem
+  );
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+  color: #ffe436;
+
+  text-transform: uppercase;
+
+  text-shadow:
+
+    4px 0 #ff304f,
+    -4px 0 #164fff,
+    0 0 12px rgba(255, 230, 80, 0.55),
+    0 0 32px rgba(255, 50, 190, 0.2);
+
+}
+
+
+/* El texto tiene ancho reservado */
+.pantalla-inicio #introTitleText {
+
+  display: inline-block;
+
+  min-width: 11ch;
+
+}
+
+
+/* Cursor */
+.pantalla-inicio .intro-title::after {
+
+  content: "|";
+
+  display: inline-block;
+
+  margin-left: 8px;
+
+  color: #75f7ff;
+
+  animation:
+    introCursor 0.65s steps(2) infinite;
+
+}
+
+
+/* Cursor parpadeando */
+@keyframes introCursor {
+
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+/* ==========================================================
+   BIENVENIDO
+   ========================================================== */
+
+.pantalla-inicio .intro-subtitle {
+
+  margin: 24px 0 40px;
+
+  font-family: "Press Start 2P", monospace;
+
+  font-size: clamp(
+    0.5rem,
+    1.15vw,
+    0.85rem
+  );
+
+  line-height: 1.8;
+
+  letter-spacing: 0.05em;
+
+  color: #9fe8ff;
+
+  text-shadow:
+    2px 2px 0 rgba(30, 0, 80, 0.9),
+    0 0 12px rgba(0, 220, 255, 0.3);
+
+}
+
+
+/* ==========================================================
+   START
+   ========================================================== */
+
+.pantalla-inicio .intro-start {
+
+  position: relative;
+
+  min-width: 225px;
+
+  padding: 17px 34px;
+
+  border: 3px solid #ff38c7;
+
+  outline: 2px solid #13001f;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1b0928 0%,
+      #09000f 100%
+    );
+
+  color: #ffe436;
+
+  font-family: "Press Start 2P", monospace;
+
+  font-size: clamp(
+    0.62rem,
+    1.05vw,
+    0.85rem
+  );
+
+  letter-spacing: 0.07em;
+
+  cursor: pointer;
+
+  box-shadow:
+
+    0 0 0 4px rgba(255, 56, 199, 0.12),
+    0 0 18px rgba(255, 56, 199, 0.55),
+    inset 0 0 15px rgba(255, 56, 199, 0.12);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+
+}
+
+
+/* Borde interior */
+.pantalla-inicio .intro-start::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 5px;
+
+  border: 1px solid rgba(
+    255,
+    225,
+    100,
+    0.45
+  );
+
+  pointer-events: none;
+
+}
+
+
+/* Hover */
+.pantalla-inicio .intro-start:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  box-shadow:
+
+    0 0 0 4px rgba(255, 56, 199, 0.15),
+    0 0 35px rgba(255, 56, 199, 0.85),
+    0 0 70px rgba(0, 210, 255, 0.22);
+
+}
+
+
+/* Click */
+.pantalla-inicio .intro-start:active {
+
+  transform: scale(0.96);
+
+}
+
+
+/* ==========================================================
+   PRESS ENTER
+   ========================================================== */
+
+.pantalla-inicio .intro-hint {
+
+  margin: 20px 0 0;
+
+  font-family: "Press Start 2P", monospace;
+
+  font-size: clamp(
+    0.38rem,
+    0.7vw,
+    0.55rem
+  );
+
+  letter-spacing: 0.15em;
+
+  color: rgba(
+    255,
+    255,
+    255,
+    0.65
+  );
+
+}
+
+
+/* ==========================================================
+   ESQUINAS
+   ========================================================== */
+
+.pantalla-inicio .intro-corner {
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  border-color:
+    rgba(255, 255, 255, 0.8);
+
+  pointer-events: none;
+
+  z-index: 4;
+
+}
+
+
+.pantalla-inicio .intro-corner.top-left {
+
+  top: 24px;
+  left: 24px;
+
+  border-top: 2px solid;
+  border-left: 2px solid;
+
+}
+
+
+.pantalla-inicio .intro-corner.top-right {
+
+  top: 24px;
+  right: 24px;
+
+  border-top: 2px solid;
+  border-right: 2px solid;
+
+}
+
+
+.pantalla-inicio .intro-corner.bottom-left {
+
+  bottom: 24px;
+  left: 24px;
+
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+
+}
+
+
+.pantalla-inicio .intro-corner.bottom-right {
+
+  bottom: 24px;
+  right: 24px;
+
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+
+}
+
+
+/* ==========================================================
+   TRANSICIÓN DE SALIDA
+   ========================================================== */
+
+.pantalla-inicio.intro-exit .intro-content {
+
+  animation:
+    introSalida 0.9s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+
+}
+
+
+.pantalla-inicio.intro-exit .intro-video {
+
+  animation:
+    videoSalida 0.9s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+
+}
+
+
+.pantalla-inicio.intro-exit .intro-video-overlay {
+
+  animation:
+    flashSalida 0.9s
+    ease-out
+    forwards;
+
+}
+
+
+/* Contenido sale disparado */
+@keyframes introSalida {
+
+  0% {
+
+    transform:
+      scale(1)
+      translateY(0);
+
+    opacity: 1;
+
+    filter:
+      blur(0)
+      brightness(1);
+
+  }
+
+  35% {
+
+    transform:
+      scale(1.04)
+      translateY(-3px);
+
+    filter:
+      brightness(1.5);
+
+  }
+
+  100% {
+
+    transform:
+      scale(1.6);
+
+    opacity: 0;
+
+    filter:
+      blur(10px)
+      brightness(3);
+
+  }
+
+}
+
+
+/* Fondo acelera */
+@keyframes videoSalida {
+
+  0% {
+
+    transform:
+      scale(1.08);
+
+  }
+
+  100% {
+
+    transform:
+      scale(1.24);
+
+  }
+
+}
+
+
+/* Flash final */
+@keyframes flashSalida {
+
+  0% {
+
+    background:
+      rgba(255,255,255,0);
+
+  }
+
+  65% {
+
+    background:
+      rgba(255,30,190,0.05);
+
+  }
+
+  100% {
+
+    background:
+      rgba(255,255,255,0.95);
+
+  }
+
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  .pantalla-inicio .intro-video {
+
+    transform: scale(1.12);
+
+  }
+
+
+  .pantalla-inicio .intro-content {
+
+    width: 92%;
+
+  }
+
+
+  .pantalla-inicio .intro-title {
+
+    font-size: clamp(
+      1.55rem,
+      10vw,
+      3.4rem
+    );
+
+  }
+
+
+  .pantalla-inicio .intro-title::after {
+
+    margin-left: 5px;
+
+  }
+
+
+  .pantalla-inicio .intro-subtitle {
+
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    font-size: 0.5rem;
+
+  }
+
+
+  .pantalla-inicio .intro-start {
+
+    width: min(
+      82vw,
+      280px
+    );
+
+    min-width: 0;
+
+    padding:
+      16px
+      20px;
+
+  }
+
+
+  .pantalla-inicio .intro-corner {
+
+    width: 65px;
+    height: 65px;
+
+  }
+
+
+  .pantalla-inicio .intro-corner.top-left {
+
+    top: 15px;
+    left: 15px;
+
+  }
+
+
+  .pantalla-inicio .intro-corner.top-right {
+
+    top: 15px;
+    right: 15px;
+
+  }
+
+
+  .pantalla-inicio .intro-corner.bottom-left {
+
+    bottom: 15px;
+    left: 15px;
+
+  }
+
+
+  .pantalla-inicio .intro-corner.bottom-right {
+
+    bottom: 15px;
+    right: 15px;
+
+  }
+
+}
+
+
+/* ==========================================================
+   REDUCIR MOVIMIENTO
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pantalla-inicio .intro-video {
+
+    animation: none;
+
+  }
+
+  .pantalla-inicio .intro-title::after {
+
+    animation: none;
+
+  }
+
+}
+
+
+
+/* ==========================================================
+   ALEX BAICU — MULTICOLOR RGB POR LETRAS
+ 
+.pantalla-inicio .n/* ==========================================================
+   ALEX BAICU — RGB ARCADE 3D
+   ========================================================== */
+
+.pantalla-inicio .intro-title {
+
+  position: relative;
+
+  display: inline-block;
+
+  margin: 0;
+
+  width: 11ch;
+  min-width: 11ch;
+
+  height: 1.25em;
+  min-height: 1.25em;
+
+  font-family:
+    "Press Start 2P",
+    monospace;
+
+  font-size:
+    clamp(
+      1.7rem,
+      5.5vw,
+      5.2rem
+    );
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+  color: #fff;
+
+  text-align: left;
+
+  /*
+   * Profundidad 3D del videojuego
+   */
+  text-shadow:
+
+    3px 3px 0 #190018,
+    6px 6px 0 #090009,
+
+    0 0 4px rgba(255,255,255,0.8),
+    0 0 12px rgba(255,0,180,0.45),
+    0 0 24px rgba(0,220,255,0.25);
+
+  transition:
+    filter 0.18s ease;
+
+}
+
+
+/* ==========================================================
+   TEXTO
+   ========================================================== */
+
+.pantalla-inicio #introTitleText {
+
+  display: inline-flex;
+
+  align-items: baseline;
+
+  width: 11ch;
+  min-width: 11ch;
+
+  height: 1.25em;
+  min-height: 1.25em;
+
+  color: transparent;
+
+}
+
+
+/* ==========================================================
+   LETRAS
+   ========================================================== */
+
+.pantalla-inicio .name-letter {
+
+  display: inline-block;
+
+  color:
+    var(--letter-color);
+
+  font-family:
+    "Press Start 2P",
+    monospace;
+
+  /*
+   * Profundidad 3D individual
+   */
+  text-shadow:
+
+    2px 2px 0 #150015,
+    4px 4px 0 #070007,
+
+    0 0 4px
+      var(--letter-color),
+
+    0 0 10px
+      var(--letter-color),
+
+    0 0 18px
+      var(--letter-color);
+
+  /*
+   * Cada letra tiene un pequeño desfase
+   */
+  animation:
+    letterGameFloat
+    0.8s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    calc(
+      var(--i) * -0.07s
+    );
+
+  transition:
+
+    color 0.12s linear,
+
+    text-shadow 0.12s linear,
+
+    filter 0.12s linear;
+
+}
+
+
+/* ==========================================================
+   MOVIMIENTO MUY PEQUEÑO
+   ========================================================== */
+
+@keyframes letterGameFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-2px);
+
+  }
+
+}
+
+
+/* ==========================================================
+   ESPACIO ENTRE ALEX / BAICU
+   ========================================================== */
+
+.pantalla-inicio .name-space {
+
+  display: inline-block;
+
+  width: 0.65ch;
+
+}
+
+
+/* ==========================================================
+   GLITCH RGB
+   SIN TRANSLATE PARA QUE LA PÁGINA NO SE SACUDA
+   ========================================================== */
+
+.pantalla-inicio .intro-title.glitch {
+
+  filter:
+
+    drop-shadow(
+      5px 0 #FF0055
+    )
+
+    drop-shadow(
+      -5px 0 #00F6FF
+    )
+
+    brightness(1.35);
+
+}
+
+
+@keyframes glitchFlash {
+
+  0% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
+
+
+/* ==========================================================
+   RATÓN CERCA
+   ========================================================== */
+
+.pantalla-inicio .intro-title.pointer-near {
+
+  filter:
+
+    brightness(1.3)
+
+    drop-shadow(
+      0 0 8px
+      rgba(0,240,255,0.95)
+    )
+
+    drop-shadow(
+      0 0 26px
+      rgba(255,0,180,0.8)
+    );
+
+}
+
+
+/* ==========================================================
+   CANVAS
+   ========================================================== */
+
+.pantalla-inicio .name-particles {
+
+  position: absolute;
+
+  left: -45px;
+  top: -30px;
+
+  width:
+    calc(100% + 90px);
+
+  height:
+    calc(100% + 60px);
+
+  z-index: 4;
+
+  pointer-events: none;
+
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  .pantalla-inicio .intro-title {
+
+    font-size:
+      clamp(
+        1.35rem,
+        8.8vw,
+        3.2rem
+      );
+
+    width: 11ch;
+    min-width: 11ch;
+
+  }
+
+  .pantalla-inicio #introTitleText {
+
+    width: 11ch;
+    min-width: 11ch;
+
+  }
+
+  .pantalla-inicio .name-particles {
+
+    left: -30px;
+    top: -22px;
+
+    width:
+      calc(100% + 60px);
+
+    height:
+      calc(100% + 44px);
+
+  }
+
+}name-particles {
+
+  position: absolute;
+
+  left: -45px;
+  top: -30px;
+
+  width: calc(100% + 90px);
+  height: calc(100% + 60px);
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+ 
+/* Quitar cursor del título */
+.pantalla-inicio .intro-title::after {
+  display: none !important;
+  content: none !important;
+}

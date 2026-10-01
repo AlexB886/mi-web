@@ -107,28 +107,7 @@ function mostrarMensaje(texto, tipo) {
    ========================================================================== */
 
 (function () {
-  const el = document.getElementById("nombre");
-  if (!el) return;
-  const texto = "Alex Baicu";
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    el.textContent = texto;
-    return;
-  }
-  let i = 0, dir = 1;
-  function tick() {
-    if (dir === 1) {
-      i++;
-      el.textContent = texto.slice(0, i);
-      if (i >= texto.length) { dir = -1; return setTimeout(tick, 1600); }
-      return setTimeout(tick, 110);
-    } else {
-      i--;
-      el.textContent = texto.slice(0, Math.max(i, 0));
-      if (i <= 0) { dir = 1; return setTimeout(tick, 500); }
-      return setTimeout(tick, 60);
-    }
-  }
-  tick();
+
 })();
 
 
