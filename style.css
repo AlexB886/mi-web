@@ -4521,3 +4521,545 @@ body.dark-mode .bg-veil {
   display: none !important;
   content: none !important;
 }
+
+
+/* ==========================================================
+   WIDGET TIEMPO — SELECTOR
+   ========================================================== */
+
+.home .hero-content {
+  position: relative;
+}
+
+.home .portada-weather {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 12px);
+
+  width: 270px;
+  height: 215px;
+
+  margin: 0;
+  padding: 13px;
+  box-sizing: border-box;
+
+  border: 2px solid rgba(53, 215, 255, 0.50);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 18, 38, 0.95),
+      rgba(40, 8, 48, 0.93)
+    );
+
+  box-shadow:
+    0 0 0 3px rgba(255, 79, 216, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.38),
+    inset 0 0 25px rgba(53, 215, 255, 0.05);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  z-index: 30;
+  overflow: hidden;
+}
+
+
+/* CABECERA */
+
+.home .weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.home .weather-kicker {
+  display: block;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.34rem;
+  letter-spacing: 0.08em;
+
+  color: #35d7ff;
+}
+
+.home .weather-header h2 {
+  margin: 4px 0 0;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.65rem;
+
+  color: #fff3c4;
+}
+
+.home .weather-live {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.32rem;
+
+  color: #5cffb0;
+
+  text-shadow:
+    0 0 8px rgba(92, 255, 176, 0.65);
+}
+
+
+/* SELECTOR */
+
+.home .weather-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.home .weather-selector label {
+  font-size: 0.54rem;
+  color: rgba(255,255,255,0.48);
+}
+
+.home .weather-selector select {
+  width: 130px;
+
+  padding: 6px 8px;
+
+  border: 1px solid rgba(53,215,255,0.35);
+  border-radius: 7px;
+
+  background: rgba(5,12,25,0.90);
+  color: #ffffff;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.40rem;
+
+  cursor: pointer;
+}
+
+.home .weather-selector select:focus {
+  outline: 2px solid #35d7ff;
+  outline-offset: 2px;
+}
+
+
+/* INFORMACIÓN PRINCIPAL */
+
+.home .weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.home .weather-city-name {
+  display: block;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.53rem;
+
+  color: #ffffff;
+}
+
+.home .weather-description {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 0.60rem;
+  color: rgba(255,255,255,0.68);
+}
+
+.home .weather-temperature {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home .weather-icon {
+  font-size: 1.45rem;
+}
+
+.home .weather-temperature strong {
+  font-family: "Press Start 2P", monospace;
+
+  font-size: 1.20rem;
+  color: #ffe36b;
+
+  text-shadow:
+    2px 2px 0 rgba(20,5,25,0.90),
+    0 0 10px rgba(255,227,107,0.30);
+}
+
+
+/* DATOS */
+
+.home .weather-info {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+
+  margin-top: 12px;
+}
+
+.home .weather-info-item {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px;
+
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.04);
+
+  font-size: 0.50rem;
+  color: rgba(255,255,255,0.52);
+}
+
+.home .weather-info-item strong {
+  color: #ffffff;
+}
+
+
+/* FUENTE */
+
+.home .weather-source {
+  display: block;
+
+  margin-top: 9px;
+
+  text-align: right;
+
+  font-size: 0.38rem;
+  color: rgba(255,255,255,0.33);
+}
+
+.home .weather-source:hover {
+  color: #35d7ff;
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  .home .portada-weather {
+    left: 50%;
+    top: calc(100% + 8px);
+
+    width: min(82vw, 245px);
+    height: 200px;
+
+    transform: translateX(-50%);
+
+    padding: 11px;
+  }
+
+  .home .weather-selector select {
+    width: 118px;
+  }
+
+  .home .weather-info-item {
+    font-size: 0.45rem;
+  }
+
+}
+
+
+/* ==========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================== */
+
+@media (max-width: 380px) {
+
+  .home .portada-weather {
+    width: 225px;
+    height: 195px;
+  }
+
+  .home .weather-city-name {
+    font-size: 0.48rem;
+  }
+
+  .home .weather-temperature strong {
+    font-size: 1.05rem;
+  }
+
+  .home .weather-selector select {
+    width: 108px;
+  }
+
+}/* ==========================================================
+   CORRECCIÓN FINAL — POSICIÓN DEL WIDGET
+   No altera menú, Spotify ni dinosaurio
+   ========================================================== */
+
+.home .hero {
+  position: relative;
+}
+
+.home .hero-content {
+  position: static;
+}
+
+.home .portada-weather {
+  position: absolute !important;
+
+  left: auto !important;
+  right: 6vw !important;
+  top: 155px !important;
+
+  width: 270px;
+  height: 215px;
+
+  transform: none !important;
+
+  margin: 0;
+  box-sizing: border-box;
+
+  z-index: 40;
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  .home .portada-weather {
+    left: auto !important;
+    right: 12px !important;
+    top: 145px !important;
+
+    width: min(82vw, 245px);
+    height: 200px;
+
+    transform: none !important;
+  }
+
+}
+
+
+/* ==========================================================
+   MÓVIL PEQUEÑO
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+  .home .portada-weather {
+    right: 10px !important;
+    top: 140px !important;
+
+    width: min(88vw, 225px);
+    height: 195px;
+  }
+
+}/* ==========================================================
+   PORTADA — DISTRIBUCIÓN FINAL
+   Widget + Spotify independientes del menú
+   ========================================================== */
+
+.home #inicio {
+  position: relative;
+}
+
+
+/* ==========================================================
+   WIDGET — ARRIBA A LA DERECHA
+   ========================================================== */
+
+.home .portada-weather {
+  position: absolute !important;
+
+  left: auto !important;
+  right: 6vw !important;
+  top: 155px !important;
+
+  width: 270px;
+  height: 215px;
+
+  transform: none !important;
+
+  z-index: 40;
+}
+
+
+/* ==========================================================
+   SPOTIFY — DEBAJO DEL WIDGET
+   No ocupa espacio en el flujo de la portada
+   ========================================================== */
+
+.home .spotify-playlist {
+  position: absolute !important;
+
+  right: 6vw !important;
+  top: 390px !important;
+
+  width: 270px !important;
+  max-width: 270px !important;
+
+  margin: 0 !important;
+
+  z-index: 35;
+}
+
+.home .spotify-playlist iframe {
+  width: 270px !important;
+  height: 270px !important;
+}
+
+
+/* ==========================================================
+   MENÚ + DINOSAURIO
+   Recuperar posición normal
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  .home .pista {
+    transform: none !important;
+  }
+
+  .home .suelo {
+    transform: none !important;
+  }
+
+  .home .efecto-dino {
+    left: 8% !important;
+    top: 48.2% !important;
+  }
+
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  .home .portada-weather {
+    right: 10px !important;
+    left: auto !important;
+    top: 140px !important;
+
+    width: min(82vw, 245px);
+    height: 200px;
+  }
+
+  .home .spotify-playlist {
+    right: 10px !important;
+    left: auto !important;
+
+    top: 355px !important;
+
+    width: min(82vw, 245px) !important;
+    max-width: 245px !important;
+
+    margin: 0 !important;
+  }
+
+  .home .spotify-playlist iframe {
+    width: 100% !important;
+    height: 245px !important;
+  }
+
+}
+
+
+/* ==========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================== */
+
+@media (max-width: 380px) {
+
+  .home .portada-weather {
+    right: 8px !important;
+    top: 135px !important;
+
+    width: 225px;
+    height: 195px;
+  }
+
+  .home .spotify-playlist {
+    right: 8px !important;
+    top: 345px !important;
+
+    width: 225px !important;
+    max-width: 225px !important;
+  }
+
+  .home .spotify-playlist iframe {
+    width: 225px !important;
+    height: 225px !important;
+  }
+
+}/* ==========================================================
+   DINOSAURIO — SEPARACIÓN DE LA BARRA
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  .home .efecto-dino {
+    left: 8% !important;
+    top: 68% !important;
+  }
+
+}/* ==========================================================
+   PORTADA — ESPACIO REAL PARA EL RECORRIDO DEL DINOSAURIO
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  /* ----------------------------------------------------------
+     BARRA DE MENÚ
+     La desplazamos claramente hacia la derecha
+     ---------------------------------------------------------- */
+
+  .home .pista .suelo {
+    left: 29% !important;
+    top: 48.2% !important;
+    width: 64% !important;
+
+    transform: translateY(-50%) !important;
+
+    z-index: 20;
+  }
+
+
+  /* ----------------------------------------------------------
+     DINOSAURIO
+     Se queda completamente a la izquierda de la barra
+     ---------------------------------------------------------- */
+
+  .home .pista .efecto-dino {
+    left: 5% !important;
+    top: 48.2% !important;
+
+    width: 110px !important;
+    height: 105px !important;
+
+    z-index: 10;
+  }
+
+
+  /* ----------------------------------------------------------
+     PRIMER TRAMO
+     Espacio visual para que el dinosaurio pueda correr
+     ---------------------------------------------------------- */
+
+  .home .pista .tramo:first-child {
+    flex: 1.8 !important;
+  }
+
+}

@@ -48,9 +48,153 @@
   <p class="bienvenida">
     Bienvenido a mi mundo
   </p>
+  <!-- ==========================================================
+     WIDGET TIEMPO — PORTADA
+     ========================================================== -->
 
-</div>
-    </section>
+<section
+  id="weatherWidget"
+  class="portada-weather"
+  aria-label="Tiempo actual"
+>
+
+  <div class="weather-header">
+
+    <div>
+      <span class="weather-kicker">
+        WEATHER SYSTEM
+      </span>
+
+      <h2>Tiempo</h2>
+    </div>
+
+    <span class="weather-live">
+      ● LIVE
+    </span>
+
+  </div>
+
+
+  <!-- SELECTOR DE CIUDAD -->
+
+  <div class="weather-selector">
+
+    <label for="weatherCity">
+      Ciudad
+    </label>
+
+    <select id="weatherCity">
+
+      <!-- XÀTIVA = PRINCIPAL -->
+      <option
+        value="xativa"
+        selected
+      >
+        Xàtiva
+      </option>
+
+      <option value="valencia">
+        Valencia
+      </option>
+
+      <option value="barcelona">
+        Barcelona
+      </option>
+
+      <option value="madrid">
+        Madrid
+      </option>
+
+      <option value="manuel">
+        Manuel
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- INFORMACIÓN PRINCIPAL -->
+
+  <div class="weather-main">
+
+    <div>
+
+      <span
+        id="weatherCityName"
+        class="weather-city-name"
+      >
+        Xàtiva
+      </span>
+
+      <span
+        id="weatherDescription"
+        class="weather-description"
+      >
+        Cargando...
+      </span>
+
+    </div>
+
+
+    <div class="weather-temperature">
+
+      <span
+        id="weatherIcon"
+        class="weather-icon"
+      >
+        ⏳
+      </span>
+
+      <strong
+        id="weatherTemperature"
+      >
+        --°
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <!-- DATOS -->
+
+  <div class="weather-info">
+
+    <div class="weather-info-item">
+
+      <span>💧 Humedad</span>
+
+      <strong id="weatherHumidity">
+        --%
+      </strong>
+
+    </div>
+
+
+    <div class="weather-info-item">
+
+      <span>💨 Viento</span>
+
+      <strong id="weatherWind">
+        -- km/h
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <a
+    class="weather-source"
+    href="https://open-meteo.com/"
+    target="_blank"
+    rel="noopener"
+  >
+    Datos: Open-Meteo
+  </a>
+
+</section>
     
 
        <!-- PLAYLIST DE SPOTIFY -->
@@ -152,5 +296,250 @@
   </footer>
   <!-- Script principal -->
   <script src="script.js" defer></script>
+  <script>
+
+
+/* ==========================================================
+ <script>
+/* ==========================================================
+   API DEL TIEMPO — SELECTOR DE CIUDADES
+   ========================================================== */
+
+const weatherWidget =
+  document.getElementById("weatherWidget");
+
+
+if (weatherWidget) {
+
+  const weatherCity =
+    document.getElementById("weatherCity");
+
+
+  const ciudades = {
+
+    xativa: {
+      nombre: "Xàtiva",
+      lat: 38.9904,
+      lon: -0.5185
+    },
+
+    valencia: {
+      nombre: "Valencia",
+      lat: 39.4699,
+      lon: -0.3763
+    },
+
+    barcelona: {
+      nombre: "Barcelona",
+      lat: 41.3874,
+      lon: 2.1686
+    },
+
+    madrid: {
+      nombre: "Madrid",
+      lat: 40.4168,
+      lon: -3.7038
+    },
+
+    manuel: {
+      nombre: "Manuel",
+      lat: 39.0502,
+      lon: -0.4927
+    }
+
+  };
+
+
+  function obtenerClima(
+    code,
+    isDay
+  ) {
+
+    const estados = {
+
+      0: ["☀️", "Despejado"],
+      1: ["🌤️", "Principalmente despejado"],
+      2: ["⛅", "Parcialmente nublado"],
+      3: ["☁️", "Nublado"],
+
+      45: ["🌫️", "Niebla"],
+      48: ["🌫️", "Niebla"],
+
+      51: ["🌦️", "Llovizna"],
+      53: ["🌦️", "Llovizna"],
+      55: ["🌦️", "Llovizna"],
+
+      61: ["🌧️", "Lluvia"],
+      63: ["🌧️", "Lluvia"],
+      65: ["🌧️", "Lluvia fuerte"],
+
+      71: ["🌨️", "Nieve"],
+      73: ["🌨️", "Nieve"],
+      75: ["❄️", "Nieve"],
+
+      80: ["🌦️", "Chubascos"],
+      81: ["🌦️", "Chubascos"],
+      82: ["🌧️", "Chubascos fuertes"],
+
+      95: ["⛈️", "Tormenta"],
+      96: ["⛈️", "Tormenta"],
+      99: ["⛈️", "Tormenta"]
+
+    };
+
+
+    if (
+      code === 0 &&
+      !isDay
+    ) {
+
+      return [
+        "🌙",
+        "Noche despejada"
+      ];
+
+    }
+
+
+    return estados[code] ||
+      ["🌡️", "Desconocido"];
+
+  }
+
+
+  async function cargarTiempo(
+    ciudadId
+  ) {
+
+    const ciudad =
+      ciudades[ciudadId];
+
+
+    if (!ciudad) {
+      return;
+    }
+
+
+    document.getElementById(
+      "weatherCityName"
+    ).textContent =
+      ciudad.nombre;
+
+
+    document.getElementById(
+      "weatherDescription"
+    ).textContent =
+      "Cargando...";
+
+
+    const url =
+      `https://api.open-meteo.com/v1/forecast` +
+      `?latitude=${ciudad.lat}` +
+      `&longitude=${ciudad.lon}` +
+      `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,is_day` +
+      `&timezone=Europe%2FMadrid`;
+
+
+    try {
+
+      const respuesta =
+        await fetch(url);
+
+
+      if (!respuesta.ok) {
+
+        throw new Error(
+          "Error en la API"
+        );
+
+      }
+
+
+      const data =
+        await respuesta.json();
+
+
+      const current =
+        data.current;
+
+
+      const [
+        icono,
+        descripcion
+      ] =
+        obtenerClima(
+          current.weather_code,
+          current.is_day
+        );
+
+
+      document.getElementById(
+        "weatherIcon"
+      ).textContent =
+        icono;
+
+
+      document.getElementById(
+        "weatherTemperature"
+      ).textContent =
+        `${Math.round(current.temperature_2m)}°`;
+
+
+      document.getElementById(
+        "weatherDescription"
+      ).textContent =
+        descripcion;
+
+
+      document.getElementById(
+        "weatherHumidity"
+      ).textContent =
+        `${Math.round(current.relative_humidity_2m)}%`;
+
+
+      document.getElementById(
+        "weatherWind"
+      ).textContent =
+        `${Math.round(current.wind_speed_10m)} km/h`;
+
+
+    } catch (error) {
+
+      console.error(
+        "Error obteniendo el tiempo:",
+        error
+      );
+
+
+      document.getElementById(
+        "weatherDescription"
+      ).textContent =
+        "Datos no disponibles";
+
+    }
+
+  }
+
+
+  weatherCity.addEventListener(
+    "change",
+    () => {
+
+      cargarTiempo(
+        weatherCity.value
+      );
+
+    }
+  );
+
+
+  /* XÀTIVA = CIUDAD PRINCIPAL */
+
+  cargarTiempo("xativa");
+
+}
+</script>
+
+
 </body>
 </html>
