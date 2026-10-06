@@ -7322,4 +7322,161 @@ body:not(.dark-mode) .site-footer .footer-legal a {
     padding: 26px;
   }
 
+}/* =========================================================
+   CONFIGURACIÓN DE COOKIES
+   ========================================================= */
+
+.cookie-preferences {
+  display: none;
+  margin-top: 22px;
+}
+
+.cookie-preferences.is-visible {
+  display: block;
+}
+
+.cookie-preferences-box {
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 166, 107, 0.28);
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.cookie-preferences-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+.cookie-preferences-box > p {
+  margin-bottom: 20px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.cookie-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cookie-option > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cookie-option strong {
+  font-size: 0.98rem;
+}
+
+.cookie-option span {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+
+/* =========================================================
+   INTERRUPTORES
+   ========================================================= */
+
+.cookie-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.cookie-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cookie-slider {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: 0.25s ease;
+}
+
+.cookie-slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: white;
+  transition: 0.25s ease;
+}
+
+.cookie-switch input:checked + .cookie-slider {
+  background: #c9a66b;
+}
+
+.cookie-switch input:checked + .cookie-slider::before {
+  transform: translateX(22px);
+}
+
+.cookie-switch input:disabled + .cookie-slider {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR
+   ========================================================= */
+
+.cookie-preferences-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+
+/* =========================================================
+   MODO CLARO
+   ========================================================= */
+
+body:not(.dark-mode) .cookie-preferences-box {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(23, 32, 51, 0.12);
+}
+
+body:not(.dark-mode) .cookie-option {
+  border-top-color: rgba(23, 32, 51, 0.12);
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .cookie-preferences-box {
+    padding: 18px;
+  }
+
+  .cookie-option {
+    align-items: flex-start;
+  }
+
+  .cookie-preferences-actions {
+    justify-content: stretch;
+  }
+
+  .cookie-preferences-actions .button {
+    width: 100%;
+  }
+
 }

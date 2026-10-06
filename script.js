@@ -361,8 +361,9 @@ function mostrarMensaje(texto, tipo) {
   });
 
 })();/* =========================================
-   COOKIES
-   ========================================= */
+  /* =========================================
+  COOKIES Y PREFERENCIAS
+========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -376,7 +377,104 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerSettings = document.getElementById("cookieSettingsBtn");
 
   const COOKIE_KEY = "alexbaicu_cookie_consent";
+  const PREFERENCES_KEY = "alexbaicu_cookie_preferences";
 
+  /* ---------------------------------------------------------
+     CREAR PANEL DE CONFIGURACIÓN
+     --------------------------------------------------------- */
+
+  const contenido = banner.querySelector(".cookie-content");
+
+  if (!contenido) return;
+
+  const panel = document.createElement("div");
+
+  panel.className = "cookie-preferences";
+
+  panel.innerHTML = `
+    <div class="cookie-preferences-box">
+
+      <h3>⚙️ Configurar cookies</h3>
+
+      <p>
+        Puedes elegir qué preferencias quieres guardar.
+        Las opciones necesarias para el funcionamiento básico
+        del sitio no se pueden desactivar.
+      </p>
+
+      <div class="cookie-option">
+
+        <div>
+          <strong>Cookies necesarias</strong>
+
+          <span>
+            Necesarias para el funcionamiento básico del sitio web.
+          </span>
+        </div>
+
+        <label class="cookie-switch">
+          <input
+            type="checkbox"
+            checked
+            disabled
+          >
+          <span class="cookie-slider"></span>
+        </label>
+
+      </div>
+
+
+      <div class="cookie-option">
+
+        <div>
+          <strong>Preferencias</strong>
+
+          <span>
+            Permiten recordar opciones como el modo claro u oscuro.
+          </span>
+        </div>
+
+        <label class="cookie-switch">
+
+          <input
+            type="checkbox"
+            id="cookiePreferences"
+          >
+
+          <span class="cookie-slider"></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="cookie-preferences-actions">
+
+        <button
+          id="cookieSavePreferences"
+          type="button"
+          class="button"
+        >
+          Guardar preferencias
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  contenido.appendChild(panel);
+
+  const preferencesCheckbox =
+    document.getElementById("cookiePreferences");
+
+  const savePreferences =
+    document.getElementById("cookieSavePreferences");
+
+
+  /* ---------------------------------------------------------
+     FUNCIONES
+     --------------------------------------------------------- */
 
   function mostrarBanner() {
     banner.classList.add("is-visible");
@@ -385,40 +483,150 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function ocultarBanner() {
     banner.classList.remove("is-visible");
+    panel.classList.remove("is-visible");
+  }
+
+
+  function mostrarConfiguracion() {
+
+    banner.classList.add("is-visible");
+
+    panel.classList.add("is-visible");
+
+    const guardadas =
+      JSON.parse(localStorage.getItem(PREFERENCES_KEY) || "{}");
+
+    preferencesCheckbox.checked =
+      guardadas.preferencias === true;
+
   }
 
 
   function guardarPreferencia(valor) {
+
     localStorage.setItem(COOKIE_KEY, valor);
+
     ocultarBanner();
+
   }
 
+
+  /* ---------------------------------------------------------
+     CARGAR PREFERENCIAS
+     --------------------------------------------------------- */
+
+  const preferenciasGuardadas =
+    JSON.parse(
+      localStorage.getItem(PREFERENCES_KEY) || "{}"
+    );
+
+  preferencesCheckbox.checked =
+    preferenciasGuardadas.preferencias === true;
+
+
+  /* ---------------------------------------------------------
+     MOSTRAR BANNER LA PRIMERA VEZ
+     --------------------------------------------------------- */
 
   if (!localStorage.getItem(COOKIE_KEY)) {
-    setTimeout(mostrarBanner, 700);
+
+    setTimeout(() => {
+
+      mostrarBanner();
+
+    }, 700);
+
   }
 
 
+  /* ---------------------------------------------------------
+     ACEPTAR
+     --------------------------------------------------------- */
+
   accept?.addEventListener("click", () => {
+
+    localStorage.setItem(
+      PREFERENCES_KEY,
+      JSON.stringify({
+        preferencias: true
+      })
+    );
+
     guardarPreferencia("accepted");
+
   });
 
+
+  /* ---------------------------------------------------------
+     RECHAZAR
+     --------------------------------------------------------- */
 
   reject?.addEventListener("click", () => {
+
+    localStorage.setItem(
+      PREFERENCES_KEY,
+      JSON.stringify({
+        preferencias: false
+      })
+    );
+
     guardarPreferencia("rejected");
+
   });
 
+
+  /* ---------------------------------------------------------
+     CONFIGURAR
+     --------------------------------------------------------- */
 
   settings?.addEventListener("click", () => {
-    mostrarBanner();
+
+    mostrarConfiguracion();
+
   });
 
+
+  /* ---------------------------------------------------------
+     CONFIGURAR DESDE EL FOOTER
+     --------------------------------------------------------- */
 
   footerSettings?.addEventListener("click", () => {
-    mostrarBanner();
+
+    mostrarConfiguracion();
+
   });
 
-});/* =========================================================
+
+  /* ---------------------------------------------------------
+     GUARDAR CONFIGURACIÓN
+     --------------------------------------------------------- */
+
+  savePreferences?.addEventListener("click", () => {
+
+    const preferencias =
+      preferencesCheckbox.checked;
+
+    localStorage.setItem(
+      PREFERENCES_KEY,
+      JSON.stringify({
+        preferencias: preferencias
+      })
+    );
+
+    localStorage.setItem(
+      COOKIE_KEY,
+      preferencias
+        ? "custom"
+        : "rejected"
+    );
+
+    ocultarBanner();
+
+  });
+
+});
+
+;/* =========================================================
    TARJETAS 3D — ME GUSTA
    ========================================================= */
 
