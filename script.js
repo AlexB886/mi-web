@@ -418,4 +418,23 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarBanner();
   });
 
+});/* =========================================================
+   TARJETAS 3D — ME GUSTA
+   ========================================================= */
+
+document.querySelectorAll(".gusto-card").forEach((card) => {
+
+  function girarTarjeta() {
+    card.classList.toggle("girada");
+  }
+
+  card.addEventListener("click", girarTarjeta);
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      girarTarjeta();
+    }
+  });
+
 });
