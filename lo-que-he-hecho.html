@@ -672,58 +672,210 @@
 
   <!-- FOOTER -->
 
-  <footer class="site-footer">
+ <!-- =========================================
+     FOOTER PROFESIONAL
+     ========================================= -->
 
-    <div class="container footer-inner">
+<footer class="site-footer">
 
-      <h2>Contacto</h2>
+  <div class="container footer-inner">
 
-      <address class="contact-list">
+    <!-- BLOQUE PRINCIPAL -->
+    <div class="footer-main">
 
-        <a href="mailto:baicualex88@gmail.com">
-          baicualex88@gmail.com
+      <!-- IDENTIDAD -->
+      <div class="footer-brand">
+
+        <a href="index.html" class="footer-logo">
+          ALEX BAICU
         </a>
 
-        <a
-          href="https://github.com/AlexB886"
-          target="_blank"
-          rel="noopener"
-          aria-label="GitHub de Alex Baicu"
-          class="gh-link"
+        <p>
+          Estudiante de DAM y desarrollador en formación.
+          Construyendo proyectos, aprendiendo y creando
+          nuevas experiencias digitales.
+        </p>
+
+      </div>
+
+
+      <!-- NAVEGACIÓN -->
+      <div class="footer-column">
+
+        <h3>Navegación</h3>
+
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="lo-que-he-hecho.html">He hecho</a></li>
+          <li><a href="me-gusta.html">Me gusta</a></li>
+          <li><a href="consultas.html">Consultas</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+
+      </div>
+
+
+      <!-- CONTACTO -->
+      <div class="footer-column">
+
+        <h3>Contacto</h3>
+
+        <ul>
+
+          <li>
+            <a href="mailto:baicualex88@gmail.com">
+              📧 Email
+            </a>
+          </li>
+
+          <li>
+            <a href="tel:+34642970914">
+              📱 +34 642 97 09 14
+            </a>
+          </li>
+
+          <li>
+            <span>📍 Manuel, Valencia</span>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- REDES -->
+      <div class="footer-column">
+
+        <h3>Redes</h3>
+
+        <ul>
+
+          <li>
+            <a
+              href="https://github.com/AlexB886"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://www.linkedin.com/in/alex-baicu-2120012b8/"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <!-- SEPARADOR -->
+    <div class="footer-divider"></div>
+
+
+    <!-- PARTE LEGAL -->
+    <div class="footer-legal">
+
+      <div class="footer-legal-links">
+
+        <a href="aviso-legal.html">
+          Aviso legal
+        </a>
+
+        <a href="privacidad.html">
+          Política de privacidad
+        </a>
+
+        <a href="cookies.html">
+          Política de cookies
+        </a>
+
+        <button
+          type="button"
+          id="cookieSettingsBtn"
+          class="footer-cookie-btn"
         >
+          Configurar cookies
+        </button>
 
-          <svg
-            viewBox="0 0 16 16"
-            width="20"
-            height="20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
+      </div>
 
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
 
-          </svg>
-
-          <span>GitHub</span>
-
-        </a>
-
-        <span>
-          Manuel, Valencia
-        </span>
-
-      </address>
-
-      <p class="copy">
-        © <span id="anio"></span> Alex Baicu.
+      <p class="footer-copy">
+        © <span id="anio"></span> Alex Baicu · Todos los derechos reservados.
       </p>
 
     </div>
 
-  </footer>
+  </div>
+
+</footer>
 
 
   <script src="script.js" defer></script>
+<!-- =========================================
+     BANNER DE COOKIES
+     ========================================= -->
 
+<div
+  id="cookieBanner"
+  class="cookie-banner"
+  role="dialog"
+  aria-label="Preferencias de cookies"
+  aria-describedby="cookieText"
+>
+
+  <div class="cookie-content">
+
+    <div>
+      <strong>🍪 Cookies y privacidad</strong>
+
+      <p id="cookieText">
+        Utilizamos cookies y tecnologías similares para mejorar
+        la experiencia de navegación. Puedes aceptar, rechazar
+        o configurar tus preferencias.
+      </p>
+    </div>
+
+    <div class="cookie-actions">
+
+      <button
+        type="button"
+        id="cookieReject"
+        class="cookie-btn cookie-reject"
+      >
+        Rechazar
+      </button>
+
+      <button
+        type="button"
+        id="cookieSettings"
+        class="cookie-btn cookie-settings"
+      >
+        Configurar
+      </button>
+
+      <button
+        type="button"
+        id="cookieAccept"
+        class="cookie-btn cookie-accept"
+      >
+        Aceptar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>

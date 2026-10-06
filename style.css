@@ -5062,4 +5062,1913 @@ body.dark-mode .bg-veil {
     flex: 1.8 !important;
   }
 
+}/* ==========================================================
+   RESTAURACIÓN — ESPACIO DEL DINOSAURIO
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  /* La barra vuelve a dejar espacio real a la izquierda */
+  .home .pista .suelo {
+    left: 37.5% !important;
+    width: 53% !important;
+
+    top: 48.2% !important;
+
+    transform: translateY(-50%) !important;
+  }
+
+  /* Primer tramo = zona de recorrido del dinosaurio */
+  .home .pista .tramo:first-child {
+    flex: 2.2 !important;
+  }
+
+  /* Último tramo pequeño */
+  .home .pista .tramo:last-child {
+    flex: 0.6 !important;
+  }
+
+  /* Dinosaurio separado del primer botón */
+  .home .pista .efecto-dino {
+    left: 3% !important;
+    top: 48.2% !important;
+
+    width: 110px !important;
+    height: 105px !important;
+
+    z-index: 10;
+  }
+
+}/* ==========================================================
+   SEPARACIÓN DEFINITIVA — DINOSAURIO / MENÚ
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  /* Barra de navegación desplazada hacia la derecha */
+  .home .pista .suelo {
+    left: 37.5% !important;
+    top: 48.2% !important;
+
+    transform: translate(140px, -50%) !important;
+
+    width: 53% !important;
+
+    z-index: 20;
+  }
+
+  /* Dinosaurio mantiene su zona independiente */
+  .home .pista .efecto-dino {
+    left: 3% !important;
+    top: 48.2% !important;
+
+    z-index: 10;
+  }
+
+}/* ==========================================================
+   DINOSAURIO POR ENCIMA DEL MENÚ
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+  .home .pista .efecto-dino {
+    z-index: 999 !important;
+  }
+
+  .home .pista .efecto-dino .dino {
+    position: relative;
+    z-index: 1000 !important;
+  }
+
+  .home .pista .agujero {
+    position: relative;
+    z-index: 20;
+  }
+
+}/* ==========================================================
+   DISEÑO VOXEL — MEJORA VISUAL Y LEGIBILIDAD
+   FASE 1 · TARJETAS · TEXTOS · SECCIONES
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   CONTENIDO INTERIOR
+   ---------------------------------------------------------- */
+
+body:not(.home) .section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Separación visual entre secciones */
+body:not(.home) .section {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+/* ----------------------------------------------------------
+   EYEBROW — ESTILO HUD / VIDEOJUEGO
+   ---------------------------------------------------------- */
+
+body:not(.home) .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 18px;
+  padding: 6px 12px;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: #35D7FF;
+
+  background: rgba(5, 15, 28, 0.72);
+  border: 1px solid rgba(53, 215, 255, 0.45);
+  border-radius: 6px;
+
+  box-shadow:
+    0 0 14px rgba(53, 215, 255, 0.12),
+    inset 0 0 10px rgba(53, 215, 255, 0.04);
+
+  text-shadow:
+    0 0 8px rgba(53, 215, 255, 0.35);
+}
+
+/* ----------------------------------------------------------
+   TÍTULOS
+   ---------------------------------------------------------- */
+
+body:not(.home) .section h2 {
+  margin-bottom: 28px;
+
+  color: #FFF9F0;
+
+  text-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(53, 215, 255, 0.10);
+}
+
+body:not(.home) .section h3 {
+  color: #FFD447;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* ----------------------------------------------------------
+   TEXTO — MÁS GRANDE Y LEGIBLE
+   ---------------------------------------------------------- */
+
+body:not(.home) .section p {
+  max-width: 72ch;
+
+  font-size: 1rem;
+  line-height: 1.8;
+  font-weight: 400;
+
+  color: #F4F7FB;
+
+  text-shadow:
+    0 2px 7px rgba(0, 0, 0, 0.95);
+}
+
+/* Primer párrafo de una historia */
+body:not(.home) .story p:first-child {
+  color: #FFD447;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------
+   TARJETAS
+   ---------------------------------------------------------- */
+
+body:not(.home) .card {
+  position: relative;
+
+  padding: 28px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(7, 18, 32, 0.88),
+      rgba(10, 25, 42, 0.72)
+    );
+
+  border: 1px solid rgba(53, 215, 255, 0.30);
+  border-top: 1px solid rgba(53, 215, 255, 0.55);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Línea luminosa decorativa */
+body:not(.home) .card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 80px;
+  height: 2px;
+
+  background: #FFD447;
+
+  box-shadow:
+    0 0 10px rgba(255, 212, 71, 0.6);
+}
+
+/* Hover */
+body:not(.home) .card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(53, 215, 255, 0.65);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(53, 215, 255, 0.10);
+}
+
+/* ----------------------------------------------------------
+   DIVISORES
+   ---------------------------------------------------------- */
+
+body:not(.home) .divisor {
+  max-width: 900px;
+  margin: 8px auto;
+  padding: 0 24px;
+
+  color: rgba(255, 212, 71, 0.55);
+}
+
+/* ----------------------------------------------------------
+   MODO CLARO
+   ---------------------------------------------------------- */
+
+body:not(.dark-mode):not(.home) .card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 29, 43, 0.82),
+      rgba(28, 48, 65, 0.72)
+    );
+
+  border-color: rgba(255, 212, 71, 0.38);
+}
+
+body:not(.dark-mode):not(.home) .card:hover {
+  border-color: rgba(255, 212, 71, 0.75);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(255, 212, 71, 0.12);
+}
+
+/* ----------------------------------------------------------
+   MODO OSCURO
+   ---------------------------------------------------------- */
+
+body.dark-mode:not(.home) .card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(4, 10, 23, 0.92),
+      rgba(10, 19, 40, 0.82)
+    );
+
+  border-color: rgba(53, 215, 255, 0.32);
+}
+
+body.dark-mode:not(.home) .card:hover {
+  border-color: rgba(53, 215, 255, 0.75);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(53, 215, 255, 0.14);
+}
+
+/* ----------------------------------------------------------
+   HERO DE LAS PÁGINAS INTERIORES
+   ---------------------------------------------------------- */
+
+body:not(.home) .hero-mini {
+  padding-top: 105px;
+  padding-bottom: 48px;
+}
+
+body:not(.home) .hero-mini .hero-content {
+  max-width: 760px;
+}
+
+body:not(.home) .hero-mini h1 {
+  color: #FFF9F0;
+
+  text-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(53, 215, 255, 0.12);
+}
+
+body:not(.home) .hero-mini .hero-sub {
+  color: #F4F7FB;
+}
+
+/* ----------------------------------------------------------
+   MÓVIL
+   ---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+  body:not(.home) .section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  body:not(.home) .section .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  body:not(.home) .card {
+    padding: 24px 20px;
+  }
+
+  body:not(.home) .section p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  body:not(.home) .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+  }
+
+  body:not(.home) .hero-mini {
+    padding-top: 75px;
+  }
+}/* ==========================================================
+   DISEÑO VOXEL — FASE 2
+   BOTONES E INTERACCIÓN
+   ========================================================== */
+
+/* Botones principales */
+body:not(.home) .button,
+body:not(.home) .button-secondary {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 48px;
+  padding: 13px 24px;
+
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: #07111F;
+
+  background: linear-gradient(
+    135deg,
+    #FFD447,
+    #FFB83D
+  );
+
+  border: 2px solid #FFE58A;
+  border-radius: 7px;
+
+  box-shadow:
+    0 5px 0 #9A6820,
+    0 10px 22px rgba(0, 0, 0, 0.30);
+
+  text-shadow: none;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    filter 0.16s ease;
+}
+
+/* Brillo al pasar el ratón */
+body:not(.home) .button:hover,
+body:not(.home) .button-secondary:hover {
+  color: #07111F;
+
+  background: linear-gradient(
+    135deg,
+    #FFE878,
+    #FFD447
+  );
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 0 #9A6820,
+    0 14px 28px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 212, 71, 0.25);
+
+  filter: brightness(1.04);
+}
+
+/* Pulsación */
+body:not(.home) .button:active,
+body:not(.home) .button-secondary:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 2px 0 #9A6820,
+    0 5px 12px rgba(0, 0, 0, 0.28);
+}
+
+/* Focus con teclado */
+body:not(.home) .button:focus-visible,
+body:not(.home) .button-secondary:focus-visible {
+  outline: 3px solid #35D7FF;
+  outline-offset: 4px;
+
+  box-shadow:
+    0 5px 0 #9A6820,
+    0 0 0 6px rgba(53, 215, 255, 0.18),
+    0 10px 24px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ==========================================================
+   BOTÓN SECUNDARIO — ESTILO TECNOLÓGICO
+   ========================================================== */
+
+body:not(.home) .button-secondary {
+  color: #35D7FF;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(5, 18, 34, 0.94),
+      rgba(8, 31, 49, 0.92)
+    );
+
+  border-color: #35D7FF;
+
+  box-shadow:
+    0 5px 0 #12627A,
+    0 10px 22px rgba(0, 0, 0, 0.30);
+}
+
+body:not(.home) .button-secondary:hover {
+  color: #06121E;
+
+  background: #35D7FF;
+
+  box-shadow:
+    0 8px 0 #12627A,
+    0 14px 28px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(53, 215, 255, 0.30);
+}
+
+body:not(.home) .button-secondary:active {
+  box-shadow:
+    0 2px 0 #12627A,
+    0 5px 12px rgba(0, 0, 0, 0.28);
+}
+
+
+/* ==========================================================
+   MODO OSCURO
+   ========================================================== */
+
+body.dark-mode:not(.home) .button {
+  color: #07111F;
+
+  background: linear-gradient(
+    135deg,
+    #FFD447,
+    #FFB52E
+  );
+
+  border-color: #FFE88A;
+}
+
+body.dark-mode:not(.home) .button-secondary {
+  color: #35D7FF;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(3, 10, 22, 0.96),
+      rgba(8, 20, 42, 0.96)
+    );
+
+  border-color: #35D7FF;
+}
+
+
+/* ==========================================================
+   MODO CLARO
+   ========================================================== */
+
+body:not(.dark-mode):not(.home) .button-secondary {
+  color: #075A73;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(235, 250, 255, 0.94),
+      rgba(210, 243, 250, 0.94)
+    );
+
+  border-color: #1597BA;
+
+  box-shadow:
+    0 5px 0 #0B6177,
+    0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+body:not(.dark-mode):not(.home) .button-secondary:hover {
+  color: #ffffff;
+  background: #1597BA;
+}
+
+
+/* ==========================================================
+   MÓVIL
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+  body:not(.home) .hero-buttons {
+    width: 100%;
+    gap: 12px;
+  }
+
+  body:not(.home) .button,
+  body:not(.home) .button-secondary {
+    min-height: 46px;
+    padding: 12px 18px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  body:not(.home) .button,
+  body:not(.home) .button-secondary {
+    width: 100%;
+  }
+
+}/* =========================================
+   DISEÑO VOXEL — NAVEGACIÓN INTERIOR
+   ========================================= */
+
+body:not(.home) header {
+  position: relative;
+  z-index: 100;
+}
+
+body:not(.home) nav a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 14px;
+  color: #F4F7FB;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none;
+  text-shadow: 0 2px 0 rgba(0,0,0,.35);
+  transition:
+    color .18s ease,
+    transform .18s ease,
+    text-shadow .18s ease;
+}
+
+/* Línea pixel/HUD debajo */
+body:not(.home) nav a::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 3px;
+  background: #FFD447;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .18s ease;
+  box-shadow: 0 0 8px rgba(255,212,71,.55);
+}
+
+/* Hover */
+body:not(.home) nav a:hover {
+  color: #FFD447;
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 8px rgba(255,212,71,.45),
+    0 2px 0 rgba(0,0,0,.35);
+}
+
+body:not(.home) nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Click */
+body:not(.home) nav a:active {
+  transform: translateY(1px) scale(.97);
+}
+
+/* Accesibilidad */
+body:not(.home) nav a:focus-visible {
+  outline: 2px solid #31E7FF;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Modo claro */
+body:not(.dark-mode):not(.home) nav a {
+  color: #18212F;
+  text-shadow: none;
+}
+
+body:not(.dark-mode):not(.home) nav a:hover {
+  color: #176B87;
+  text-shadow: 0 0 8px rgba(23,107,135,.25);
+}
+
+/* Modo oscuro */
+body.dark-mode:not(.home) nav a {
+  color: #F4F7FB;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  body:not(.home) nav a {
+    padding: 8px 10px;
+    font-size: .92rem;
+  }
+
+  body:not(.home) nav a::after {
+    left: 10px;
+    right: 10px;
+  }
+}/* =========================================
+   DISEÑO VOXEL — TAGS / ETIQUETAS
+   ========================================= */
+
+body:not(.home) .tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  margin: 3px;
+
+  border: 1px solid rgba(49, 231, 255, .65);
+  border-radius: 6px;
+
+  background: rgba(12, 25, 38, .88);
+  color: #31E7FF;
+
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.35),
+    inset 0 0 10px rgba(49,231,255,.06);
+
+  transition:
+    transform .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+/* Hover */
+body:not(.home) .tag:hover {
+  transform: translateY(-2px);
+  color: #FFD447;
+  border-color: #FFD447;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.25),
+    0 0 10px rgba(255,212,71,.2);
+}
+
+/* Modo claro */
+body:not(.dark-mode):not(.home) .tag {
+  background: #F7FBFF;
+  color: #176B87;
+  border-color: #31A9C7;
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.12),
+    inset 0 0 8px rgba(49,169,199,.06);
+}
+
+body:not(.dark-mode):not(.home) .tag:hover {
+  color: #8A5A00;
+  border-color: #D6A800;
+}
+
+/* Modo oscuro */
+body.dark-mode:not(.home) .tag {
+  background: #101B2A;
+  color: #31E7FF;
+  border-color: rgba(49,231,255,.7);
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  body:not(.home) .tag {
+    padding: 5px 8px;
+    font-size: .72rem;
+  }
+}/* =========================================
+   DISEÑO VOXEL — FORMULARIOS
+   ========================================= */
+
+body:not(.home) form {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+body:not(.home) label {
+  display: block;
+  margin-bottom: 8px;
+  color: #FFD447;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+body:not(.home) input,
+body:not(.home) textarea,
+body:not(.home) select {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+  margin-bottom: 18px;
+
+  border: 2px solid rgba(49,231,255,.45);
+  border-radius: 7px;
+
+  background: rgba(10,22,35,.88);
+  color: #F4F7FB;
+
+  font-family: inherit;
+  font-size: .95rem;
+
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+body:not(.home) textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Al entrar en un campo */
+body:not(.home) input:focus,
+body:not(.home) textarea:focus,
+body:not(.home) select:focus {
+  outline: none;
+  border-color: #31E7FF;
+  box-shadow:
+    0 0 0 3px rgba(49,231,255,.12),
+    0 0 15px rgba(49,231,255,.12);
+  transform: translateY(-1px);
+}
+
+/* Placeholder */
+body:not(.home) input::placeholder,
+body:not(.home) textarea::placeholder {
+  color: #9AA9B8;
+}
+
+/* Modo claro */
+body:not(.dark-mode):not(.home) input,
+body:not(.dark-mode):not(.home) textarea,
+body:not(.dark-mode):not(.home) select {
+  background: #FFFFFF;
+  color: #18212F;
+  border-color: #31A9C7;
+}
+
+body:not(.dark-mode):not(.home) input::placeholder,
+body:not(.dark-mode):not(.home) textarea::placeholder {
+  color: #718096;
+}
+
+/* Modo oscuro */
+body.dark-mode:not(.home) input,
+body.dark-mode:not(.home) textarea,
+body.dark-mode:not(.home) select {
+  background: #0D1827;
+  color: #F4F7FB;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  body:not(.home) input,
+  body:not(.home) textarea,
+  body:not(.home) select {
+    padding: 12px;
+    font-size: .92rem;
+  }
+}/* =========================================
+   CONSULTAS — AJUSTE FINAL DE FORMULARIO
+   ========================================= */
+
+/* ---------- CAMPOS ---------- */
+
+body:not(.home) input,
+body:not(.home) textarea,
+body:not(.home) select {
+  border: 2px solid rgba(49, 231, 255, .65);
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, .20),
+    inset 0 0 12px rgba(49, 231, 255, .04);
+}
+
+/* Focus mucho más visible */
+body:not(.home) input:focus,
+body:not(.home) textarea:focus,
+body:not(.home) select:focus {
+  outline: 2px solid #31E7FF;
+  outline-offset: 2px;
+  border-color: #31E7FF;
+
+  box-shadow:
+    0 0 0 4px rgba(49, 231, 255, .18),
+    0 0 18px rgba(49, 231, 255, .30);
+
+  transform: none;
+}
+
+/* ---------- MODO CLARO ---------- */
+
+body:not(.dark-mode):not(.home) input,
+body:not(.dark-mode):not(.home) textarea,
+body:not(.dark-mode):not(.home) select {
+  background: rgba(255, 255, 255, .88);
+  color: #172033;
+
+  border: 2px solid #167A96;
+
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, .20),
+    0 0 12px rgba(22, 122, 150, .10);
+}
+
+body:not(.dark-mode):not(.home) input:focus,
+body:not(.dark-mode):not(.home) textarea:focus,
+body:not(.dark-mode):not(.home) select:focus {
+  border-color: #007C9F;
+
+  box-shadow:
+    0 0 0 4px rgba(0, 124, 159, .20),
+    0 0 18px rgba(0, 124, 159, .28);
+}
+
+body:not(.dark-mode):not(.home) label {
+  color: #172033;
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,.75);
+}
+
+/* ---------- CONSENTIMIENTO ---------- */
+
+/* Contenedor de la casilla + texto */
+body:not(.home) form .consent,
+body:not(.home) form .form-consent,
+body:not(.home) form .checkbox-group,
+body:not(.home) form .privacy,
+body:not(.home) form label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  margin: 8px 0 22px;
+
+  text-align: left;
+}
+
+/* Checkbox */
+body:not(.home) input[type="checkbox"] {
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+
+  accent-color: #FFD447;
+
+  cursor: pointer;
+}
+
+/* Checkbox al seleccionarlo */
+body:not(.home) input[type="checkbox"]:focus {
+  outline: 2px solid #31E7FF;
+  outline-offset: 3px;
+
+  box-shadow:
+    0 0 10px rgba(49,231,255,.45);
+}
+
+/* Texto del consentimiento */
+body:not(.home) label:has(input[type="checkbox"]) {
+  color: #F4F7FB;
+  font-size: .88rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+/* Claro */
+body:not(.dark-mode):not(.home) label:has(input[type="checkbox"]) {
+  color: #172033;
+}
+
+/* Evita que el checkbox herede estilos de input */
+body:not(.home) input[type="checkbox"] {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ---------- BOTÓN ---------- */
+
+body:not(.home) form button[type="submit"],
+body:not(.home) form .button {
+  margin-top: 4px;
+}
+
+/* ---------- MÓVIL ---------- */
+
+@media (max-width: 768px) {
+
+  body:not(.home) label:has(input[type="checkbox"]) {
+    font-size: .82rem;
+    gap: 9px;
+  }
+
+  body:not(.home) input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+}/* =========================================
+   DISEÑO VOXEL — CONTACTO
+   ========================================= */
+
+body:not(.home) .contact-grid {
+  gap: 22px;
+}
+
+/* Tarjetas de contacto */
+body:not(.home) .contact-grid .card,
+body:not(.home) .contact-card {
+  position: relative;
+  overflow: hidden;
+
+  border: 2px solid rgba(49, 231, 255, .55);
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 25, 40, .96),
+      rgba(15, 34, 53, .88)
+    );
+
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.25),
+    0 10px 25px rgba(0,0,0,.18);
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+/* Línea superior */
+body:not(.home) .contact-grid .card::before,
+body:not(.home) .contact-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background: #FFD447;
+
+  box-shadow:
+    0 0 10px rgba(255,212,71,.35);
+}
+
+/* Hover */
+body:not(.home) .contact-grid .card:hover,
+body:not(.home) .contact-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #31E7FF;
+
+  box-shadow:
+    0 8px 0 rgba(0,0,0,.22),
+    0 0 22px rgba(49,231,255,.16);
+}
+
+/* Títulos */
+body:not(.home) .contact-grid .card h3,
+body:not(.home) .contact-card h3 {
+  color: #FFD447;
+  margin-bottom: 8px;
+}
+
+/* Texto */
+body:not(.home) .contact-grid .card p,
+body:not(.home) .contact-card p {
+  color: #F4F7FB;
+}
+
+/* Enlaces */
+body:not(.home) .contact-grid .card a,
+body:not(.home) .contact-card a {
+  color: #31E7FF;
+  font-weight: 700;
+
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+
+  transition:
+    color .18s ease,
+    text-shadow .18s ease;
+}
+
+body:not(.home) .contact-grid .card a:hover,
+body:not(.home) .contact-card a:hover {
+  color: #FFD447;
+
+  text-shadow:
+    0 0 8px rgba(255,212,71,.35);
+}
+
+/* =========================================
+   MODO CLARO
+   ========================================= */
+
+body:not(.dark-mode):not(.home) .contact-grid .card,
+body:not(.dark-mode):not(.home) .contact-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.96),
+      rgba(235,248,252,.94)
+    );
+
+  border-color: #167A96;
+
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.12),
+    0 10px 22px rgba(0,0,0,.10);
+}
+
+body:not(.dark-mode):not(.home) .contact-grid .card h3,
+body:not(.dark-mode):not(.home) .contact-card h3 {
+  color: #8A5A00;
+}
+
+body:not(.dark-mode):not(.home) .contact-grid .card p,
+body:not(.dark-mode):not(.home) .contact-card p {
+  color: #172033;
+}
+
+body:not(.dark-mode):not(.home) .contact-grid .card a,
+body:not(.dark-mode):not(.home) .contact-card a {
+  color: #006D8D;
+}
+
+body:not(.dark-mode):not(.home) .contact-grid .card a:hover,
+body:not(.dark-mode):not(.home) .contact-card a:hover {
+  color: #8A5A00;
+}
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  body:not(.home) .contact-grid {
+    gap: 16px;
+  }
+
+  body:not(.home) .contact-grid .card,
+  body:not(.home) .contact-card {
+    border-radius: 8px;
+  }
+}/* =========================================
+   DISEÑO VOXEL — FOOTER Y ACABADO FINAL
+   ========================================= */
+
+body:not(.home) footer {
+  position: relative;
+  margin-top: 70px;
+  padding: 28px 20px;
+
+  border-top: 2px solid rgba(49,231,255,.45);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7,18,30,.94),
+      rgba(5,12,21,.98)
+    );
+
+  box-shadow:
+    0 -8px 25px rgba(0,0,0,.15);
+
+  text-align: center;
+}
+
+/* Línea decorativa superior */
+body:not(.home) footer::before {
+  content: "";
+
+  position: absolute;
+  top: -3px;
+  left: 15%;
+  right: 15%;
+
+  height: 4px;
+
+  background: #FFD447;
+
+  box-shadow:
+    0 0 12px rgba(255,212,71,.35);
+}
+
+/* Texto */
+body:not(.home) footer p {
+  margin: 5px 0;
+
+  color: #DCE7F0;
+  font-size: .85rem;
+  line-height: 1.6;
+}
+
+/* Enlaces */
+body:not(.home) footer a {
+  color: #31E7FF;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition:
+    color .18s ease,
+    text-shadow .18s ease;
+}
+
+body:not(.home) footer a:hover {
+  color: #FFD447;
+
+  text-shadow:
+    0 0 8px rgba(255,212,71,.35);
+}
+
+/* =========================================
+   MODO CLARO
+   ========================================= */
+
+body:not(.dark-mode):not(.home) footer {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(239,249,252,.98),
+      rgba(220,239,244,.98)
+    );
+
+  border-top-color: #167A96;
+
+  box-shadow:
+    0 -8px 22px rgba(0,0,0,.10);
+}
+
+body:not(.dark-mode):not(.home) footer p {
+  color: #273444;
+}
+
+body:not(.dark-mode):not(.home) footer a {
+  color: #006D8D;
+}
+
+body:not(.dark-mode):not(.home) footer a:hover {
+  color: #8A5A00;
+}
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  body:not(.home) footer {
+    margin-top: 45px;
+    padding: 24px 15px;
+  }
+
+  body:not(.home) footer::before {
+    left: 10%;
+    right: 10%;
+  }
+
+  body:not(.home) footer p {
+    font-size: .8rem;
+  }
+}/* =========================================
+   FOOTER PROFESIONAL — TODAS LAS PÁGINAS
+   ========================================= */
+
+.site-footer {
+  position: relative;
+
+  margin-top: 80px;
+  padding: 55px 0 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7,18,30,.98),
+      rgba(11,27,43,.98)
+    );
+
+  border-top: 2px solid rgba(49,231,255,.55);
+
+  box-shadow:
+    0 -10px 35px rgba(0,0,0,.20);
+
+  color: #F4F7FB;
+}
+
+/* Línea voxel superior */
+
+.site-footer::before {
+  content: "";
+
+  position: absolute;
+
+  top: -4px;
+  left: 12%;
+  right: 12%;
+
+  height: 4px;
+
+  background: #FFD447;
+
+  box-shadow:
+    0 0 14px rgba(255,212,71,.40);
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.footer-main {
+  display: grid;
+
+  grid-template-columns:
+    minmax(240px, 1.7fr)
+    repeat(3, 1fr);
+
+  gap: 45px;
+}
+
+
+/* MARCA */
+
+.footer-logo {
+  display: inline-block;
+
+  margin-bottom: 15px;
+
+  color: #FFD447;
+
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+
+  text-decoration: none;
+
+  text-shadow:
+    0 0 10px rgba(255,212,71,.25);
+}
+
+.footer-brand p {
+  max-width: 360px;
+
+  margin: 0;
+
+  color: #B9C8D5;
+
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+
+/* COLUMNAS */
+
+.footer-column h3 {
+  margin: 0 0 16px;
+
+  color: #31E7FF;
+
+  font-size: .85rem;
+  font-weight: 900;
+
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-column li,
+.footer-column span {
+  color: #B9C8D5;
+
+  font-size: .88rem;
+}
+
+.footer-column a {
+  color: #DCE7F0;
+
+  text-decoration: none;
+
+  transition:
+    color .18s ease,
+    transform .18s ease,
+    text-shadow .18s ease;
+}
+
+.footer-column a:hover {
+  color: #FFD447;
+
+  text-shadow:
+    0 0 8px rgba(255,212,71,.30);
+
+  transform: translateX(3px);
+}
+
+
+/* SEPARADOR */
+
+.footer-divider {
+  height: 1px;
+
+  margin: 40px 0 22px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(49,231,255,.55),
+      transparent
+    );
+}
+
+
+/* PARTE LEGAL */
+
+.footer-legal {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.footer-legal-links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+}
+
+.footer-legal-links a,
+.footer-cookie-btn {
+  color: #9FB0BF;
+
+  background: none;
+  border: 0;
+
+  font-family: inherit;
+  font-size: .78rem;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    color .18s ease,
+    text-shadow .18s ease;
+}
+
+.footer-legal-links a:hover,
+.footer-cookie-btn:hover {
+  color: #31E7FF;
+
+  text-shadow:
+    0 0 7px rgba(49,231,255,.30);
+}
+
+.footer-copy {
+  margin: 0;
+
+  color: #81919F;
+
+  font-size: .75rem;
+}
+
+
+/* =========================================
+   MODO CLARO
+   ========================================= */
+
+body:not(.dark-mode) .site-footer {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(240,249,252,.98),
+      rgba(219,239,245,.98)
+    );
+
+  color: #172033;
+
+  border-top-color: #167A96;
+
+  box-shadow:
+    0 -10px 30px rgba(0,0,0,.10);
+}
+
+body:not(.dark-mode) .footer-logo {
+  color: #8A5A00;
+  text-shadow: none;
+}
+
+body:not(.dark-mode) .footer-brand p,
+body:not(.dark-mode) .footer-column li,
+body:not(.dark-mode) .footer-column span {
+  color: #465568;
+}
+
+body:not(.dark-mode) .footer-column h3 {
+  color: #006D8D;
+}
+
+body:not(.dark-mode) .footer-column a {
+  color: #26384A;
+}
+
+body:not(.dark-mode) .footer-column a:hover {
+  color: #8A5A00;
+  text-shadow: none;
+}
+
+body:not(.dark-mode) .footer-legal-links a,
+body:not(.dark-mode) .footer-cookie-btn {
+  color: #596979;
+}
+
+body:not(.dark-mode) .footer-legal-links a:hover,
+body:not(.dark-mode) .footer-cookie-btn:hover {
+  color: #006D8D;
+}
+
+body:not(.dark-mode) .footer-copy {
+  color: #718096;
+}
+
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .site-footer {
+    margin-top: 55px;
+    padding: 42px 0 22px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 25px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-legal-links {
+    gap: 12px 16px;
+  }
+
+  .footer-copy {
+    line-height: 1.5;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-legal-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}/* =========================================
+   BANNER DE COOKIES
+   ========================================= */
+
+.cookie-banner {
+  position: fixed;
+
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 9999;
+
+  padding: 18px 22px;
+
+  border: 2px solid rgba(49,231,255,.65);
+  border-radius: 10px;
+
+  background:
+    rgba(8,20,33,.97);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35),
+    0 0 20px rgba(49,231,255,.10);
+
+  backdrop-filter: blur(10px);
+
+  transform: translateY(calc(100% + 30px));
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    transform .3s ease,
+    opacity .3s ease;
+}
+
+.cookie-banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cookie-content {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cookie-content strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #FFD447;
+
+  font-size: .95rem;
+}
+
+.cookie-content p {
+  max-width: 750px;
+
+  margin: 0;
+
+  color: #C7D3DE;
+
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+.cookie-actions {
+  display: flex;
+
+  flex-shrink: 0;
+
+  gap: 8px;
+}
+
+.cookie-btn {
+  padding: 9px 13px;
+
+  border-radius: 6px;
+
+  font-family: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    background .15s ease;
+}
+
+.cookie-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cookie-reject,
+.cookie-settings {
+  color: #DCE7F0;
+
+  background: transparent;
+
+  border: 1px solid #536574;
+}
+
+.cookie-accept {
+  color: #101923;
+
+  background: #FFD447;
+
+  border: 1px solid #FFD447;
+
+  box-shadow:
+    0 3px 0 #A98100;
+}
+
+.cookie-accept:hover {
+  box-shadow:
+    0 5px 0 #A98100;
+}
+
+
+/* MODO CLARO */
+
+body:not(.dark-mode) .cookie-banner {
+  background: rgba(248,252,253,.98);
+
+  border-color: #167A96;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.18);
+}
+
+body:not(.dark-mode) .cookie-content strong {
+  color: #8A5A00;
+}
+
+body:not(.dark-mode) .cookie-content p {
+  color: #465568;
+}
+
+body:not(.dark-mode) .cookie-reject,
+body:not(.dark-mode) .cookie-settings {
+  color: #26384A;
+  border-color: #91A4B2;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 768px) {
+
+  .cookie-banner {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    padding: 16px;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 15px;
+  }
+
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .cookie-btn {
+    padding: 10px 6px;
+    font-size: .7rem;
+  }
+}/* =========================================================
+   FOOTER — quitar azul de enlaces y mantener estilo uniforme
+   ========================================================= */
+
+.site-footer a,
+.site-footer a:visited,
+.site-footer a:hover,
+.site-footer a:active {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+/* Texto principal del footer */
+.site-footer,
+.site-footer p,
+.site-footer span,
+.site-footer li {
+  color: inherit;
+}
+
+/* Enlaces del footer al pasar el ratón */
+.site-footer a:hover {
+  opacity: 0.75;
+}
+
+/* Mantener el logo/nombre sin azul */
+.site-footer .footer-brand a,
+.site-footer .footer-brand a:visited {
+  color: inherit !important;
+}/* =========================================================
+   FOOTER — MODO CLARO
+   ========================================================= */
+
+body:not(.dark-mode) .site-footer {
+  background: rgba(240, 248, 252, 0.96) !important;
+  color: #1f2937 !important;
+  border-top: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+body:not(.dark-mode) .site-footer h3,
+body:not(.dark-mode) .site-footer h4,
+body:not(.dark-mode) .site-footer .footer-column h3,
+body:not(.dark-mode) .site-footer .footer-column h4 {
+  color: #172033 !important;
+  font-weight: 800;
+}
+
+body:not(.dark-mode) .site-footer p,
+body:not(.dark-mode) .site-footer span,
+body:not(.dark-mode) .site-footer li {
+  color: #4b5563 !important;
+}
+
+body:not(.dark-mode) .site-footer a,
+body:not(.dark-mode) .site-footer a:visited {
+  color: #374151 !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+body:not(.dark-mode) .site-footer a:hover {
+  color: #111827 !important;
+  opacity: 0.75;
+}
+
+body:not(.dark-mode) .site-footer .footer-brand h2,
+body:not(.dark-mode) .site-footer .footer-brand strong {
+  color: #172033 !important;
+}
+
+body:not(.dark-mode) .site-footer .footer-divider {
+  border-color: rgba(31, 41, 55, 0.15) !important;
+}
+
+body:not(.dark-mode) .site-footer .footer-legal {
+  color: #6b7280 !important;
+}
+
+body:not(.dark-mode) .site-footer .footer-legal a {
+  color: #374151 !important;
+  font-weight: 600;
+}
+
+body:not(.dark-mode) .site-footer .footer-legal a:hover {
+  color: #111827 !important;
+}/* =========================================================
+   FOOTER — GLASS AZULADO MODO CLARO
+   ========================================================= */
+
+body:not(.dark-mode) .site-footer {
+  position: relative;
+  isolation: isolate;
+  background: rgba(174, 193, 207, 0.82) !important;
+  color: #172033 !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Capa de protección para que el fondo no moleste al texto */
+body:not(.dark-mode) .site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(174, 193, 207, 0.72);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Contenido por encima */
+body:not(.dark-mode) .site-footer .footer-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Nombre */
+body:not(.dark-mode) .site-footer .footer-brand h2,
+body:not(.dark-mode) .site-footer .footer-brand strong {
+  color: #172033 !important;
+}
+
+/* Títulos de columnas */
+body:not(.dark-mode) .site-footer h3,
+body:not(.dark-mode) .site-footer h4 {
+  color: #172033 !important;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.25);
+}
+
+/* Descripción */
+body:not(.dark-mode) .site-footer p {
+  color: #354354 !important;
+}
+
+/* Enlaces */
+body:not(.dark-mode) .site-footer a,
+body:not(.dark-mode) .site-footer a:visited {
+  color: #172033 !important;
+  text-decoration: none;
+}
+
+/* Hover */
+body:not(.dark-mode) .site-footer a:hover {
+  color: #07111f !important;
+  opacity: 0.75;
+}
+
+/* Línea divisoria */
+body:not(.dark-mode) .site-footer .footer-divider {
+  border-color: rgba(23, 32, 51, 0.20) !important;
+}
+
+/* Parte legal */
+body:not(.dark-mode) .site-footer .footer-legal {
+  color: #465465 !important;
+}
+
+body:not(.dark-mode) .site-footer .footer-legal a {
+  color: #354354 !important;
 }

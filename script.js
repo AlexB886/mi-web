@@ -360,4 +360,62 @@ function mostrarMensaje(texto, tipo) {
 
   });
 
-})();
+})();/* =========================================
+   COOKIES
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const banner = document.getElementById("cookieBanner");
+
+  if (!banner) return;
+
+  const accept = document.getElementById("cookieAccept");
+  const reject = document.getElementById("cookieReject");
+  const settings = document.getElementById("cookieSettings");
+  const footerSettings = document.getElementById("cookieSettingsBtn");
+
+  const COOKIE_KEY = "alexbaicu_cookie_consent";
+
+
+  function mostrarBanner() {
+    banner.classList.add("is-visible");
+  }
+
+
+  function ocultarBanner() {
+    banner.classList.remove("is-visible");
+  }
+
+
+  function guardarPreferencia(valor) {
+    localStorage.setItem(COOKIE_KEY, valor);
+    ocultarBanner();
+  }
+
+
+  if (!localStorage.getItem(COOKIE_KEY)) {
+    setTimeout(mostrarBanner, 700);
+  }
+
+
+  accept?.addEventListener("click", () => {
+    guardarPreferencia("accepted");
+  });
+
+
+  reject?.addEventListener("click", () => {
+    guardarPreferencia("rejected");
+  });
+
+
+  settings?.addEventListener("click", () => {
+    mostrarBanner();
+  });
+
+
+  footerSettings?.addEventListener("click", () => {
+    mostrarBanner();
+  });
+
+});
