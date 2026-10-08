@@ -102,7 +102,93 @@
       </p>
 
     </div>
+<!-- =====================================================
+     ESCENA VIDEOJUEGO
+     ===================================================== -->
 
+<section class="battle-scene" id="battleScene">
+
+  <div class="battle-sky"></div>
+
+  <div class="battle-cloud cloud-1"></div>
+  <div class="battle-cloud cloud-2"></div>
+  <div class="battle-cloud cloud-3"></div>
+
+  <!-- Dinosaurio -->
+  <div class="battle-dino" id="battleDino">
+
+  <div
+    class="dino-sprite-sheet"
+    aria-label="Dinosaurio"
+  ></div>
+
+</div>
+
+  <!-- Impacto -->
+  <div class="impact-effect" id="impactEffect"></div>
+
+  <!-- Arena -->
+  <div class="battle-ground"></div>
+
+  <!-- León -->
+  <div class="battle-lion" id="battleLion">
+    🦁
+    <span class="lion-gloves">🥊</span>
+  </div>
+
+  <!-- HUD -->
+  <div class="battle-hud" id="battleHud">
+
+    <div class="fighter fighter-player">
+      <span>DINOSAURIO</span>
+      <div class="health-bar">
+        <div class="health-fill player-health" id="playerHealth"></div>
+      </div>
+      <strong>HP 100</strong>
+    </div>
+
+    <div class="fight-text" id="fightText">
+      FIGHT!
+    </div>
+
+    <div class="fighter fighter-enemy">
+      <span>LEÓN BOXEADOR</span>
+      <div class="health-bar">
+        <div class="health-fill enemy-health" id="enemyHealth"></div>
+      </div>
+      <strong>HP 100</strong>
+    </div>
+
+  </div>
+
+  <!-- Controles arcade -->
+  <div class="arcade-controls" id="arcadeControls">
+
+    <button class="arcade-button fire-button" id="fireBtn">
+      <span class="arcade-light"></span>
+      <span class="arcade-label">🔥</span>
+      <strong>FIRE</strong>
+    </button>
+
+    <button class="arcade-button punch-button" id="punchBtn">
+      <span class="arcade-light"></span>
+      <span class="arcade-label">👊</span>
+      <strong>PUNCH</strong>
+    </button>
+
+    <button class="arcade-button tail-button" id="tailBtn">
+      <span class="arcade-light"></span>
+      <span class="arcade-label">🌀</span>
+      <strong>TAIL ATTACK</strong>
+    </button>
+
+  </div>
+
+  <div class="ko-text" id="koText">
+    K.O.
+  </div>
+
+</section>
   </main>
 
 
@@ -782,36 +868,41 @@ function sonidoStart() {
 const gameStartSound =
   document.getElementById("gameStartSound");
 
-startBtn.addEventListener(
-  "click",
-  () => {
+startBtn.addEventListener("click", () => {
 
-    /* Reiniciar el sonido por si se pulsa otra vez */
-    if (gameStartSound) {
-      gameStartSound.currentTime = 0;
-      gameStartSound.volume = 0.40;
-
-      gameStartSound.play().catch(() => {});
-    }
-
-    /* Animación de salida */
-    document.body.classList.add(
-      "intro-exit"
-    );
-
-    /* Ir a portada */
-    setTimeout(
-      () => {
-
-        window.location.href =
-          "portada.html";
-
-      },
-      2580
-    );
-
+  // Sonido START si existe
+  if (gameStartSound) {
+    gameStartSound.currentTime = 0;
+    gameStartSound.volume = 0.40;
+    gameStartSound.play().catch(() => {});
   }
-);
+
+  // Ocultamos la pantalla inicial
+  document.body.classList.add("intro-exit");
+
+  // Activamos la escena del videojuego
+  setTimeout(() => {
+
+    document.body.classList.add("battle-active");
+
+  }, 600);
+
+  // Después de la caída del dinosaurio,
+  // activamos el impacto
+  setTimeout(() => {
+
+    document.body.classList.add("battle-impact");
+
+  }, 2400);
+
+  // Después del impacto aparece el león
+  setTimeout(() => {
+
+    document.body.classList.add("battle-ready");
+
+  }, 3000);
+
+});
   
 
 </script>
