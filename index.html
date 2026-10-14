@@ -112,6 +112,14 @@
   <div class="battle-cloud cloud-one"></div>
   <div class="battle-cloud cloud-two"></div>
 
+  
+<!-- ESCENA 3D: DINOSAURIO CONTRA ROBOT -->
+<div id="threeBattleStage" class="three-battle-stage"></div>
+<div id="threeBattleStatus" class="three-battle-status">
+  Cargando personajes 3D...
+</div>
+
+
   <header class="battle-hud">
     <div class="fighter-info">
       <strong>DINOSAURIO</strong>
@@ -122,7 +130,7 @@
     <h2 class="fight-title">FIGHT!</h2>
 
     <div class="fighter-info lion-info">
-      <strong>LEÓN BOXEADOR</strong>
+      <strong>ROBOT</strong>
       <div class="health-bar"><span class="lion-health"></span></div>
       <small>HP 100</small>
     </div>
@@ -863,6 +871,205 @@ startBtn.addEventListener("click", () => {
 
   
 
+/* =====================================================
+   ATAQUES DE LA BATALLA
+   ===================================================== */
+
+const battleDino = document.getElementById("battleDino");
+const battleLion = document.getElementById("battleLion");
+const battleScene = document.getElementById("battleScene");
+const lionHealthBar = document.querySelector(".lion-health");
+const lionHealthText = document.querySelector(".lion-info small");
+const attackButtons = document.querySelectorAll(".battle-button");
+
+let lionHP = 100;
+let attackBusy = false;
+
+/* Sonidos arcade generados por el navegador */
+function playBattleSound(type) {
+  const AudioContextClass =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContextClass) return;
+
+  const audio = new AudioContextClass();
+  const now = audio.currentTime;
+
+  const sounds = {
+    fire:     { frequency: 180, end: 65, duration: 0.30, wave: "sawtooth" },
+    punch:    { frequency: 130, end: 45, duration: 0.18, wave: "square" },
+    tail:     { frequency: 100, end: 35, duration: 0.28, wave: "triangle" },
+    impact:   { frequency: 75,  end: 30, duration: 0.20, wave: "sawtooth" }
+  };
+
+  const sound = sounds[type];
+  if (!sound) {
+    audio.close();
+    return;
+  }
+
+  const oscillator = audio.createOscillator();
+  const volume = audio.createGain();
+
+  oscillator.type = sound.wave;
+  oscillator.frequency.setValueAtTime(sound.frequency, now);
+  oscillator.frequency.exponentialRampToValueAtTime(
+    sound.end,
+    now + sound.duration
+  );
+
+  volume.gain.setValueAtTime(0.18, now);
+  volume.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + sound.duration
+  );
+
+  oscillator.connect(volume);
+  volume.connect(audio.destination);
+
+  oscillator.start(now);
+  oscillator.stop(now + sound.duration);
+
+  oscillator.onended = () => audio.close();
+}
+
+/* Ejecutar el ataque elegido */
+function performAttack(type) {
+  if (!document.body.classList.contains("battle-ready")) return;
+  if (attackBusy || lionHP <= 0) return;
+
+  attackBusy = true;
+
+  const damage = {
+    fire: 12,
+    punch: 18,
+    tail: 15
+  };
+
+  const attackClass = {
+    fire: "attack-fire",
+    punch: "attack-punch",
+    tail: "attack-tail"
+  };
+
+  const selectedClass = attackClass[type];
+
+  battleDino.classList.remove(
+    "attack-fire",
+    "attack-punch",
+    "attack-tail"
+  );
+
+  battleLion.classList.remove("lion-hit");
+
+  /* Reiniciar la animación para permitir repetir el ataque */
+  void battleDino.offsetWidth;
+
+  battleDino.classList.add(selectedClass);
+  playBattleSound(type);
+
+  /* El fuego crea un proyectil visual */
+  if (type === "fire") {
+    const projectile = document.createElement("div");
+    projectile.className = "fire-projectile";
+    battleScene.appendChild(projectile);
+
+    setTimeout(() => projectile.remove(), 650);
+  }
+
+  /* El golpe impacta al león */
+  setTimeout(() => {
+    battleLion.classList.remove("lion-hit");
+    void battleLion.offsetWidth;
+    battleLion.classList.add("lion-hit");
+
+    playBattleSound("impact");
+    
+const spark = document.createElement("div");
+spark.className = "attack-spark";
+battleScene.appendChild(spark);
+setTimeout(() => spark.remove(), 400);
+
+
+    lionHP = Math.max(0, lionHP - damage[type]);
+
+    lionHealthBar.style.width = lionHP + "%";
+    lionHealthText.textContent = "HP " + lionHP;
+
+    if (lionHP <= 0) {
+      battleLion.classList.add("lion-defeated");
+    }
+  }, 350);
+
+  /* Preparar el siguiente ataque */
+  setTimeout(() => {
+    battleDino.classList.remove(selectedClass);
+    battleLion.classList.remove("lion-hit");
+    attackBusy = false;
+  }, 850);
+}
+
+attackButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    performAttack(button.dataset.attack);
+  });
+});
+
+/* CONECTAR BOTONES CON LOS MODELOS 3D */
+document.querySelectorAll(".battle-button[data-attack]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const attack = button.dataset.attack;
+
+    const attackConfig = {
+      fire: {
+        fighter: "dino",
+        keywords: ["attack", "punch", "bite", "fire"]
+      },
+      punch: {
+        fighter: "robot",
+        keywords: ["punch", "attack", "hit", "fight"]
+      },
+      tail: {
+        fighter: "dino",
+        keywords: ["tail", "attack", "whip", "hit"]
+      }
+    };
+
+    const config = attackConfig[attack];
+    if (!config) return;
+
+    if (!window.battle3D) {
+      console.warn("El sistema de batalla 3D todavía no está disponible.");
+      return;
+    }
+
+    const played = window.battle3D.playAttack(
+      config.fighter,
+      config.keywords
+    );
+
+    if (!played) {
+      console.warn(
+        "No se pudo reproducir el ataque. Revisa las animaciones del modelo."
+      );
+    }
+  });
+});
+
 </script>
+
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.180.0/build/three.module.js"
+  }
+}
+
+</script>
+
+<script type="module" src="battle-3d.js"></script>
+
+
 </body>
 </html>
