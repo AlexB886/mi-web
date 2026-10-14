@@ -8587,314 +8587,146 @@ body:not(.dark-mode) .cookie-option {
       100% 33.333%;
   }
 
-}/* ==========================================================
-   DINOSAURIO DE BATALLA — ANIMACIÓN PRINCIPAL
+
+/* ==========================================================
+   DINOSAURIO Y LEÓN — ESCENA DE COMBATE
    ========================================================== */
 
 #battleDino {
   position: absolute;
-
-  /* Posición final aprobada */
-  left: 46%;
-  top: 44%;
-
+  left: 38%;
+  top: 48%;
   width: 280px;
   height: 220px;
-
   transform: translate(-50%, -50%);
-
   z-index: 20;
   pointer-events: none;
-
-  filter:
-    drop-shadow(0 18px 10px rgba(0, 0, 0, .28));
+  filter: drop-shadow(0 18px 10px rgba(0, 0, 0, .28));
 }
 
 #dinoBattleSprite {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: contain;
   object-position: center;
 }
 
-
-/* ==========================================================
-   CAÍDA DEL DINOSAURIO
-   ========================================================== */
-
-body.battle-active #battleDino {
-  animation:
-    dinoCaidaNatural
-    2.6s
-    cubic-bezier(.18, .72, .25, 1)
-    forwards;
+/* León a la derecha, mirando hacia el dinosaurio */
+#battleLion {
+  position: absolute;
+  left: 62%;
+  top: 48%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  z-index: 20;
+  pointer-events: none;
+  filter: drop-shadow(0 18px 10px rgba(0, 0, 0, .28));
 }
 
+#lionBattleSprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scaleX(-1);
+}
+
+/* Caída simultánea */
+body.battle-active #battleDino {
+  animation: dinoCaidaNatural 2.6s cubic-bezier(.18, .72, .25, 1) forwards;
+}
+
+body.battle-active #battleLion {
+  animation: leonCaidaNatural 2.6s cubic-bezier(.18, .72, .25, 1) forwards;
+}
 
 @keyframes dinoCaidaNatural {
-
   0% {
     top: -280px;
-    transform:
-      translateX(-50%)
-      rotate(-12deg)
-      scale(.72);
+    transform: translate(-50%, -50%) rotate(-12deg) scale(.72);
   }
-
   25% {
     top: -150px;
-    transform:
-      translateX(-50%)
-      rotate(8deg)
-      scale(.82);
+    transform: translate(-50%, -50%) rotate(8deg) scale(.82);
   }
-
   55% {
     top: 5%;
-    transform:
-      translateX(-50%)
-      rotate(-5deg)
-      scale(.92);
+    transform: translate(-50%, -50%) rotate(-5deg) scale(.92);
   }
-
   78% {
     top: 47%;
-    transform:
-      translateX(-50%)
-      rotate(3deg)
-      scale(1);
+    transform: translate(-50%, -50%) rotate(3deg) scale(1);
   }
-
   92% {
-    top: 54%;
-    transform:
-      translateX(-50%)
-      rotate(-2deg)
-      scale(1.03);
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-2deg) scale(1.03);
   }
-
   100% {
-    top: 51%;
-    transform:
-      translateX(-50%)
-      rotate(0deg)
-      scale(1);
+    top: 48%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
   }
-
 }
-/* ==========================================================
-   DINOSAURIO — IDLE DE COMBATE
-   ========================================================== */
 
+@keyframes leonCaidaNatural {
+  0% {
+    top: -280px;
+    transform: translate(-50%, -50%) rotate(12deg) scale(.72);
+  }
+  25% {
+    top: -150px;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(.82);
+  }
+  55% {
+    top: 5%;
+    transform: translate(-50%, -50%) rotate(5deg) scale(.92);
+  }
+  78% {
+    top: 47%;
+    transform: translate(-50%, -50%) rotate(-3deg) scale(1);
+  }
+  92% {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(2deg) scale(1.03);
+  }
+  100% {
+    top: 48%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+}
+
+/* Posición de combate: ambos permanecen frente a frente */
 body.battle-ready #battleDino {
-  animation: dinoIdleCombate 0.9s ease-in-out infinite;
+  animation: dinoIdleCombate .9s ease-in-out infinite;
+}
+
+body.battle-ready #battleLion {
+  animation: leonIdleCombate .9s ease-in-out infinite;
 }
 
 @keyframes dinoIdleCombate {
-
   0% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      rotate(-2deg)
-      scale(1);
+    transform: translate(-50%, -50%) translateY(0) rotate(-2deg) scale(1);
   }
-
   50% {
-    transform:
-      translateX(-50%)
-      translateY(-7px)
-      rotate(2deg)
-      scale(1.015);
+    transform: translate(-50%, -50%) translateY(-7px) rotate(2deg) scale(1.015);
   }
-
   100% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      rotate(-2deg)
-      scale(1);
+    transform: translate(-50%, -50%) translateY(0) rotate(-2deg) scale(1);
   }
-
-}/* ==========================================================
-   LEÓN BOXEADOR — PERSONAJE PRINCIPAL
-   ========================================================== */
-
-#battleLion {
-  position: absolute;
-
-  left: 76%;
-  top: 48%;
-
-  width: 280px;
-  height: 280px;
-
-  transform: translate(-50%, -50%);
-
-  z-index: 20;
-
-  pointer-events: none;
-
-  filter:
-    drop-shadow(
-      0 18px 10px
-      rgba(0, 0, 0, .28)
-    );
 }
-
-#lionBattleSprite {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  object-position: center;
-}/* ==========================================================
-   LEÓN BOXEADOR — CAÍDA + IDLE DE COMBATE
-   ========================================================== */
-
-#battleLion {
-  position: absolute;
-
-  left: 76%;
-  top: -260px;
-
-  width: 280px;
-  height: 280px;
-
-  transform: translateX(-50%);
-
-  z-index: 20;
-
-  pointer-events: none;
-
-  filter:
-    drop-shadow(
-      0 18px 10px
-      rgba(0, 0, 0, .28)
-    );
-}
-
-#lionBattleSprite {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  object-position: center;
-}
-
-
-/* ==========================================================
-   CAÍDA DEL LEÓN
-   ========================================================== */
-
-body.battle-active #battleLion {
-  animation:
-    leonCaidaNatural
-    2.6s
-    cubic-bezier(.18, .72, .25, 1)
-    forwards;
-}
-
-
-@keyframes leonCaidaNatural {
-
-  0% {
-    top: -280px;
-    transform:
-      translateX(-50%)
-      rotate(12deg)
-      scale(.72);
-  }
-
-  25% {
-    top: -150px;
-    transform:
-      translateX(-50%)
-      rotate(-8deg)
-      scale(.82);
-  }
-
-  55% {
-    top: 5%;
-    transform:
-      translateX(-50%)
-      rotate(5deg)
-      scale(.92);
-  }
-
-  78% {
-    top: 47%;
-    transform:
-      translateX(-50%)
-      rotate(-3deg)
-      scale(1);
-  }
-
-  92% {
-    top: 50%;
-    transform:
-      translateX(-50%)
-      rotate(2deg)
-      scale(1.03);
-  }
-
-  100% {
-    top: 48%;
-    transform:
-      translateX(-50%)
-      rotate(0deg)
-      scale(1);
-  }
-
-}
-
-
-/* ==========================================================
-   IDLE DE COMBATE
-   ========================================================== */
-
-body.battle-ready #battleLion {
-  animation:
-    leonIdleCombate
-    .9s
-    ease-in-out
-    infinite;
-}
-
 
 @keyframes leonIdleCombate {
-
   0% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      rotate(2deg)
-      scale(1);
+    transform: translate(-50%, -50%) translateY(0) rotate(2deg) scale(1);
   }
-
   50% {
-    transform:
-      translateX(-50%)
-      translateY(-7px)
-      rotate(-2deg)
-      scale(1.015);
+    transform: translate(-50%, -50%) translateY(-7px) rotate(-2deg) scale(1.015);
   }
-
   100% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      rotate(2deg)
-      scale(1);
+    transform: translate(-50%, -50%) translateY(0) rotate(2deg) scale(1);
   }
-
 }
