@@ -209,19 +209,18 @@ function resize() {
   window.battle3D = {
     fighters,
    
+
 playAttack(name, keywords) {
   const fighter = fighters[name];
-
   if (!fighter || fighter.busy) return false;
 
+  const requested = (keywords || []).join(" ").toLowerCase();
   let clip = null;
 
   if (name === "dino") {
-    const requested = (keywords || []).join(" ").toLowerCase();
-
     if (requested.includes("tail")) {
       clip = fighter.clips.find(c => c.name === "attack_tail");
-    } else if (requested.includes("fire") || requested.includes("bite")) {
+    } else if (requested.includes("fire") || requested.includes("bite") || requested.includes("punch")) {
       clip = fighter.clips.find(c => c.name === "bite");
     } else {
       clip = fighter.clips.find(c => c.name === "roar");
@@ -245,13 +244,11 @@ playAttack(name, keywords) {
 
   const onFinished = (event) => {
     if (event.action !== action) return;
-
     fighter.mixer.removeEventListener("finished", onFinished);
     fighter.busy = false;
   };
 
   fighter.mixer.addEventListener("finished", onFinished);
-
   return true;
 }
 
