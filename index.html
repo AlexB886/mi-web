@@ -106,6 +106,57 @@
   </main>
 
 
+<!-- ESCENA DE COMBATE -->
+<section id="battleScene" class="battle-scene" aria-label="Combate entre dinosaurio y león">
+  <div class="battle-sky"></div>
+  <div class="battle-cloud cloud-one"></div>
+  <div class="battle-cloud cloud-two"></div>
+
+  <header class="battle-hud">
+    <div class="fighter-info">
+      <strong>DINOSAURIO</strong>
+      <div class="health-bar"><span class="dino-health"></span></div>
+      <small>HP 100</small>
+    </div>
+
+    <h2 class="fight-title">FIGHT!</h2>
+
+    <div class="fighter-info lion-info">
+      <strong>LEÓN BOXEADOR</strong>
+      <div class="health-bar"><span class="lion-health"></span></div>
+      <small>HP 100</small>
+    </div>
+  </header>
+
+  <div class="battle-platform"></div>
+
+  <div id="battleDino" class="battle-fighter dino-fighter">
+    <img id="dinoBattleSprite" src="dino-battle.png" alt="Dinosaurio luchador">
+  </div>
+
+  <div id="battleLion" class="battle-fighter lion-fighter">
+    <img id="lionBattleSprite" src="lion-battle.png" alt="León boxeador">
+  </div>
+
+  <div id="impactEffect" class="battle-impact-effect"></div>
+
+  <div class="battle-controls">
+    <button type="button" class="battle-button fire-button" data-attack="fire">
+      <span class="button-orb"></span>
+      FIRE
+    </button>
+    <button type="button" class="battle-button punch-button" data-attack="punch">
+      <span class="button-orb"></span>
+      PUNCH
+    </button>
+    <button type="button" class="battle-button tail-button" data-attack="tail">
+      <span class="button-orb"></span>
+      TAIL ATTACK
+    </button>
+  </div>
+</section>
+<!-- FIN ESCENA DE COMBATE -->
+
   <!-- =====================================================
        INTRO JS
        ===================================================== -->
@@ -782,36 +833,34 @@ function sonidoStart() {
 const gameStartSound =
   document.getElementById("gameStartSound");
 
-startBtn.addEventListener(
-  "click",
-  () => {
 
-    /* Reiniciar el sonido por si se pulsa otra vez */
-    if (gameStartSound) {
-      gameStartSound.currentTime = 0;
-      gameStartSound.volume = 0.40;
-
-      gameStartSound.play().catch(() => {});
-    }
-
-    /* Animación de salida */
-    document.body.classList.add(
-      "intro-exit"
-    );
-
-    /* Ir a portada */
-    setTimeout(
-      () => {
-
-        window.location.href =
-          "portada.html";
-
-      },
-      2580
-    );
-
+startBtn.addEventListener("click", () => {
+  /* Reiniciar el sonido arcade */
+  if (gameStartSound) {
+    gameStartSound.currentTime = 0;
+    gameStartSound.volume = 0.4;
+    gameStartSound.play().catch(() => {});
   }
-);
+
+  /* Activar la salida de la introducción */
+  document.body.classList.add("intro-exit");
+
+  /* Mostrar la batalla en esta misma página */
+  setTimeout(() => {
+    document.body.classList.add("battle-active");
+  }, 600);
+
+  /* Marcar el impacto */
+  setTimeout(() => {
+    document.body.classList.add("battle-impact");
+  }, 2400);
+
+  /* Entrar en posición de combate */
+  setTimeout(() => {
+    document.body.classList.add("battle-ready");
+  }, 3000);
+});
+
   
 
 </script>
