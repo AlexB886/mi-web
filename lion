@@ -1,0 +1,111 @@
+/* ==========================================================
+   DINOSAURIO — SPRITE SHEET
+   ========================================================== */
+
+.dino-sprite-sheet {
+  position: absolute;
+
+  width: 100%;
+  aspect-ratio: 1.625 / 1;
+
+  background-image:
+    url("battle-sprites.png");
+
+  background-repeat: no-repeat;
+
+  background-size:
+    400% 400%;
+
+  image-rendering: pixelated;
+}
+
+
+/* ==========================================================
+   CAÍDA — 4 FRAMES
+   ========================================================== */
+
+.pantalla-inicio.battle-active
+.battle-dino
+.dino-sprite-sheet {
+
+  animation:
+    dinoFallSprite
+    2.4s
+    steps(4)
+    forwards;
+
+}
+
+
+/*
+   El sprite sheet tiene 4 columnas.
+   La primera fila contiene la caída.
+*/
+
+@keyframes dinoFallSprite {
+
+  0% {
+    background-position:
+      0% 0%;
+  }
+
+  25% {
+    background-position:
+      33.333% 0%;
+  }
+
+  50% {
+    background-position:
+      66.666% 0%;
+  }
+
+  75%,
+  100% {
+    background-position:
+      100% 0%;
+  }
+
+}
+
+
+/* ==========================================================
+   DESPUÉS DEL IMPACTO — DINOSAURIO DE PIE
+   ========================================================== */
+
+.pantalla-inicio.battle-impact
+.battle-dino
+.dino-sprite-sheet {
+
+  animation:
+    dinoIdleSprite
+    1s
+    steps(4)
+    infinite;
+
+}
+
+
+@keyframes dinoIdleSprite {
+
+  0% {
+    background-position:
+      0% 33.333%;
+  }
+
+  25% {
+    background-position:
+      33.333% 33.333%;
+  }
+
+  50% {
+    background-position:
+      66.666% 33.333%;
+  }
+
+  75%,
+  100% {
+    background-position:
+      100% 33.333%;
+  }
+
+}
