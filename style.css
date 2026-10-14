@@ -7485,17 +7485,21 @@ body:not(.dark-mode) .cookie-option {
    ===================================================== */
 
 #battleScene.battle-scene {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  overflow: hidden;
-  isolation: isolate;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  background: #20b8f4;
-  transition: opacity .45s ease, visibility .45s ease;
-  font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+    isolation: isolate;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background-color: #171b35;
+    background-image: url("fondo-arcade-pixel.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: opacity .45s ease, visibility .45s ease;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body.battle-active #battleScene {
@@ -7669,23 +7673,63 @@ body.battle-active .lion-fighter {
   100% { top: 45%; transform: translateX(-50%) rotate(0) scale(1); }
 }
 
+
 body.battle-ready .dino-fighter {
-  animation: dinoBattleIdle .9s ease-in-out infinite;
+  animation: dinoBattleIdle 3s ease-in-out infinite;
+  transform-origin: center bottom;
 }
 
 body.battle-ready .lion-fighter {
-  animation: lionBattleIdle .9s ease-in-out infinite;
+  animation: lionBattleIdle 3.4s ease-in-out infinite;
+  transform-origin: center bottom;
 }
+
 
 @keyframes dinoBattleIdle {
-  0%, 100% { top: 45%; transform: translateX(-50%) translateY(0) rotate(-1deg); }
-  50% { top: 45%; transform: translateX(-50%) translateY(-7px) rotate(1deg); }
+  0%, 100% {
+    top: 45%;
+    transform: translateX(-50%) translateY(0) rotate(-0.7deg);
+  }
+
+  25% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-2px) rotate(0.2deg);
+  }
+
+  50% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-5px) rotate(0.8deg);
+  }
+
+  75% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-2px) rotate(0deg);
+  }
 }
 
+
 @keyframes lionBattleIdle {
-  0%, 100% { top: 45%; transform: translateX(-50%) translateY(0) rotate(1deg); }
-  50% { top: 45%; transform: translateX(-50%) translateY(-7px) rotate(-1deg); }
+  0%, 100% {
+    top: 45%;
+    transform: translateX(-50%) translateY(0) rotate(0.6deg);
+  }
+
+  25% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-2px) rotate(-0.2deg);
+  }
+
+  50% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-4px) rotate(-0.7deg);
+  }
+
+  75% {
+    top: 45%;
+    transform: translateX(-50%) translateY(-1px) rotate(0.2deg);
+  }
 }
+
 
 body.battle-impact #impactEffect {
   animation: battleFlash .55s ease-out forwards;
@@ -8013,7 +8057,7 @@ body.battle-3d-loaded .battle-fighter {
   inset: 0;
   z-index: 4;
   overflow: hidden;
-  background-image: url("arena-ruinas.png") !important;
+  background-image: url("fondo-arcade-pixel.png") !important;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -8049,7 +8093,7 @@ body.battle-3d-loaded #battleLion {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url("arena-ruinas.png");
+  background-image: url("fondo-arcade-pixel.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -8379,6 +8423,14 @@ body.battle-3d-loaded #battleLion {
 }
 /* ===== COMBATE ARCADE RETRO ===== */
 
+/* Fondo pixel art para el combate */
+#battleScene {
+  background-image: url("fondo-arcade-pixel.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-color: #211638;
+}
 
 .battle-scene {
   position: relative;
@@ -8448,14 +8500,18 @@ body.battle-3d-loaded #battleLion {
 
 /* Sacudida de pantalla */
 .battle-scene.arcade-impact {
-  animation: arcadeShake 180ms steps(3, end);
+  .battle-scene.arcade-impact {
+  animation: arcadeShake 220ms ease-out;
+}
 }
 
 @keyframes arcadeShake {
-  0%, 100% { translate: 0 0; }
-  25% { translate: -5px 2px; }
-  50% { translate: 5px -2px; }
-  75% { translate: -3px 1px; }
+  0%   { translate: 0 0; }
+  20%  { translate: -7px 3px; }
+  40%  { translate: 8px -3px; }
+  60%  { translate: -5px 2px; }
+  80%  { translate: 3px -1px; }
+  100% { translate: 0 0; }
 }
 
 /* Llamas del ataque FIRE */
@@ -8568,7 +8624,185 @@ body.battle-3d-loaded #battleLion {
   0%, 100% { filter: none; }
   50% { filter: brightness(1.6) sepia(.35); }
 }
+/* ===== AJUSTE FINAL: PIES SOBRE EL SUELO ARCADE ===== */
 
+#battleScene .battle-fighter {
+  bottom: 7% !important;
+  height: 35% !important;
+  align-items: flex-end !important;
+}
 
+#battleScene .battle-fighter img {
+  object-fit: contain;
+  object-position: bottom center;
+}
+/* ===== INTEGRACIÓN DE LOS LUCHADORES CON EL SUELO ===== */
 
+#battleScene .battle-fighter {
+  isolation: isolate;
+  transform-origin: center bottom;
+}
 
+#battleScene .battle-fighter img {
+  position: relative;
+  z-index: 1;
+  filter:
+    drop-shadow(0 3px 1px rgba(15, 10, 18, 0.65))
+    drop-shadow(0 9px 5px rgba(15, 10, 18, 0.28));
+}
+
+/* Sombra de contacto directamente debajo de cada luchador */
+#battleScene .battle-fighter::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 17%;
+  right: 17%;
+  bottom: 1%;
+  height: 5%;
+  border-radius: 50%;
+  background: rgba(20, 12, 15, 0.72);
+  filter: blur(5px);
+  transform: scaleX(1.15);
+  pointer-events: none;
+}
+
+/* El suelo debe conservar su profundidad visual */
+#battleScene .three-battle-stage {
+  background-position: center bottom !important;
+  background-size: cover !important;
+} 
+
+/* ===== ATAQUES ARCADE: AVANCE, GOLPE Y RETROCESO ===== */
+
+/* PUNCH: avance rápido del dinosaurio */
+body.battle-ready .dino-fighter.attack-punch img {
+  animation: dinoPunchCharge 0.62s cubic-bezier(.2,.8,.3,1) both !important;
+  transform-origin: center bottom;
+}
+
+/* TAIL ATTACK: giro fuerte de cuerpo y cola */
+body.battle-ready .dino-fighter.attack-tail img {
+  animation: dinoTailStrike 0.78s ease-in-out both !important;
+  transform-origin: 65% 75%;
+}
+
+/* El león recibe el golpe */
+body.battle-ready .lion-fighter.lion-hit img {
+  animation: lionHeavyHit 0.48s ease-out both !important;
+  transform-origin: center bottom;
+}
+
+/* Sacudida de todo el escenario al impactar */
+#battleScene.arcade-impact {
+  animation: arcadeShake 220ms ease-out;
+}
+
+@keyframes dinoPunchCharge {
+  0%   { transform: translateX(0) scale(1); }
+  30%  { transform: translateX(7vw) scale(1.05); }
+  55%  { transform: translateX(10vw) scale(1.08); }
+  72%  { transform: translateX(8vw) scale(1.04); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+@keyframes dinoTailStrike {
+  0%   { transform: translateX(0) rotate(0) scale(1); }
+  25%  { transform: translateX(3vw) rotate(-5deg) scale(1.04); }
+  48%  { transform: translateX(7vw) rotate(9deg) scale(1.08); }
+  65%  { transform: translateX(5vw) rotate(-4deg) scale(1.04); }
+  100% { transform: translateX(0) rotate(0) scale(1); }
+}
+
+@keyframes lionHeavyHit {
+  0%   { transform: translateX(0) rotate(0); }
+  25%  { transform: translateX(3vw) rotate(5deg); }
+  55%  { transform: translateX(5vw) rotate(8deg) scale(.96); }
+  100% { transform: translateX(0) rotate(0) scale(1); }
+}
+
+@keyframes arcadeShake {
+  0%, 100% { translate: 0 0; }
+  25% { translate: -4px 2px; }
+  50% { translate: 4px -2px; }
+  75% { translate: -2px 1px; }
+}
+
+/* ===== TRANSICIÓN DE VICTORIA Y REGRESO A PORTADA ===== */
+
+#battleScene.battle-victory-transition::after {
+  content: "K.O.  ¡VICTORIA!";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 5, 20, 0.88);
+  color: #ffd45a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(38px, 8vw, 100px);
+  font-weight: 1000;
+  font-style: italic;
+  letter-spacing: 4px;
+  text-shadow:
+    5px 5px 0 #9e261d,
+    0 0 25px #ff7b26;
+  animation: victoryOverlay 1.8s ease-in-out both;
+  pointer-events: none;
+}
+
+@keyframes victoryOverlay {
+  0% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+.valorant-highlight {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 220px;
+  margin: 12px auto;
+  border-radius: 10px;
+  border: 2px solid rgba(120, 80, 255, 0.7);
+  background: #000;
+  object-fit: contain;
+}
+/* GALERÍA DE BARBERÍA */
+.barber-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin: 14px 0;
+  align-items: stretch;
+}
+
+.barber-gallery img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  background: #111;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  transition: transform 0.25s ease;
+}
+
+.barber-gallery img:hover {
+  transform: scale(1.02);
+}

@@ -130,7 +130,7 @@
     <h2 class="fight-title">FIGHT!</h2>
 
     <div class="fighter-info lion-info">
-      <strong>ROBOT</strong>
+      <strong>LEÓN</strong>
       <div class="health-bar"><span class="lion-health"></span></div>
       <small>HP 100</small>
     </div>
@@ -936,6 +936,8 @@ function playBattleSound(type) {
 /* Ejecutar el ataque elegido */
 
 /* Ejecutar el ataque elegido */
+
+/* Ejecutar un ataque arcade con movimiento e impacto */
 function performAttack(type) {
   if (!document.body.classList.contains("battle-ready")) return;
   if (attackBusy || lionHP <= 0) return;
@@ -943,9 +945,9 @@ function performAttack(type) {
   attackBusy = true;
 
   const damage = {
-    fire: 12,
+    fire: 20,
     punch: 18,
-    tail: 15
+    tail: 24
   };
 
   const attackClass = {
@@ -955,32 +957,37 @@ function performAttack(type) {
   };
 
   const selectedClass = attackClass[type];
+  if (!selectedClass) {
+    attackBusy = false;
+    return;
+  }
 
   battleDino.classList.remove(
-    "attack-fire",
-    "attack-punch",
-    "attack-tail"
+    "attack-fire", "attack-punch", "attack-tail"
   );
 
-  battleLion.classList.remove("lion-hit", "lion-knockback");
-  battleScene.classList.remove("fire-flash");
+  battleLion.classList.remove(
+    "lion-hit", "lion-knockback", "lion-defeated"
+  );
+
+  battleScene.classList.remove("fire-flash", "arcade-impact");
 
   void battleDino.offsetWidth;
-
   battleDino.classList.add(selectedClass);
   playBattleSound(type);
 
-  /* FIRE: llamarada que sale de la boca */
+  /* Llamarada visual */
   if (type === "fire") {
     const flame = document.createElement("div");
     flame.className = "fire-projectile";
     flame.textContent = "🔥";
     battleScene.appendChild(flame);
-
     setTimeout(() => flame.remove(), 750);
   }
 
-  /* Momento del impacto */
+  /* Impacto sincronizado con el ataque */
+  const impactDelay = type === "fire" ? 420 : 300;
+
   setTimeout(() => {
     if (lionHP <= 0) return;
 
@@ -988,41 +995,56 @@ function performAttack(type) {
     void battleLion.offsetWidth;
 
     battleLion.classList.add("lion-hit", "lion-knockback");
+    battleScene.classList.add("arcade-impact");
     playBattleSound("impact");
 
     const spark = document.createElement("div");
     spark.className = "attack-spark";
     spark.textContent = type === "fire" ? "🔥" : "💥";
     battleScene.appendChild(spark);
+    setTimeout(() => spark.remove(), 500);
 
     if (type === "fire") {
       battleScene.classList.add("fire-flash");
-      setTimeout(() => battleScene.classList.remove("fire-flash"), 250);
+      setTimeout(() => {
+        battleScene.classList.remove("fire-flash");
+      }, 220);
     }
 
-    setTimeout(() => spark.remove(), 500);
+    setTimeout(() => {
+      battleScene.classList.remove("arcade-impact");
+    }, 220);
 
     lionHP = Math.max(0, lionHP - damage[type]);
     lionHealthBar.style.width = lionHP + "%";
     lionHealthText.textContent = "HP " + lionHP;
 
-    if (lionHP <= 0) {
-      battleLion.classList.remove("lion-knockback");
-      battleLion.classList.add("lion-defeated");
-    }
-  }, type === "fire" ? 420 : 300);
+   
+if (lionHP <= 0) {
+  battleLion.classList.remove("lion-hit", "lion-knockback");
+  battleLion.classList.add("lion-defeated");
 
-  /* Dejar que termine la animación antes del siguiente ataque */
+  if (!battleScene.classList.contains("battle-victory-transition")) {
+    battleScene.classList.add("battle-victory-transition");
+
+    setTimeout(() => {
+      window.location.href = "portada.html";
+    }, 2000);
+  }
+}
+
+  }, impactDelay);
+
+  /* Recuperación */
   setTimeout(() => {
     battleDino.classList.remove(selectedClass);
     battleLion.classList.remove("lion-hit", "lion-knockback");
+    battleScene.classList.remove("fire-flash", "arcade-impact");
     attackBusy = false;
-  }, 900);
+  }, 950);
 }
-
-
-
-attackButtons.forEach((button) => {
+/* Conectar los tres botones de ataque */
+document.querySelectorAll(".battle-button[data-attack]").forEach((button) => {
   button.addEventListener("click", () => {
     performAttack(button.dataset.attack);
   });
