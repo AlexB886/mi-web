@@ -3128,20 +3128,28 @@ body.dark-mode .bg-veil {
 }
 
 /* MÓVIL */
-@media (max-width: 768px) {
 
+@media (max-width: 768px) {
   .spotify-playlist {
-    width: 280px;
-    max-width: calc(100% - 24px);
-    margin: -10px auto 10px;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 320px;
+    margin: 12px auto 18px;
+    padding: 0 12px;
+    box-sizing: border-box;
   }
 
   .spotify-playlist iframe {
-    width: 280px;
-    height: 280px;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 220px;
+    border: 0;
+    border-radius: 12px;
   }
-
 }
+
 /* ==========================================================================
    AJUSTE FINO — SOLO MÓVIL
    ========================================================================== */
@@ -5104,145 +5112,91 @@ body.dark-mode .bg-veil {
     height: 195px;
   }
 
-}/* ==========================================================
-   PORTADA — DISTRIBUCIÓN FINAL
-   Widget + Spotify independientes del menú
-   ========================================================== */
+
+/* PORTADA — DISTRIBUCIÓN RESPONSIVE */
 
 .home #inicio {
   position: relative;
 }
 
-
-/* ==========================================================
-   WIDGET — ARRIBA A LA DERECHA
-   ========================================================== */
-
-.home .portada-weather {
-  position: absolute !important;
-
-  left: auto !important;
-  right: 6vw !important;
-  top: 155px !important;
-
-  width: 270px;
-  height: 215px;
-
-  transform: none !important;
-
-  z-index: 40;
+.home .hero {
+  position: relative;
 }
 
-
-/* ==========================================================
-   SPOTIFY — DEBAJO DEL WIDGET
-   No ocupa espacio en el flujo de la portada
-   ========================================================== */
-
-.home .spotify-playlist {
-  position: absolute !important;
-
-  right: 6vw !important;
-  top: 390px !important;
-
-  width: 270px !important;
-  max-width: 270px !important;
-
-  margin: 0 !important;
-
-  z-index: 35;
+.home .hero-content {
+  position: relative;
 }
 
-.home .spotify-playlist iframe {
-  width: 270px !important;
-  height: 270px !important;
-}
-
-
-/* ==========================================================
-   MENÚ + DINOSAURIO
-   Recuperar posición normal
-   ========================================================== */
-
+/* Ordenador: mantener la distribución actual */
 @media (min-width: 769px) {
-
-  .home .pista {
-    transform: none !important;
-  }
-
-  .home .suelo {
-    transform: none !important;
-  }
-
-  .home .efecto-dino {
-    left: 8% !important;
-    top: 48.2% !important;
-  }
-
-}
-
-
-/* ==========================================================
-   MÓVIL
-   ========================================================== */
-
-@media (max-width: 768px) {
-
   .home .portada-weather {
-    right: 10px !important;
+    position: absolute !important;
     left: auto !important;
-    top: 140px !important;
-
-    width: min(82vw, 245px);
-    height: 200px;
+    right: 6vw !important;
+    top: 155px !important;
+    width: 270px;
+    height: 215px;
+    transform: none !important;
+    z-index: 40;
   }
 
   .home .spotify-playlist {
-    right: 10px !important;
+    position: absolute !important;
     left: auto !important;
-
-    top: 355px !important;
-
-    width: min(82vw, 245px) !important;
-    max-width: 245px !important;
-
+    right: 6vw !important;
+    top: 390px !important;
+    width: 270px !important;
+    max-width: 270px !important;
     margin: 0 !important;
+    z-index: 35;
   }
 
   .home .spotify-playlist iframe {
-    width: 100% !important;
-    height: 245px !important;
+    width: 270px !important;
+    height: 270px !important;
   }
-
 }
 
-
-/* ==========================================================
-   MÓVILES PEQUEÑOS
-   ========================================================== */
-
-@media (max-width: 380px) {
+/* Móvil y tablet: colocar los bloques en el flujo */
+@media (max-width: 768px) {
+  .home .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
   .home .portada-weather {
-    right: 8px !important;
-    top: 135px !important;
-
-    width: 225px;
-    height: 195px;
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: min(100%, 300px) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    flex-shrink: 0;
   }
 
   .home .spotify-playlist {
-    right: 8px !important;
-    top: 345px !important;
-
-    width: 225px !important;
-    max-width: 225px !important;
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: min(100%, 300px) !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    flex-shrink: 0;
   }
 
   .home .spotify-playlist iframe {
-    width: 225px !important;
-    height: 225px !important;
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 220px !important;
   }
+}
+
 
 }/* ==========================================================
    DINOSAURIO — SEPARACIÓN DE LA BARRA
@@ -10060,4 +10014,97 @@ body.battle-ready .lion-fighter.lion-hit img {
 
 .barber-gallery img:hover {
   transform: scale(1.02);
+}
+/* =========================================
+   PARCHE RESPONSIVE GLOBAL
+   Móvil, tablet y ordenador
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+/* PORTADA: evita que los bloques desborden */
+.container,
+main,
+section,
+header,
+footer {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.spotify-playlist {
+  width: min(300px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spotify-playlist iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* TABLET Y MÓVIL */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  main,
+  section,
+  .container {
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  .spotify-playlist {
+    width: calc(100% - 24px);
+    max-width: 320px;
+    margin: 16px auto;
+  }
+
+  .spotify-playlist iframe {
+    width: 100%;
+    height: 220px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* MÓVILES ESTRECHOS */
+@media (max-width: 380px) {
+  .spotify-playlist {
+    width: calc(100% - 20px);
+  }
+
+  h1 {
+    overflow-wrap: anywhere;
+  }
 }
