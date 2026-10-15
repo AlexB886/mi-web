@@ -28,9 +28,13 @@
 <body class="pantalla-inicio">
 <audio
   id="gameStartSound"
-  <audio id="gameStartSound" src="GAME-START-arcade-final.wav" preload="auto"></audio>
+  
+<audio
+  id="gameStartSound"
+  src="GAME-START-arcade-final.wav"
   preload="auto"
 ></audio>
+
   <main class="intro-screen">
 
     <!-- =====================================================
@@ -102,95 +106,9 @@
       </p>
 
     </div>
-<!-- =====================================================
-     ESCENA VIDEOJUEGO
-     ===================================================== -->
 
-<section class="battle-scene" id="battleScene">
 
-  <div class="battle-sky"></div>
 
-  <div class="battle-cloud cloud-1"></div>
-  <div class="battle-cloud cloud-2"></div>
-  <div class="battle-cloud cloud-3"></div>
-
-  <!-- Dinosaurio -->
-<div class="battle-dino" id="battleDino">
-  <img
-    id="dinoBattleSprite"
-    src="dino-battle-final.png"
-    alt="Dinosaurio"
-  >
-</div>
-
-  <!-- Impacto -->
-  <div class="impact-effect" id="impactEffect"></div>
-
-  <!-- Arena -->
-  <div class="battle-ground"></div>
-
-  <!-- León -->
-<div class="battle-lion" id="battleLion">
-  <img
-    id="lionBattleSprite"
-    src="lion-fighter.png"
-    alt="León boxeador"
-  >
-</div>
-
-  <!-- HUD -->
-  <div class="battle-hud" id="battleHud">
-
-    <div class="fighter fighter-player">
-      <span>DINOSAURIO</span>
-      <div class="health-bar">
-        <div class="health-fill player-health" id="playerHealth"></div>
-      </div>
-      <strong>HP 100</strong>
-    </div>
-
-    <div class="fight-text" id="fightText">
-      FIGHT!
-    </div>
-
-    <div class="fighter fighter-enemy">
-      <span>LEÓN BOXEADOR</span>
-      <div class="health-bar">
-        <div class="health-fill enemy-health" id="enemyHealth"></div>
-      </div>
-      <strong>HP 100</strong>
-    </div>
-
-  </div>
-
-  <!-- Controles arcade -->
-  <div class="arcade-controls" id="arcadeControls">
-
-    <button class="arcade-button fire-button" id="fireBtn">
-      <span class="arcade-light"></span>
-      <span class="arcade-label">🔥</span>
-      <strong>FIRE</strong>
-    </button>
-
-    <button class="arcade-button punch-button" id="punchBtn">
-      <span class="arcade-light"></span>
-      <span class="arcade-label">👊</span>
-      <strong>PUNCH</strong>
-    </button>
-
-    <button class="arcade-button tail-button" id="tailBtn">
-      <span class="arcade-light"></span>
-      <span class="arcade-label">🌀</span>
-      <strong>TAIL ATTACK</strong>
-    </button>
-
-  </div>
-
-  <div class="ko-text" id="koText">
-    K.O.
-  </div>
-
-</section>
   </main>
 
 
@@ -1028,9 +946,8 @@ function playBattleSound(type) {
   oscillator.onended = () => audio.close();
 }
 
-/* Ejecutar el ataque elegido */
 
-/* Ejecutar el ataque elegido */
+
 
 /* Ejecutar un ataque arcade con movimiento e impacto */
 function performAttack(type) {
@@ -1086,11 +1003,18 @@ function performAttack(type) {
   setTimeout(() => {
     if (lionHP <= 0) return;
 
-    battleLion.classList.remove("lion-hit", "lion-knockback");
-    void battleLion.offsetWidth;
+    
+battleLion.classList.remove(
+  "lion-hit",
+  "lion-knockback",
+  "lion-defeated"
+);
 
-    battleLion.classList.add("lion-hit", "lion-knockback");
-    battleScene.classList.add("arcade-impact");
+void battleLion.offsetWidth;
+
+battleLion.classList.add("lion-hit", "lion-knockback");
+battleScene.classList.add("arcade-impact");
+
     playBattleSound("impact");
 
     const spark = document.createElement("div");
