@@ -10308,4 +10308,344 @@ footer {
 #battleLion {
     backface-visibility: hidden;
 }
+/* PORTADA MÓVIL: eliminar el brillo ovalado al tocar los botones */
+@media (max-width: 768px) {
+  .home button,
+  .home a,
+  .home input[type="button"],
+  .home input[type="submit"] {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
+  .home button:focus:not(:focus-visible),
+  .home a:focus:not(:focus-visible),
+  .home input:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+}/* PORTADA: quitar sombras blancas de los botones en móvil */
+@media (max-width: 768px) {
+  .home .agujero,
+  .home .agujero:hover,
+  .home .agujero:focus,
+  .home .agujero:active,
+  .home a,
+  .home button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .home .agujero {
+    outline: none !important;
+    -webkit-box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35) !important;
+  }
+
+  .home .agujero:focus {
+    outline: none !important;
+  }
+}/* ELIMINAR BRILLO BLANCO DE LAS ESFERAS DE NAVEGACIÓN */
+.agujero::before,
+.agujero::after {
+  content: none !important;
+  display: none !important;
+}
+
+.agujero {
+  background: #e50909 !important;
+  box-shadow: 0 4px 0 #790000, 0 5px 8px rgba(0, 0, 0, 0.4) !important;
+  border-color: #555 !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.agujero:active,
+.agujero:focus {
+  outline: none !important;
+}/* PC y tablets: Spotify debajo de la API del tiempo.
+   No afecta a móviles. */
+@media (min-width: 769px) {
+  .home #inicio .portada-weather {
+    top: 155px !important;
+    right: 6vw !important;
+  }
+
+  .home #inicio .spotify-playlist {
+    position: absolute !important;
+    top: 385px !important;
+    right: 6vw !important;
+    left: auto !important;
+    width: 270px !important;
+    max-width: 270px !important;
+    margin: 0 !important;
+    z-index: 35;
+  }
+
+  .home #inicio .spotify-playlist iframe {
+    display: block;
+    width: 270px !important;
+    height: 270px !important;
+  }
+}/* PORTADA PC Y TABLETS: dinosaurio y navegación abajo, centrados */
+@media (min-width: 769px) {
+  .home #inicio .pista {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 150px !important;
+    top: auto !important;
+    width: 100% !important;
+    height: 130px !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 50 !important;
+  }
+
+  .home #inicio .pista .suelo {
+    position: absolute !important;
+    left: 50% !important;
+    top: 45px !important;
+    width: min(650px, 70%) !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .home #inicio .pista .efecto-dino {
+    position: absolute !important;
+    left: calc(50% - 390px) !important;
+    top: 15px !important;
+    z-index: 51 !important;
+  }
+}/* FIX IPAD PRO 13" EN VERTICAL */
+@media (min-width: 769px) and (max-width: 1100px) and (orientation: portrait) {
+
+  .home #inicio {
+    position: relative !important;
+    min-height: 1050px !important;
+    overflow: visible !important;
+  }
+
+  /* Tiempo arriba a la derecha */
+  .home #inicio .portada-weather {
+    position: absolute !important;
+    top: 100px !important;
+    right: 24px !important;
+    left: auto !important;
+    width: 300px !important;
+    height: 215px !important;
+  }
+
+  /* Spotify justo debajo del tiempo */
+  .home #inicio .spotify-playlist {
+    position: absolute !important;
+    top: 330px !important;
+    right: 24px !important;
+    left: auto !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 !important;
+  }
+
+  .home #inicio .spotify-playlist iframe {
+    width: 300px !important;
+    height: 250px !important;
+  }
+
+  /* Dinosaurio y botones abajo, centrados */
+  .home #inicio .pista {
+    position: absolute !important;
+    top: 570px !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 120px !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .home #inicio .pista .suelo {
+    position: absolute !important;
+    top: 45px !important;
+    left: 50% !important;
+    width: 78% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .home #inicio .pista .agujero {
+    width: 58px !important;
+    height: 58px !important;
+    flex: 0 0 58px !important;
+    font-size: 0.52rem !important;
+  }
+
+  .home #inicio .pista .efecto-dino {
+    position: absolute !important;
+    left: 8% !important;
+    top: 25px !important;
+    width: 75px !important;
+  }
+
+  /* Evitar que el pie de página se monte sobre la portada */
+  .home .site-footer {
+    position: relative !important;
+    margin-top: 0 !important;
+  }
+}/* FIX NEST HUB MAX — PORTADA */
+@media (min-width: 1101px) and (max-width: 1400px) and (max-height: 900px) {
+
+  .home #inicio {
+    position: relative !important;
+    min-height: 850px !important;
+    overflow: visible !important;
+  }
+
+  /* Tiempo en la zona superior derecha */
+  .home #inicio .portada-weather {
+    top: 115px !important;
+    right: 35px !important;
+    left: auto !important;
+    width: 270px !important;
+    height: 215px !important;
+  }
+
+  /* Spotify debajo del tiempo */
+  .home #inicio .spotify-playlist {
+    top: 350px !important;
+    right: 35px !important;
+    left: auto !important;
+    width: 270px !important;
+    max-width: 270px !important;
+  }
+
+  .home #inicio .spotify-playlist iframe {
+    width: 270px !important;
+    height: 220px !important;
+  }
+
+  /* Menú centrado en la zona inferior */
+  .home #inicio .pista {
+    position: absolute !important;
+    top: 570px !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 120px !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 50 !important;
+  }
+
+  .home #inicio .pista .suelo {
+    top: 40px !important;
+    left: 50% !important;
+    width: 68% !important;
+    transform: translateX(-50%) !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+
+  .home #inicio .pista .agujero {
+    width: 64px !important;
+    height: 64px !important;
+    flex: 0 0 64px !important;
+  }
+
+  .home #inicio .pista .efecto-dino {
+    left: 14% !important;
+    top: 15px !important;
+    width: 80px !important;
+  }
+
+  /* El footer debe ir después de la portada */
+  .home .site-footer {
+    margin-top: 0 !important;
+  }
+}/* FIX GALAXY TAB S4 EN VERTICAL */
+@media (min-width: 600px) and (max-width: 768px)
+       and (orientation: portrait) {
+
+  .home #inicio {
+    position: relative !important;
+    min-height: 1150px !important;
+    overflow: visible !important;
+  }
+
+  /* Tiempo arriba a la derecha */
+  .home #inicio .portada-weather {
+    position: absolute !important;
+    top: 100px !important;
+    right: 12px !important;
+    left: auto !important;
+    width: 220px !important;
+    height: 195px !important;
+    z-index: 40 !important;
+  }
+
+  /* Spotify debajo del tiempo */
+  .home #inicio .spotify-playlist {
+    position: absolute !important;
+    top: 315px !important;
+    right: 12px !important;
+    left: auto !important;
+    width: 220px !important;
+    max-width: 220px !important;
+    margin: 0 !important;
+    z-index: 35 !important;
+  }
+
+  .home #inicio .spotify-playlist iframe {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  /* Menú centrado en la parte inferior */
+  .home #inicio .pista {
+    position: absolute !important;
+    top: 590px !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 115px !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 50 !important;
+  }
+
+  .home #inicio .pista .suelo {
+    position: absolute !important;
+    top: 40px !important;
+    left: 50% !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .home #inicio .pista .agujero {
+    width: 46px !important;
+    height: 46px !important;
+    flex: 0 0 46px !important;
+    font-size: 0.43rem !important;
+  }
+
+  .home #inicio .pista .efecto-dino {
+    position: absolute !important;
+    left: 5% !important;
+    top: 15px !important;
+    width: 65px !important;
+  }
+
+  /* Mantener el pie después de la portada */
+  .home .site-footer {
+    position: relative !important;
+    margin-top: 0 !important;
+  }
+}
