@@ -7385,6 +7385,9 @@ body:not(.dark-mode) .site-footer .footer-legal a {
 
 .gusto-card-front,
 .gusto-card-back {
+  max-height: 300px;
+overflow-y: auto;
+overflow-x: hidden;
   position: absolute;
   inset: 0;
 
@@ -7413,16 +7416,24 @@ body:not(.dark-mode) .site-footer .footer-legal a {
   overflow: hidden;
 }
 
+
 .gusto-card-back {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 
-  text-align: center;
+    text-align: center;
+
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 12px;
 }
+
 
 /* Hover sin romper el giro */
 .gusto-card:hover .gusto-card-front,
@@ -10107,4 +10118,23 @@ footer {
   h1 {
     overflow-wrap: anywhere;
   }
+}
+/* Scroll interno de la tarjeta de clips */
+.gusto-card-back {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5cf6 #102b62;
+}
+
+.gusto-card-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+.gusto-card-back::-webkit-scrollbar-track {
+    background: #102b62;
+    border-radius: 10px;
+}
+
+.gusto-card-back::-webkit-scrollbar-thumb {
+    background: #8b5cf6;
+    border-radius: 10px;
 }
