@@ -7719,8 +7719,8 @@ body:not(.dark-mode) .cookie-option {
     width: 100%;
   }
 
-<<<<<<< HEAD
-}/* ==========================================================
+ 
+/* ==========================================================
    BATTLE SCENE — START → DINOSAURIO VS LEÓN
    ========================================================== */
 
@@ -7739,6 +7739,7 @@ body:not(.dark-mode) .cookie-option {
       #9cecff 48%,
       #f5c879 100%
     );
+}
 }
 
 /* Se activa cuando empieza el juego */
@@ -8593,7 +8594,7 @@ body:not(.dark-mode) .cookie-option {
    DINOSAURIO Y LEÓN — ESCENA DE COMBATE
    ========================================================== */
 
-#battleDino {
+ }#battleDino {
   position: absolute;
   left: 38%;
   top: 48%;
@@ -8731,8 +8732,9 @@ body.battle-ready #battleLion {
     transform: translate(-50%, -50%) translateY(0) rotate(2deg) scale(1);
   }
 }
-=======
-}
+  
+
+
 /* =====================================================
    ESCENA DE BATALLA
    ===================================================== */
