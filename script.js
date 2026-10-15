@@ -254,8 +254,9 @@ function mostrarMensaje(texto, tipo) {
          * Así no vuelve al principio al quitar la animación.
          */
 
-        efectoDino.style.transform =
-          `translateX(${destinoX}px)`;
+        
+efectoDino.style.translate = `${distancia}px 0`;
+
 
 
         efectoDino.classList.remove("corriendo");
