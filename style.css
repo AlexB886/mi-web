@@ -8562,7 +8562,7 @@ body:not(.dark-mode) .cookie-option {
  }#battleDino {
   position: absolute;
   left: 38%;
-  top: 48%;
+  top: 58%;
   width: 280px;
   height: 220px;
   transform: translate(-50%, -50%);
@@ -8583,7 +8583,7 @@ body:not(.dark-mode) .cookie-option {
 #battleLion {
   position: absolute;
   left: 62%;
-  top: 48%;
+  top: 58%;
   width: 280px;
   height: 280px;
   transform: translate(-50%, -50%);
@@ -8593,110 +8593,116 @@ body:not(.dark-mode) .cookie-option {
   filter: drop-shadow(0 18px 10px rgba(0, 0, 0, .28));
 }
 
+
 #lionBattleSprite {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  transform: scaleX(-1);
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
 }
+
 
 /* Caída simultánea */
 body.battle-active #battleDino {
-  animation: dinoCaidaNatural 2.6s cubic-bezier(.18, .72, .25, 1) forwards;
+  animation: dinoCaidaNatural 2.2s cubic-bezier(.18, .72, .25, 1) forwards;
 }
 
 body.battle-active #battleLion {
-  animation: leonCaidaNatural 2.6s cubic-bezier(.18, .72, .25, 1) forwards;
+  animation: leonCaidaNatural 2.2s cubic-bezier(.18, .72, .25, 1) forwards;
 }
+
 
 @keyframes dinoCaidaNatural {
-  0% {
-    top: -280px;
-    transform: translate(-50%, -50%) rotate(-12deg) scale(.72);
-  }
-  25% {
-    top: -150px;
-    transform: translate(-50%, -50%) rotate(8deg) scale(.82);
-  }
-  55% {
-    top: 5%;
-    transform: translate(-50%, -50%) rotate(-5deg) scale(.92);
-  }
-  78% {
-    top: 47%;
-    transform: translate(-50%, -50%) rotate(3deg) scale(1);
-  }
-  92% {
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(-2deg) scale(1.03);
-  }
-  100% {
-    top: 48%;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
+    0% {
+        top: -280px;
+        transform: translate(-50%, -50%) rotate(-8deg) scale(0.78);
+    }
+
+    65% {
+        top: 43%;
+        transform: translate(-50%, -50%) rotate(3deg) scale(0.98);
+    }
+
+    82% {
+        top: 59%;
+        transform: translate(-50%, -50%) rotate(-1deg) scale(1);
+    }
+
+    92% {
+        top: 57%;
+        transform: translate(-50%, -50%) rotate(0.5deg) scale(1);
+    }
+
+    100% {
+        top: 58%;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
 }
 
+
+
 @keyframes leonCaidaNatural {
-  0% {
-    top: -280px;
-    transform: translate(-50%, -50%) rotate(12deg) scale(.72);
-  }
-  25% {
-    top: -150px;
-    transform: translate(-50%, -50%) rotate(-8deg) scale(.82);
-  }
-  55% {
-    top: 5%;
-    transform: translate(-50%, -50%) rotate(5deg) scale(.92);
-  }
-  78% {
-    top: 47%;
-    transform: translate(-50%, -50%) rotate(-3deg) scale(1);
-  }
-  92% {
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(2deg) scale(1.03);
-  }
-  100% {
-    top: 48%;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
+    0% {
+        top: -280px;
+        transform: translate(-50%, -50%) rotate(8deg) scale(0.78);
+    }
+
+    65% {
+        top: 43%;
+        transform: translate(-50%, -50%) rotate(-3deg) scale(0.98);
+    }
+
+    82% {
+        top: 59%;
+        transform: translate(-50%, -50%) rotate(1deg) scale(1);
+    }
+
+    92% {
+        top: 57%;
+        transform: translate(-50%, -50%) rotate(-0.5deg) scale(1);
+    }
+
+    100% {
+        top: 58%;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
 }
+
 
 /* Posición de combate: ambos permanecen frente a frente */
 body.battle-ready #battleDino {
-  animation: dinoIdleCombate .9s ease-in-out infinite;
+  animation: dinoIdleCombate 3s ease-in-out infinite;
 }
 
 body.battle-ready #battleLion {
-  animation: leonIdleCombate .9s ease-in-out infinite;
+  animation: leonIdleCombate 3s ease-in-out infinite;
 }
+
 
 @keyframes dinoIdleCombate {
-  0% {
-    transform: translate(-50%, -50%) translateY(0) rotate(-2deg) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-7px) rotate(2deg) scale(1.015);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0) rotate(-2deg) scale(1);
-  }
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0) rotate(-0.4deg) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-2px) rotate(0.4deg) scale(1.003);
+    }
 }
 
+
+
 @keyframes leonIdleCombate {
-  0% {
-    transform: translate(-50%, -50%) translateY(0) rotate(2deg) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-7px) rotate(-2deg) scale(1.015);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0) rotate(2deg) scale(1);
-  }
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0) rotate(0.4deg) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-2px) rotate(-0.4deg) scale(1.003);
+    }
 }
+
   
 
 
@@ -10137,4 +10143,43 @@ footer {
 .gusto-card-back::-webkit-scrollbar-thumb {
     background: #8b5cf6;
     border-radius: 10px;
+}
+
+/* =====================================
+   COMBATE 2D - AJUSTES PARA MÓVIL
+   ===================================== */
+@media (max-width: 600px) {
+    #battleDino {
+        left: 29%;
+        width: 210px;
+        height: 170px;
+    }
+
+    #battleLion {
+        left: 71%;
+        width: 210px;
+        height: 210px;
+    }
+
+    #dinoBattleSprite,
+    #lionBattleSprite {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .battle-controls {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        padding: 0 8px;
+        box-sizing: border-box;
+    }
+
+    .battle-controls .battle-button {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 4px;
+        font-size: 11px;
+    }
 }
