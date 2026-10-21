@@ -1,1090 +1,144 @@
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Alex Baicu | Start</title>
-
-  <meta
-    name="description"
-    content="Bienvenido al mundo de Alex Baicu."
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Web personal de Alex Baicu: formación en DAM, proyectos de desarrollo, tecnología y ciberseguridad.">
+  <title>Alex Baicu | Web personal</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&family=Press+Start+2P&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="normal.css">
+  <script src="normal.js" defer></script>
 </head>
-
-<body class="pantalla-inicio">
-<audio
-  id="gameStartSound"
-  
-<audio
-  id="gameStartSound"
-  src="GAME-START-arcade-final.wav"
-  preload="auto"
-></audio>
-
-  <main class="intro-screen">
-
-    <!-- =====================================================
-         VÍDEO DE FONDO
-         ===================================================== -->
-
-    <video
-      class="intro-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      aria-hidden="true"
-    >
-      <source src="intro.mp4" type="video/mp4">
-    </video>
-
-    <!-- Capa oscura muy suave -->
-    <div
-      class="intro-video-overlay"
-      aria-hidden="true"
-    ></div>
-
-
-    <!-- =====================================================
-         DECORACIÓN
-         ===================================================== -->
-
-    <span class="intro-corner top-left"></span>
-    <span class="intro-corner top-right"></span>
-    <span class="intro-corner bottom-left"></span>
-    <span class="intro-corner bottom-right"></span>
-
-
-    <!-- =====================================================
-         CONTENIDO
-         ===================================================== -->
-
-    <div class="intro-content">
-
-      <p class="intro-small">
-        SYSTEM ONLINE
-      </p>
-
-      <h1 class="intro-title" id="introTitle">
-  <span id="introTitleText">ALEX BAICU</span>
-  <canvas
-    id="nameParticles"
-    class="name-particles"
-    aria-hidden="true"
-  ></canvas>
-</h1>
-
-      <p class="intro-subtitle">
-        — BIENVENIDO A MI MUNDO —
-      </p>
-
-      <button
-        class="intro-start"
-        id="startBtn"
-        type="button"
-      >
-        ▶ START
-      </button>
-
-      <p class="intro-hint">
-        PRESS ENTER
-      </p>
-
-    </div>
-
-
-
-  </main>
-
-
-<!-- ESCENA DE COMBATE -->
-<section id="battleScene" class="battle-scene" aria-label="Combate entre dinosaurio y león">
-  <div class="battle-sky"></div>
-  <div class="battle-cloud cloud-one"></div>
-  <div class="battle-cloud cloud-two"></div>
-
-  
-<!-- ESCENA 3D: DINOSAURIO CONTRA ROBOT -->
-<div id="threeBattleStage" class="three-battle-stage"></div>
-<div id="threeBattleStatus" class="three-battle-status">
-  Cargando personajes 3D...
-</div>
-
-
-  <header class="battle-hud">
-    <div class="fighter-info">
-      <strong>DINOSAURIO</strong>
-      <div class="health-bar"><span class="dino-health"></span></div>
-      <small>HP 100</small>
-    </div>
-
-    <h2 class="fight-title">FIGHT!</h2>
-
-    <div class="fighter-info lion-info">
-      <strong>LEÓN</strong>
-      <div class="health-bar"><span class="lion-health"></span></div>
-      <small>HP 100</small>
-    </div>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio"><span class="brand-mark">A.</span> ALEX BAICU</a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#actualidad">Actualidad</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar tema">☼</button>
   </header>
 
-  <div class="battle-platform"></div>
-
-  <div id="battleDino" class="battle-fighter dino-fighter">
-    <img id="dinoBattleSprite" src="dino-arcade.png" alt="Dinosaurio luchador">
-  </div>
-
-  <div id="battleLion" class="battle-fighter lion-fighter">
-    <img id="lionBattleSprite" src="lion-arcade.png" alt="León boxeador">
-  </div>
-
-  <div id="impactEffect" class="battle-impact-effect"></div>
-
-  <div class="battle-controls">
-    <button type="button" class="battle-button fire-button" data-attack="fire">
-      <span class="button-orb"></span>
-      FIRE
-    </button>
-    <button type="button" class="battle-button punch-button" data-attack="punch">
-      <span class="button-orb"></span>
-      PUNCH
-    </button>
-    <button type="button" class="battle-button tail-button" data-attack="tail">
-      <span class="button-orb"></span>
-      TAIL ATTACK
-    </button>
-  </div>
-</section>
-<!-- FIN ESCENA DE COMBATE -->
-
-  <!-- =====================================================
-       INTRO JS
-       ===================================================== -->
-
- <script>
-
-  const startBtn = document.getElementById("startBtn");
-  const introTitle = document.getElementById("introTitle");
-  const introTitleText = document.getElementById("introTitleText");
-  const canvas = document.getElementById("nameParticles");
-
- /* ==========================================================
-   ALEX BAICU — RGB + ESCRITURA + GLITCH
-   ========================================================== */
-
-if (introTitle && introTitleText) {
-
-  const texto = "ALEX BAICU";
-
-  const colores = [
-    "#FF0055",
-    "#FF7A00",
-    "#FFE600",
-    "#35FF00",
-    "#00F6FF",
-    "#0066FF",
-    "#8A2BFF",
-    "#FF00E6"
-  ];
-
-  let posicion = 0;
-  let escribiendo = true;
-
-  /*
-   * Crea las letras visibles una a una.
-   */
-  function pintarTexto(cantidad) {
-
-    introTitleText.innerHTML = "";
-
-    for (let i = 0; i < cantidad; i++) {
-
-      const caracter = texto[i];
-
-      const letra =
-        document.createElement("span");
-
-      if (caracter === " ") {
-
-        letra.className = "name-space";
-        letra.innerHTML = "&nbsp;";
-
-      } else {
-
-        letra.className = "name-letter";
-
-        letra.style.setProperty(
-          "--i",
-          i
-        );
-
-        letra.style.setProperty(
-          "--letter-color",
-          colores[
-            (i + colorOffset) %
-            colores.length
-          ]
-        );
-
-        letra.textContent =
-          caracter;
-
-      }
-
-      introTitleText.appendChild(
-        letra
-      );
-
-    }
-
-  }
-
-
-  /*
-   * Reserva siempre el espacio del nombre completo.
-   * Así la página NO se mueve mientras se escribe/borrar.
-   */
-  introTitleText.style.width = "11ch";
-  introTitleText.style.minWidth = "11ch";
-
-
-  let colorOffset = 0;
-
-
-  /* ========================================================
-     CICLO ESCRIBIR / BORRAR
-     ======================================================== */
-
-  function animarNombre() {
-
-    if (escribiendo) {
-
-      posicion++;
-
-      pintarTexto(posicion);
-
-      if (posicion >= texto.length) {
-
-        escribiendo = false;
-
-        setTimeout(
-          animarNombre,
-          1100
-        );
-
-        return;
-
-      }
-
-      setTimeout(
-        animarNombre,
-        95
-      );
-
-    } else {
-
-      posicion--;
-
-      pintarTexto(posicion);
-
-      if (posicion <= 0) {
-
-        escribiendo = true;
-
-        setTimeout(
-          animarNombre,
-          350
-        );
-
-        return;
-
-      }
-
-      setTimeout(
-        animarNombre,
-        60
-      );
-
-    }
-
-  }
-
-
-  /* ========================================================
-     CAMBIO RÁPIDO DE COLORES
-     ======================================================== */
-
-  setInterval(() => {
-
-    colorOffset++;
-
-    const letras =
-      introTitleText.querySelectorAll(
-        ".name-letter"
-      );
-
-    letras.forEach(
-      (letra, index) => {
-
-        letra.style.setProperty(
-          "--letter-color",
-          colores[
-            (
-              index +
-              colorOffset
-            ) %
-            colores.length
-          ]
-        );
-
-      }
-    );
-
-  }, 180);
-
-
-  /* ========================================================
-     GLITCH — SIN SACUDIR LA PÁGINA
-     ======================================================== */
-
-  function activarGlitch() {
-
-    introTitle.classList.remove(
-      "glitch"
-    );
-
-    void introTitle.offsetWidth;
-
-    introTitle.classList.add(
-      "glitch"
-    );
-
-    setTimeout(() => {
-
-      introTitle.classList.remove(
-        "glitch"
-      );
-
-    }, 160);
-
-  }
-
-
-  function glitchAleatorio() {
-
-    activarGlitch();
-
-    setTimeout(
-      glitchAleatorio,
-      1600 +
-      Math.random() * 2600
-    );
-
-  }
-
-
-  setTimeout(
-    glitchAleatorio,
-    1800
-  );
-
-
-  /* ========================================================
-     RATÓN
-     ======================================================== */
-
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-
-      const rect =
-        introTitle.getBoundingClientRect();
-
-      const centroX =
-        rect.left +
-        rect.width / 2;
-
-      const centroY =
-        rect.top +
-        rect.height / 2;
-
-      const distancia =
-        Math.hypot(
-          event.clientX - centroX,
-          event.clientY - centroY
-        );
-
-      if (distancia < 320) {
-
-        introTitle.classList.add(
-          "pointer-near"
-        );
-
-      } else {
-
-        introTitle.classList.remove(
-          "pointer-near"
-        );
-
-      }
-
-    }
-  );
-
-
-  /*
-   * Arranca la animación.
-   */
-  pintarTexto(0);
-  animarNombre();
-
-}
-
-
-  /* ==========================================================
-     PARTÍCULAS CANVAS 2D
-     ========================================================== */
-
-  if (canvas && introTitle) {
-
-    const ctx =
-      canvas.getContext("2d");
-
-    const particles = [];
-
-    let mouse = {
-      x: null,
-      y: null,
-      active: false
-    };
-
-
-    function resizeCanvas() {
-
-      const rect =
-        introTitle.getBoundingClientRect();
-
-      const dpr =
-        Math.min(
-          window.devicePixelRatio || 1,
-          2
-        );
-
-      canvas.width =
-        rect.width * dpr + 90 * dpr;
-
-      canvas.height =
-        rect.height * dpr + 60 * dpr;
-
-      canvas.style.width =
-        `${rect.width + 90}px`;
-
-      canvas.style.height =
-        `${rect.height + 60}px`;
-
-      ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-      );
-
-    }
-
-
-    function crearParticula(
-      x,
-      y,
-      fuerzaX = 0,
-      fuerzaY = 0
-    ) {
-
-      particles.push({
-
-        x,
-        y,
-
-        vx:
-          (Math.random() - 0.5) * 0.8 +
-          fuerzaX,
-
-        vy:
-          (Math.random() - 0.5) * 0.8 +
-          fuerzaY,
-
-        vida: 1,
-
-        decay:
-          0.008 +
-          Math.random() * 0.018,
-
-        size:
-          1 +
-          Math.random() * 2.5,
-
-        hue:
-          Math.random() * 360
-
-      });
-
-    }
-
-
-    function emitirParticulas() {
-
-      const width =
-        canvas.clientWidth;
-
-      const height =
-        canvas.clientHeight;
-
-      /* bordes del título */
-
-      const cantidad =
-        2 + Math.floor(
-          Math.random() * 3
-        );
-
-      for (let i = 0; i < cantidad; i++) {
-
-        const borde =
-          Math.floor(
-            Math.random() * 4
-          );
-
-        let x;
-        let y;
-
-        if (borde === 0) {
-          x = Math.random() * width;
-          y = 18;
-        }
-
-        else if (borde === 1) {
-          x = width - 18;
-          y = Math.random() * height;
-        }
-
-        else if (borde === 2) {
-          x = Math.random() * width;
-          y = height - 18;
-        }
-
-        else {
-          x = 18;
-          y = Math.random() * height;
-        }
-
-        crearParticula(
-          x,
-          y,
-          (Math.random() - 0.5) * 0.8,
-          (Math.random() - 0.5) * 0.8
-        );
-
-      }
-
-    }
-
-
-    function animarParticulas() {
-
-      const width =
-        canvas.clientWidth;
-
-      const height =
-        canvas.clientHeight;
-
-      ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-      );
-
-
-      if (
-        Math.random() <
-        0.35
-      ) {
-        emitirParticulas();
-      }
-
-
-      for (
-        let i = particles.length - 1;
-        i >= 0;
-        i--
-      ) {
-
-        const p =
-          particles[i];
-
-        /* interacción con ratón */
-
-        if (
-          mouse.active &&
-          mouse.x !== null &&
-          mouse.y !== null
-        ) {
-
-          const dx =
-            p.x - mouse.x;
-
-          const dy =
-            p.y - mouse.y;
-
-          const distancia =
-            Math.hypot(dx, dy);
-
-          if (
-            distancia < 90 &&
-            distancia > 0
-          ) {
-
-            const fuerza =
-              (90 - distancia) / 90;
-
-            p.vx +=
-              (dx / distancia) *
-              fuerza *
-              0.08;
-
-            p.vy +=
-              (dy / distancia) *
-              fuerza *
-              0.08;
-
-          }
-
-        }
-
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        p.vx *= 0.992;
-        p.vy *= 0.992;
-
-        p.vida -= p.decay;
-
-
-        const alpha =
-          Math.max(
-            0,
-            p.vida
-          );
-
-
-        ctx.beginPath();
-
-        ctx.arc(
-          p.x,
-          p.y,
-          p.size,
-          0,
-          Math.PI * 2
-        );
-
-
-        ctx.fillStyle =
-          `hsla(${p.hue}, 100%, 70%, ${alpha})`;
-
-        ctx.shadowBlur = 10;
-
-        ctx.shadowColor =
-          `hsla(${p.hue}, 100%, 65%, ${alpha})`;
-
-        ctx.fill();
-
-
-        if (
-          p.vida <= 0 ||
-          p.x < -50 ||
-          p.x > width + 50 ||
-          p.y < -50 ||
-          p.y > height + 50
-        ) {
-
-          particles.splice(
-            i,
-            1
-          );
-
-        }
-
-      }
-
-
-      requestAnimationFrame(
-        animarParticulas
-      );
-
-    }
-
-
-    canvas.addEventListener(
-      "mousemove",
-      (event) => {
-
-        const rect =
-          canvas.getBoundingClientRect();
-
-        mouse.x =
-          event.clientX -
-          rect.left;
-
-        mouse.y =
-          event.clientY -
-          rect.top;
-
-        mouse.active = true;
-
-      }
-    );
-
-
-    canvas.addEventListener(
-      "mouseleave",
-      () => {
-
-        mouse.active = false;
-
-        mouse.x = null;
-        mouse.y = null;
-
-      }
-    );
-
-
-    window.addEventListener(
-      "resize",
-      resizeCanvas
-    );
-
-
-    resizeCanvas();
-
-    animarParticulas();
-
-  }
-
-
-  /* ==========================================================
-     START
-     ========================================================== */
-
-  /* ==========================================================
-   SONIDO ARCADE AL PULSAR START
-   ========================================================== */
-
-function sonidoStart() {
-  const AudioContext = window.AudioContext || window.webkitAudioContext;
-  const audioCtx = new AudioContext();
-
-  const ahora = audioCtx.currentTime;
-
-  // Tono principal
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-
-  osc.type = "square";
-
-  osc.frequency.setValueAtTime(180, ahora);
-  osc.frequency.exponentialRampToValueAtTime(850, ahora + 0.12);
-
-  gain.gain.setValueAtTime(0.0001, ahora);
-  gain.gain.exponentialRampToValueAtTime(0.28, ahora + 0.015);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ahora + 0.18);
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start(ahora);
-  osc.stop(ahora + 0.2);
-
-  // Segundo golpe grave
-  const bass = audioCtx.createOscillator();
-  const bassGain = audioCtx.createGain();
-
-  bass.type = "sawtooth";
-
-  bass.frequency.setValueAtTime(90, ahora);
-  bass.frequency.exponentialRampToValueAtTime(45, ahora + 0.18);
-
-  bassGain.gain.setValueAtTime(0.0001, ahora);
-  bassGain.gain.exponentialRampToValueAtTime(0.18, ahora + 0.01);
-  bassGain.gain.exponentialRampToValueAtTime(0.0001, ahora + 0.2);
-
-  bass.connect(bassGain);
-  bassGain.connect(audioCtx.destination);
-
-  bass.start(ahora);
-  bass.stop(ahora + 0.2);
-}
-
-
-/* ==========================================================
-   START + SONIDO ARCADE
-   ========================================================== */
-
-const gameStartSound =
-  document.getElementById("gameStartSound");
-
-startBtn.addEventListener("click", () => {
-
-  // Sonido START si existe
-  if (gameStartSound) {
-    gameStartSound.currentTime = 0;
-    gameStartSound.volume = 0.40;
-    gameStartSound.play().catch(() => {});
-  }
-
-  // Ocultamos la pantalla inicial
-  document.body.classList.add("intro-exit");
-
-  // Activamos la escena del videojuego
-  setTimeout(() => {
-
-    document.body.classList.add("battle-active");
-
-  }, 600);
-
-  // Después de la caída del dinosaurio,
-  // activamos el impacto
-  setTimeout(() => {
-
-    document.body.classList.add("battle-impact");
-
-  }, 2400);
-
-  // Después del impacto aparece el león
-  setTimeout(() => {
-
-    document.body.classList.add("battle-ready");
-
-  }, 3000);
-
-});
-  
-
-/* =====================================================
-   ATAQUES DE LA BATALLA
-   ===================================================== */
-
-const battleDino = document.getElementById("battleDino");
-const battleLion = document.getElementById("battleLion");
-const battleScene = document.getElementById("battleScene");
-const lionHealthBar = document.querySelector(".lion-health");
-const lionHealthText = document.querySelector(".lion-info small");
-const attackButtons = document.querySelectorAll(".battle-button");
-
-let lionHP = 100;
-let attackBusy = false;
-
-/* Sonidos arcade generados por el navegador */
-function playBattleSound(type) {
-  const AudioContextClass =
-    window.AudioContext || window.webkitAudioContext;
-
-  if (!AudioContextClass) return;
-
-  const audio = new AudioContextClass();
-  const now = audio.currentTime;
-
-  const sounds = {
-    fire:     { frequency: 180, end: 65, duration: 0.30, wave: "sawtooth" },
-    punch:    { frequency: 130, end: 45, duration: 0.18, wave: "square" },
-    tail:     { frequency: 100, end: 35, duration: 0.28, wave: "triangle" },
-    impact:   { frequency: 75,  end: 30, duration: 0.20, wave: "sawtooth" }
-  };
-
-  const sound = sounds[type];
-  if (!sound) {
-    audio.close();
-    return;
-  }
-
-  const oscillator = audio.createOscillator();
-  const volume = audio.createGain();
-
-  oscillator.type = sound.wave;
-  oscillator.frequency.setValueAtTime(sound.frequency, now);
-  oscillator.frequency.exponentialRampToValueAtTime(
-    sound.end,
-    now + sound.duration
-  );
-
-  volume.gain.setValueAtTime(0.18, now);
-  volume.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + sound.duration
-  );
-
-  oscillator.connect(volume);
-  volume.connect(audio.destination);
-
-  oscillator.start(now);
-  oscillator.stop(now + sound.duration);
-
-  oscillator.onended = () => audio.close();
-}
-
-
-
-
-/* Ejecutar un ataque arcade con movimiento e impacto */
-function performAttack(type) {
-  if (!document.body.classList.contains("battle-ready")) return;
-  if (attackBusy || lionHP <= 0) return;
-
-  attackBusy = true;
-
-  const damage = {
-    fire: 20,
-    punch: 18,
-    tail: 24
-  };
-
-  const attackClass = {
-    fire: "attack-fire",
-    punch: "attack-punch",
-    tail: "attack-tail"
-  };
-
-  const selectedClass = attackClass[type];
-  if (!selectedClass) {
-    attackBusy = false;
-    return;
-  }
-
-  battleDino.classList.remove(
-    "attack-fire", "attack-punch", "attack-tail"
-  );
-
-  battleLion.classList.remove(
-    "lion-hit", "lion-knockback", "lion-defeated"
-  );
-
-  battleScene.classList.remove("fire-flash", "arcade-impact");
-
-  void battleDino.offsetWidth;
-  battleDino.classList.add(selectedClass);
-  playBattleSound(type);
-
-  /* Llamarada visual */
-  if (type === "fire") {
-    const flame = document.createElement("div");
-    flame.className = "fire-projectile";
-    flame.textContent = "🔥";
-    battleScene.appendChild(flame);
-    setTimeout(() => flame.remove(), 750);
-  }
-
-  /* Impacto sincronizado con el ataque */
-  const impactDelay = type === "fire" ? 420 : 300;
-
-  setTimeout(() => {
-    if (lionHP <= 0) return;
-
-    
-battleLion.classList.remove(
-  "lion-hit",
-  "lion-knockback",
-  "lion-defeated"
-);
-
-void battleLion.offsetWidth;
-
-battleLion.classList.add("lion-hit", "lion-knockback");
-battleScene.classList.add("arcade-impact");
-
-    playBattleSound("impact");
-
-    const spark = document.createElement("div");
-    spark.className = "attack-spark";
-    spark.textContent = type === "fire" ? "🔥" : "💥";
-    battleScene.appendChild(spark);
-    setTimeout(() => spark.remove(), 500);
-
-    if (type === "fire") {
-      battleScene.classList.add("fire-flash");
-      setTimeout(() => {
-        battleScene.classList.remove("fire-flash");
-      }, 220);
-    }
-
-    setTimeout(() => {
-      battleScene.classList.remove("arcade-impact");
-    }, 220);
-
-    lionHP = Math.max(0, lionHP - damage[type]);
-    lionHealthBar.style.width = lionHP + "%";
-    lionHealthText.textContent = "HP " + lionHP;
-
-   
-if (lionHP <= 0) {
-  battleLion.classList.remove("lion-hit", "lion-knockback");
-  battleLion.classList.add("lion-defeated");
-
-  if (!battleScene.classList.contains("battle-victory-transition")) {
-    battleScene.classList.add("battle-victory-transition");
-
-    setTimeout(() => {
-      window.location.href = "portada.html";
-    }, 2000);
-  }
-}
-
-  }, impactDelay);
-
-  /* Recuperación */
-  setTimeout(() => {
-    battleDino.classList.remove(selectedClass);
-    battleLion.classList.remove("lion-hit", "lion-knockback");
-    battleScene.classList.remove("fire-flash", "arcade-impact");
-    attackBusy = false;
-  }, 950);
-}
-/* Conectar los tres botones de ataque */
-document.querySelectorAll(".battle-button[data-attack]").forEach((button) => {
-  button.addEventListener("click", () => {
-    performAttack(button.dataset.attack);
-  });
-});
-
-
-
-</script>
-
-
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.180.0/build/three.module.js"
-  }
-}
-
-</script>
-
-
-
+  <main>
+    <section class="hero section-wrap" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> ESTUDIANTE DAM · VALENCIA, ESPAÑA</p>
+        <h1>Hola, soy <span>Alex.</span><br>Construyo cosas<br>con <span class="outline">código.</span></h1>
+        <p class="hero-description">Me interesa el desarrollo de aplicaciones, la tecnología y la ciberseguridad. Aquí puedes conocerme, explorar mis proyectos y seguir lo que voy aprendiendo.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#proyectos">Explorar mi web <span>↘</span></a>
+          <a class="button button-game" href="portada.html"><span>▶</span> Entrar al modo videojuego</a>
+        </div>
+        <div class="hero-note"><span class="note-line"></span> Una web personal. Dos formas de explorarla.</div>
+      </div>
+      <div class="hero-visual" aria-label="Ilustración tecnológica">
+        <div class="visual-glow"></div>
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="visual-card card-back"><span>01 / LEARN</span><b>Aprender.</b></div>
+        <div class="visual-card card-front">
+          <span class="window-dots"><i></i><i></i><i></i></span>
+          <p class="code-muted">const developer = {</p>
+          <p>&nbsp; nombre: <em>"Alex"</em>,</p>
+          <p>&nbsp; enfoque: <em>"desarrollo"</em>,</p>
+          <p>&nbsp; curiosidad: <strong>true</strong></p>
+          <p class="code-muted">};</p>
+          <div class="code-footer"><span>● SISTEMA ACTIVO</span><span>v.01</span></div>
+        </div>
+        <div class="floating-chip chip-one">{"</>"}</div>
+        <div class="floating-chip chip-two">✳</div>
+        <div class="visual-caption">TECNOLOGÍA · CREATIVIDAD · PROGRESO</div>
+      </div>
+      <a class="scroll-cue" href="#sobre-mi"><span class="mouse-icon"><i></i></span><span>DESLIZA PARA EXPLORAR</span><b>↓</b></a>
+    </section>
+
+    <section class="content-section section-wrap reveal" id="sobre-mi">
+      <div class="section-heading">
+        <p class="eyebrow">01 — UN POCO SOBRE MÍ</p>
+        <h2>La curiosidad es<br>el punto de partida.</h2>
+      </div>
+      <div class="about-content">
+        <p class="section-lead">Actualmente estudio <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong> en el IES Simarro. Estoy construyendo mi base como desarrollador, aprendiendo a resolver problemas y convirtiendo ideas en proyectos reales.</p>
+        <p>Me atraen el desarrollo web, la programación y la ciberseguridad. Esta página es también un registro de mi evolución: lo que aprendo, lo que creo y lo que quiero mejorar.</p>
+        <a class="text-link" href="sobre-mi.html">Conoce más sobre mí <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="content-section projects-section reveal" id="proyectos">
+      <div class="section-wrap inner-wrap">
+        <div class="section-topline"><p class="eyebrow">02 — LO QUE HE CONSTRUIDO</p><a class="text-link" href="lo-que-he-hecho.html">Ver todos los proyectos ↗</a></div>
+        <h2>Ideas que pasan<br>a ser realidad<span class="accent">.</span></h2>
+        <div class="project-grid">
+          <a class="project-card project-main" href="lo-que-he-hecho.html">
+            <div class="project-visual project-web"><span class="project-symbol">⌘</span><span class="project-label">01 / WEB</span><div class="mini-window"><i></i><i></i><i></i><b>mi-web</b><span>&lt; construir / crear / aprender &gt;</span></div></div>
+            <div class="project-info"><div><h3>Mi web personal</h3><p>Una experiencia personal en evolución, creada con HTML, CSS y JavaScript.</p></div><span class="arrow-circle">↗</span></div>
+          </a>
+          <a class="project-card" href="me-gusta.html">
+            <div class="project-visual project-interests"><span class="project-label">02 / INTERESES</span><span class="big-symbol">✳</span><span class="interest-caption">TECNOLOGÍA · GAMING · CREATIVIDAD</span></div>
+            <div class="project-info"><div><h3>Mis intereses</h3><p>Las cosas que me inspiran fuera del código.</p></div><span class="arrow-circle">↗</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section reveal" id="habilidades">
+      <div class="section-wrap">
+        <p class="eyebrow">03 — EN CONSTANTE APRENDIZAJE</p>
+        <h2>Herramientas y<br>áreas de interés.</h2>
+        <p class="section-lead skills-intro">Una base que voy ampliando con la formación, la práctica y cada nuevo proyecto.</p>
+        <div class="skills-grid">
+          <article class="skill-card"><span class="skill-icon">&lt;/&gt;</span><h3>Desarrollo web</h3><p>HTML, CSS y JavaScript aplicados a interfaces y experiencias web.</p><div class="skill-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></article>
+          <article class="skill-card"><span class="skill-icon">⌘</span><h3>Programación</h3><p>Formación en desarrollo de aplicaciones y resolución de problemas.</p><div class="skill-tags"><span>DAM</span><span>Práctica</span></div></article>
+          <article class="skill-card"><span class="skill-icon">⌁</span><h3>Ciberseguridad</h3><p>Área de interés en la que quiero seguir formándome y profundizando.</p><div class="skill-tags"><span>Aprendizaje</span><span>Seguridad</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section now-section reveal" id="actualidad">
+      <div class="section-wrap">
+        <div class="section-topline"><div><p class="eyebrow">04 — QUÉ PASA AHÍ FUERA</p><h2>Actualidad<span class="accent">.</span></h2></div><span class="live-label"><i></i> NOTICIAS</span></div>
+        <p class="section-lead">Un espacio para consultar las últimas noticias de España.</p>
+        <div id="newsStatus" class="news-status" aria-live="polite">Noticias en preparación.</div>
+       <div class="news-filters" aria-label="Filtrar noticias">
+  <button class="news-filter active" data-category="todas">Todas</button>
+  <button class="news-filter" data-category="tecnologia">Tecnología</button>
+  <button class="news-filter" data-category="ia">Inteligencia artificial</button>
+  <button class="news-filter" data-category="programacion">Programación</button>
+  <button class="news-filter" data-category="ciberseguridad">Ciberseguridad</button>
+</div>
+
+<div id="newsGrid" class="news-grid"></div>
+        <a class="text-link" href="https://www.rtve.es/noticias/" target="_blank" rel="noopener noreferrer">Consultar noticias en RTVE <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="contact-section reveal" id="contacto">
+      <div class="section-wrap contact-inner">
+        <p class="eyebrow">05 — HABLEMOS</p>
+        <h2>¿Tienes una idea<br>o quieres contactar?</h2>
+        <p>Estoy abierto a conversar sobre tecnología, proyectos y nuevas oportunidades de aprendizaje.</p>
+        <div class="contact-actions"><a class="button button-primary" href="contacto.html">Ir al contacto <span>↗</span></a><a class="button button-secondary" href="mailto:baicualex88@gmail.com">Enviar un correo</a></div>
+        <div class="contact-meta"><span>MANUEL · VALENCIA</span><a href="https://github.com/AlexB886" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/in/alex-baicu-2120012b8/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#inicio"><span class="brand-mark">A.</span> ALEX BAICU</a>
+    <p>Aprendiendo, construyendo y mejorando una línea de código cada vez.</p>
+    <div class="footer-links"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="portada.html">Modo videojuego</a></div>
+    <small>© <span id="year"></span> Alex Baicu</small>
+  </footer>
+
+  <script src="normal.js"></script>
 
 </body>
 </html>
