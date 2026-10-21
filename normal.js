@@ -24,19 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.forEach((element) => element.classList.add("is-visible"));
   }
 
+ 
   // 2. Modo claro y oscuro
-  const themeButton = document.querySelector(".theme-toggle");
+  const themeButton = document.querySelector("#themeToggle");
 
   if (themeButton) {
-    const savedTheme = localStorage.getItem("normal-theme");
+    const savedTheme = localStorage.getItem("normal-theme") || "dark";
 
-    if (savedTheme === "light") {
-      document.body.classList.add("light-mode");
-    }
+    document.body.classList.toggle("light-mode", savedTheme === "light");
 
     const updateThemeButton = () => {
       const isLight = document.body.classList.contains("light-mode");
-      themeButton.textContent = isLight ? "☀" : "☾";
+      themeButton.textContent = isLight ? "☾" : "☼";
       themeButton.setAttribute(
         "aria-label",
         isLight ? "Activar modo oscuro" : "Activar modo claro"
@@ -47,16 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
     updateThemeButton();
 
     themeButton.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
-
-      localStorage.setItem(
-        "normal-theme",
-        document.body.classList.contains("light-mode") ? "light" : "dark"
-      );
-
+      const isLight = document.body.classList.toggle("light-mode");
+      localStorage.setItem("normal-theme", isLight ? "light" : "dark");
       updateThemeButton();
     });
   }
+
 
   // 3. Año actual en el pie de página
   document.querySelectorAll("[data-current-year]").forEach((element) => {

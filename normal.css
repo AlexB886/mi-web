@@ -1631,3 +1631,42 @@ body.light-mode .footer small {
     font-size: 0.82rem;
   }
 }
+/* ARREGLO: aplicar los colores del modo claro */
+body.light-mode,
+body.light-mode main,
+body.light-mode .content-section,
+body.light-mode .hero,
+body.light-mode .topbar {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body.light-mode .skill-card,
+body.light-mode .project-card,
+body.light-mode .news-card,
+body.light-mode .interest-card,
+body.light-mode .contact-section,
+body.light-mode .visual-card {
+  background-color: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.light-mode p,
+body.light-mode li,
+body.light-mode .section-lead,
+body.light-mode .news-meta {
+  color: var(--muted);
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
+  color: var(--text);
+}
+
+body.light-mode .theme-toggle {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
