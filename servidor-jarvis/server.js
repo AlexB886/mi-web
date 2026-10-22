@@ -8,9 +8,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors({
   origin: [
+    "https://alexbaicu.es",
+    "https://www.alexbaicu.es",
+    "https://alexb886.github.io",
     "http://localhost:5500",
-    "http://127.0.0.1:5500",
-     "https://alexb886.github.io"
+    "http://127.0.0.1:5500"
   ]
 }));
 
