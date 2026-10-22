@@ -133,26 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
 
-const noticiasUnicas = [];
-const titulosVistos = new Set();
-
-for (const noticia of data.articles || []) {
-  const tituloNormalizado = (noticia.title || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^\w\s]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (!titulosVistos.has(tituloNormalizado)) {
-    titulosVistos.add(tituloNormalizado);
-    noticiasUnicas.push(noticia);
-  }
-}
-        const articles = Array.isArray(data)
-          ? data
-          : data.articles || data.noticias || [];
+const articles = Array.isArray(data)
+  ? data
+  : data.articles || data.noticias || [];
 
         if (!articles.length) {
           throw new Error("La API no ha devuelto artículos.");
