@@ -6,7 +6,74 @@
 <style>
 :root{--bg:#050913;--panel:#080e1a;--cyan:#42ffd2;--blue:#46a8ff;--text:#edf7ff;--muted:#91a9bc;--line:#16434e}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;min-height:100vh;background-image:radial-gradient(ellipse at 80% 0%,#102a45 0,transparent 40%),linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:auto,24px 24px,24px 24px}
-button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:100vh;max-width:1500px;margin:auto}.side{background:#080e1af2;border-right:1px solid var(--line);padding:24px 14px;display:flex;flex-direction:column;gap:8px}.logo{font-size:24px;font-weight:850;letter-spacing:-1px;padding:4px 8px 24px}.logo span,.glow{color:var(--cyan);text-shadow:0 0 14px #00ffc855}.micro{font:10px ui-monospace,monospace;color:#71949e;letter-spacing:1.5px;text-transform:uppercase}.navbtn{background:transparent;color:#9ab2c3;text-align:left;border:1px solid transparent;border-radius:5px;padding:12px 10px;font:12px ui-monospace,monospace}.navbtn.active,.navbtn:hover{color:var(--cyan);background:#0b292d;border-color:#147d77;box-shadow:inset 2px 0 var(--cyan),0 0 15px #00e8d10c}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;font:11px/1.8 ui-monospace,monospace;color:var(--muted)}.led{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);margin-right:5px}.action{border:1px solid #1d7b83;background:#073034;color:#55ffdb;border-radius:5px;padding:10px 12px;font:11px ui-monospace,monospace;transition:.2s}.action:hover{box-shadow:0 0 22px #00fbd633;transform:translateY(-2px);background:#0d4546}.action.alt{background:#0a1120;border-color:#34516c;color:#c7d9ee}.main{min-width:0;padding:22px 26px}.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:4px 0 16px;margin-bottom:24px;font:10px ui-monospace,monospace;color:#8aa8b8}.page{display:none;animation:enter .35s ease}.page.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.heading{font-size:clamp(32px,5vw,58px);line-height:1.05;letter-spacing:-2.5px;margin:16px 0;font-weight:800}.desc{font-size:13px;line-height:1.85;color:var(--muted);max-width:680px;margin-bottom:20px}.terminal{border:1px solid #177b86;background:#030812f2;border-radius:8px;overflow:hidden;box-shadow:0 0 28px #00e5ff0d}.termhead{display:flex;justify-content:space-between;padding:11px 13px;background:#0c1928;border-bottom:1px solid #173b4a;font:11px ui-monospace,monospace;color:#a9c5d8}.dots{color:#ff637f;letter-spacing:4px}.termout{padding:14px;min-height:200px;max-height:250px;overflow:auto;font:12px/1.8 ui-monospace,monospace;overflow-wrap:anywhere}.dim{color:#8ba2b9}.green{color:var(--cyan)}.prompt{display:flex;gap:8px;padding:0 12px 12px;align-items:center}.prompt span{color:var(--cyan)}.prompt input{width:100%;min-width:0;background:transparent;color:#e1f5ff;border:0;border-bottom:1px solid #163743;outline:none;padding:7px 2px;font:12px ui-monospace,monospace}.prompt input:focus{border-color:var(--cyan)}.visual{border:1px solid #264a68;border-radius:8px;min-height:300px;position:relative;overflow:hidden;padding:18px;background:radial-gradient(ellipse at 50% 100%,#064d60 0%,transparent 50%),linear-gradient(145deg,#111c40,#070c18 60%,#111a35);display:flex;flex-direction:column;justify-content:space-between}.ring{position:absolute;border:1px solid #3d94a45c;border-radius:50%;width:220px;height:220px;left:50%;top:49%;transform:translate(-50%,-50%);animation:spin 16s linear infinite}.ring.two{width:160px;height:160px;border-color:#a451ff77;animation-direction:reverse;animation-duration:10s}.orb{position:absolute;width:100px;height:100px;border-radius:50%;left:50%;top:49%;transform:translate(-50%,-50%);background:radial-gradient(circle at 30% 25%,#b5fff6,#1a9cb2 28%,#13235b 66%,#070c18);box-shadow:0 0 35px #2cfbe780,0 0 75px #4565ff60;animation:pulse 3s ease-in-out infinite}@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 48px #2cfbe7b0,0 0 95px #4565ff80}}.quote{z-index:1;position:relative;align-self:flex-end;font:12px/1.8 ui-monospace,monospace;color:#b4c5e2}.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #173b4a;border-radius:7px;background:#09111e;margin:22px 0}.stat{padding:14px;border-right:1px solid #173b4a}.stat:last-child{border:0}.stat b{display:block;color:var(--cyan);font:700 15px ui-monospace,monospace;margin:7px 0}.stat small{color:#8198ae;font-size:11px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid #183e4c;background:linear-gradient(135deg,#0b1827ed,#070d18ed);padding:17px;border-radius:6px;transition:.22s;min-width:0}.card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 25px #00e8d11a}.card h3{font-size:15px;margin:10px 0}.card p{font-size:12px;line-height:1.8;color:#96aabd;margin:0}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.chip{border:1px solid #24535e;border-radius:3px;padding:5px 7px;color:#6fead9;font:10px ui-monospace,monospace}.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.contactline{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #18313d;font:12px ui-monospace,monospace}.footer{font:10px ui-monospace,monospace;color:#617d91;border-top:1px solid #173541;margin-top:28px;padding-top:15px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.mobile-nav{display:none}
+button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:100vh;max-width:1500px;margin:auto}.side{background:#080e1af2;border-right:1px solid var(--line);padding:24px 14px;display:flex;flex-direction:column;gap:8px}.logo{font-size:24px;font-weight:850;letter-spacing:-1px;padding:4px 8px 24px}.logo span,.glow{color:var(--cyan);text-shadow:0 0 14px #00ffc855}.micro{font:10px ui-monospace,monospace;color:#71949e;letter-spacing:1.5px;text-transform:uppercase}.navbtn{background:transparent;color:#9ab2c3;text-align:left;border:1px solid transparent;border-radius:5px;padding:12px 10px;font:12px ui-monospace,monospace}.navbtn.active,.navbtn:hover{color:var(--cyan);background:#0b292d;border-color:#147d77;box-shadow:inset 2px 0 var(--cyan),0 0 15px #00e8d10c}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;font:11px/1.8 ui-monospace,monospace;color:var(--muted)}.led{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);margin-right:5px}.action{border:1px solid #1d7b83;background:#073034;color:#55ffdb;border-radius:5px;padding:10px 12px;font:11px ui-monospace,monospace;transition:.2s}.action:hover{box-shadow:0 0 22px #00fbd633;transform:translateY(-2px);background:#0d4546}.action.alt{background:#0a1120;border-color:#34516c;color:#c7d9ee}.main{min-width:0;padding:22px 26px}.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:4px 0 16px;margin-bottom:24px;font:10px ui-monospace,monospace;color:#8aa8b8}.page{display:none;animation:enter .35s ease}.page.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.heading{font-size:clamp(32px,5vw,58px);line-height:1.05;letter-spacing:-2.5px;margin:16px 0;font-weight:800}.desc{font-size:13px;line-height:1.85;color:var(--muted);max-width:680px;margin-bottom:20px}.terminal{border:1px solid #177b86;background:#030812f2;border-radius:8px;overflow:hidden;box-shadow:0 0 28px #00e5ff0d}.termhead{display:flex;justify-content:space-between;padding:11px 13px;background:#0c1928;border-bottom:1px solid #173b4a;font:11px ui-monospace,monospace;color:#a9c5d8}.dots{color:#ff637f;letter-spacing:4px}.termout{padding:14px;min-height:200px;max-height:250px;overflow:auto;font:12px/1.8 ui-monospace,monospace;overflow-wrap:anywhere}.dim{color:#8ba2b9}.green{color:var(--cyan)}.prompt{display:flex;gap:8px;padding:0 12px 12px;align-items:center}.prompt span{color:var(--cyan)}.prompt input{width:100%;min-width:0;background:transparent;color:#e1f5ff;border:0;border-bottom:1px solid #163743;outline:none;padding:7px 2px;font:12px ui-monospace,monospace}.prompt input:focus{border-color:var(--cyan)}.visual{border:1px solid #264a68;border-radius:8px;min-height:300px;position:relative;overflow:hidden;padding:18px;background:radial-gradient(ellipse at 50% 100%,#064d60 0%,transparent 50%),linear-gradient(145deg,#111c40,#070c18 60%,#111a35);display:flex;flex-direction:column;justify-content:space-between}.ring{position:absolute;border:1px solid #3d94a45c;border-radius:50%;width:220px;height:220px;left:50%;top:49%;transform:translate(-50%,-50%);animation:spin 16s linear infinite}.ring.two{width:160px;height:160px;border-color:#a451ff77;animation-direction:reverse;animation-duration:10s}.orb{position:absolute;width:100px;height:100px;border-radius:50%;left:50%;top:49%;transform:translate(-50%,-50%);background:radial-gradient(circle at 30% 25%,#b5fff6,#1a9cb2 28%,#13235b 66%,#070c18);box-shadow:0 0 35px #2cfbe780,0 0 75px #4565ff60;animation:pulse 3s ease-in-out infinite}@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 48px #2cfbe7b0,0 0 95px #4565ff80}}
+/* JARVIS — estados del asistente */
+.visual {
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.visual.jarvis-listening {
+  border-color: #42ffd2;
+  box-shadow: inset 0 0 35px #00ffe51a, 0 0 24px #00ffe522;
+}
+
+.visual.jarvis-thinking {
+  border-color: #a451ff;
+  box-shadow: inset 0 0 35px #8b3dff18;
+}
+
+.visual.jarvis-speaking {
+  border-color: #42ffd2;
+  box-shadow: inset 0 0 45px #00ffe522, 0 0 30px #00ffe533;
+}
+
+.visual.jarvis-listening .orb {
+  animation: jarvis-listen 1.2s ease-in-out infinite;
+}
+
+.visual.jarvis-thinking .orb {
+  animation: jarvis-think .8s ease-in-out infinite alternate;
+}
+
+.visual.jarvis-speaking .orb {
+  animation: jarvis-speak .45s ease-in-out infinite alternate;
+}
+
+@keyframes jarvis-listen {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.13); }
+}
+
+@keyframes jarvis-think {
+  from { filter: hue-rotate(0deg); transform: translate(-50%, -50%) scale(.94); }
+  to { filter: hue-rotate(65deg); transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes jarvis-speak {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.18); }
+}
+
+.jarvis-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.jarvis-status {
+  color: #91a9bc;
+  font: 11px ui-monospace, monospace;
+}
+
+.jarvis-controls button:focus-visible {
+  outline: 2px solid #42ffd2;
+  outline-offset: 3px;
+}
+.quote{z-index:1;position:relative;align-self:flex-end;font:12px/1.8 ui-monospace,monospace;color:#b4c5e2}.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #173b4a;border-radius:7px;background:#09111e;margin:22px 0}.stat{padding:14px;border-right:1px solid #173b4a}.stat:last-child{border:0}.stat b{display:block;color:var(--cyan);font:700 15px ui-monospace,monospace;margin:7px 0}.stat small{color:#8198ae;font-size:11px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid #183e4c;background:linear-gradient(135deg,#0b1827ed,#070d18ed);padding:17px;border-radius:6px;transition:.22s;min-width:0}.card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 25px #00e8d11a}.card h3{font-size:15px;margin:10px 0}.card p{font-size:12px;line-height:1.8;color:#96aabd;margin:0}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.chip{border:1px solid #24535e;border-radius:3px;padding:5px 7px;color:#6fead9;font:10px ui-monospace,monospace}.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.contactline{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #18313d;font:12px ui-monospace,monospace}.footer{font:10px ui-monospace,monospace;color:#617d91;border-top:1px solid #173541;margin-top:28px;padding-top:15px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.mobile-nav{display:none}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.side{display:none}.mobile-nav{display:flex;gap:4px;overflow:auto;padding:10px 0 18px}.mobile-nav .navbtn{white-space:nowrap;padding:10px}.main{padding:14px}.hero{grid-template-columns:1fr}.visual{min-height:220px}.cards{grid-template-columns:1fr}.stats .stat{padding:10px 7px}.stat b{font-size:12px}.stat small{font-size:9px}.heading{letter-spacing:-1.5px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
@@ -31,7 +98,28 @@ button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-templa
 <section class="page active" data-page="inicio"><div class="hero"><div><div class="micro glow">WELCOME TO MY DIGITAL SPACE</div><h1 class="heading">Diseño web con<br><span class="glow">criterio, código</span><br>con intención<span class="glow">_</span></h1><p class="desc">Soy Alex Baicu, estudiante de Desarrollo de Aplicaciones Multiplataforma. Explorando la tecnología, creando proyectos y siempre aprendiendo algo nuevo.</p>
 <div class="terminal"><div class="termhead"><span><span class="dots">● ● ●</span> &nbsp; alex@portfolio:~</span><span>⌘</span></div><div class="termout" id="output"><div class="dim">Bienvenido a mi espacio digital.</div><div class="dim">Escribe <span class="green">help</span> para ver los comandos disponibles.</div><br><div class="green">&gt; whoami</div><div>Alex Baicu — estudiante de DAM</div><div class="green">&gt; estado</div><div>Aprendiendo, creando y evolucionando<span class="glow">_</span></div></div><form class="prompt" id="terminal-form"><span>&gt;</span><input id="command" autocomplete="off" placeholder="Escribe help y pulsa Enter..." aria-label="Comando de terminal"><button class="action" type="submit">RUN</button></form></div>
 <div class="actionrow"><button class="action" data-jump="proyectos">▶ Ver mis proyectos</button><button class="action alt" data-jump="sobre">Conocer mi perfil ↗</button><a class="action" href="https://alexb886.github.io/mi-web/modo-videojuego.html" style="text-decoration:none;display:inline-block">▶ Entrar al modo videojuego</a></div></div>
-<div class="visual"><div class="micro glow">LIVE INTERFACE / 01</div><div class="ring"></div><div class="ring two"></div><div class="orb"></div><div class="quote">“La disciplina convierte las ideas<br>en resultados.”<br><span class="micro">— ALEX BAICU</span></div></div></div>
+<div class="visual"><div class="micro glow">LIVE INTERFACE / 01</div><div class="ring"></div><div class="ring two"></div><div class="orb"></div>
+<div class="quote">
+  <div id="jarvis-status" class="jarvis-status" role="status">
+    JARVIS // EN ESPERA
+  </div>
+
+  <p id="jarvis-message" aria-live="polite">
+    Bienvenido a la web de Alex. ¿En qué te puedo ayudar?
+  </p>
+
+  <div class="jarvis-controls">
+    <button class="action" id="jarvis-start" type="button">
+      ACTIVAR JARVIS
+    </button>
+    <button class="action alt" id="jarvis-stop" type="button">
+      DESACTIVAR
+    </button>
+  </div>
+
+  <span class="micro glow">ALEX BAICU // AI ASSISTANT</span>
+</div>
+</div></div>
 <div class="stats"><div class="stat"><span class="micro">01 / Formación</span><b>DAM</b><small>Aprendizaje actual</small></div><div class="stat"><span class="micro">02 / Enfoque</span><b>WEB + CODE</b><small>Creación de proyectos</small></div><div class="stat"><span class="micro">03 / Objetivo</span><b>EVOLUCIÓN</b><small>Mejorar cada día</small></div></div><div class="micro glow">// SYSTEM MESSAGE</div><p class="desc" style="margin:8px 0">Esta web es una demo independiente. Prueba los comandos y explora las secciones.</p></section>
 <section class="page" data-page="sobre"><div class="micro glow">// 01 — IDENTIDAD</div><h2 class="heading">Más que código,<br>una mentalidad.</h2><p class="desc">Me gusta aprender haciendo, experimentar con tecnología y transformar ideas en proyectos reales.</p><div class="cards"><article class="card"><div class="micro">01 / FORMACIÓN</div><h3>Desarrollo de Aplicaciones Multiplataforma</h3><p>Actualmente curso primero de DAM en el IES Dr. Simarro. Estoy construyendo fundamentos de programación y desarrollo de software.</p></article><article class="card"><div class="micro">02 / ENFOQUE</div><h3>Aprender construyendo</h3><p>Me interesa crear proyectos propios, resolver problemas y mejorar tanto el código como la experiencia visual.</p></article><article class="card"><div class="micro">03 / PRÓXIMO NIVEL</div><h3>Desarrollo y ciberseguridad</h3><p>Quiero profundizar en desarrollo web y aplicaciones, con ciberseguridad como objetivo a largo plazo.</p></article><article class="card"><div class="micro">04 / PRINCIPIOS</div><h3>Constancia y curiosidad</h3><p>Prefiero avanzar con práctica, disciplina y proyectos que pueda enseñar.</p></article></div></section>
 <section class="page" data-page="proyectos"><div class="micro glow">// 02 — BUILD LOG</div><h2 class="heading">Proyectos destacados<span class="glow">_</span></h2><p class="desc">Una selección provisional de trabajos y experimentos.</p><div class="cards"><article class="card"><div class="micro">PROJECT_001 · WEB</div><h3>Mi portfolio personal</h3><p>Una web para presentar mi perfil, proyectos y evolución como desarrollador.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div></article><article class="card"><div class="micro">PROJECT_002 · ARCADE</div><h3>Modo videojuego</h3><p>Un experimento de interfaz arcade con personajes, efectos y mecánicas interactivas.</p><div class="chips"><span class="chip">JS</span><span class="chip">Animación</span><span class="chip">Game UI</span></div></article><article class="card"><div class="micro">PROJECT_003 · LEARNING</div><h3>Prácticas de DAM</h3><p>Ejercicios de formación para mejorar programación, organización y control de versiones.</p><div class="chips"><span class="chip">Git</span><span class="chip">Programación</span></div></article><article class="card"><div class="micro">PROJECT_004 · FUTURE</div><h3>La próxima idea</h3><p>Un espacio para una futura aplicación que resuelva una necesidad real.</p><div class="chips"><span class="chip">En exploración</span></div></article></div></section>
