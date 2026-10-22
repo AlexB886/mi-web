@@ -88,6 +88,207 @@ button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-templa
 .news-card a{color:var(--cyan);font:11px ui-monospace,monospace;text-decoration:none;margin-top:auto}
 .news-card a:hover{text-decoration:underline}
 @media(max-width:760px){.news-grid{grid-template-columns:1fr}}
+/* FOOTER PROFESIONAL */
+.footer-pro {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 30px;
+  margin-top: 50px;
+  padding: 30px 0 0;
+  border-top: 1px solid var(--line);
+  font-family: ui-monospace, monospace;
+}
+
+.footer-brand,
+.footer-links,
+.footer-social {
+  min-width: 0;
+}
+
+.footer-logo {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-logo span {
+  color: var(--cyan);
+}
+
+.footer-brand p,
+.footer-social p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.footer-pro h3 {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin: 5px 0 15px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.footer-links h3 {
+  margin-bottom: 5px;
+}
+
+.footer-links button,
+.footer-social a {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: 11px ui-monospace, monospace;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-links button:hover,
+.footer-social a:hover {
+  color: var(--cyan);
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+  color: #617d91;
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .footer-pro {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 16px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer-pro {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand,
+  .footer-bottom {
+    grid-column: 1;
+  }
+}
+
+/* FORMULARIO DE CONTACTO */
+.contact-form {
+  width: 100%;
+  max-width: 680px;
+  margin: 28px 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  background: rgba(5, 18, 30, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+.contact-form label {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 230, 255, 0.08);
+}
+
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: 10px;
+  padding: 13px 20px;
+  color: var(--cyan);
+  background: rgba(0, 230, 255, 0.07);
+  border: 1px solid var(--cyan);
+  border-radius: 7px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.contact-form button:hover {
+  background: rgba(0, 230, 255, 0.15);
+  box-shadow: 0 0 18px rgba(0, 230, 255, 0.12);
+}
+
+.contact-form button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 16px;
+    margin: 20px 0;
+  }
+
+  .contact-form button {
+    width: 100%;
+  }
+}
+
 </style></head>
 <body><div class="layout">
 <aside class="side"><div class="logo">ALEX<br><span>BAICU_</span></div><div class="micro">Developer mode</div><div style="font:11px/1.8 ui-monospace;color:#91a9bc;margin:4px 8px 18px">Valencia, España<br><span class="glow">● Learning mode</span></div>
@@ -126,8 +327,53 @@ button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-templa
 <section class="page" data-page="habilidades"><div class="micro glow">// 03 — TECH STACK</div><h2 class="heading">Herramientas en evolución.</h2><p class="desc">Tecnologías y herramientas que estoy practicando o quiero seguir profundizando.</p><div class="cards"><article class="card"><div class="micro">WEB / 01</div><h3>HTML</h3><p>Estructura semántica para páginas y experiencias web.</p><div class="chips"><span class="chip">Estructura</span><span class="chip">Accesibilidad</span></div></article><article class="card"><div class="micro">WEB / 02</div><h3>CSS</h3><p>Diseño visual, layouts adaptables, animaciones y responsive.</p><div class="chips"><span class="chip">Diseño</span><span class="chip">Responsive</span></div></article><article class="card"><div class="micro">WEB / 03</div><h3>JavaScript</h3><p>Lógica e interacción para hacer interfaces dinámicas.</p><div class="chips"><span class="chip">DOM</span><span class="chip">Interacción</span></div></article><article class="card"><div class="micro">TOOLS / 04</div><h3>Git, GitHub y VS Code</h3><p>Herramientas de desarrollo, control de versiones y organización del código.</p><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span></div></article><article class="card"><div class="micro">FUTURE / 05</div><h3>Ciberseguridad</h3><p>Área en la que quiero profundizar conforme avance mi formación.</p><div class="chips"><span class="chip">En aprendizaje</span></div></article></div></section>
 <section class="page" data-page="intereses"><div class="micro glow">// 04 — OFFLINE & ONLINE</div><h2 class="heading">Lo que me mueve.</h2><p class="desc">La curiosidad no se queda delante de la pantalla.</p><div class="cards"><article class="card"><div class="micro">01 / EXPLORAR</div><h3>⌘ Tecnología</h3><p>Programación, inteligencia artificial, ordenadores y ciberseguridad.</p></article><article class="card"><div class="micro">02 / COMPETIR</div><h3>◈ Videojuegos</h3><p>Retos, estrategia y experiencias digitales bien construidas.</p></article><article class="card"><div class="micro">03 / DISCIPLINA</div><h3>✳ Deporte</h3><p>Gimnasio y actividad física para mantener la constancia.</p></article><article class="card"><div class="micro">04 / DESCUBRIR</div><h3>♫ Música y planes</h3><p>Descubrir cosas nuevas y compartir tiempo con amigos.</p></article></div></section>
 <section class="page" data-page="actualidad"><div class="micro glow">// 05 — ACTUALIDAD EN TIEMPO REAL</div><h2 class="heading">Noticias de tecnología<span class="glow">_</span></h2><p class="desc">Noticias recientes sobre tecnología, inteligencia artificial, programación y ciberseguridad. Los titulares se cargan desde una API pública; el contenido y los enlaces pertenecen a sus fuentes originales.</p><div class="news-toolbar" aria-label="Filtrar noticias"><button class="news-filter active" data-category="todas">Todas</button><button class="news-filter" data-category="tecnologia">Tecnología</button><button class="news-filter" data-category="ia">Inteligencia artificial</button><button class="news-filter" data-category="programacion">Programación</button><button class="news-filter" data-category="ciberseguridad">Ciberseguridad</button></div><div id="newsStatus" class="news-status" aria-live="polite">Conectando con la API de noticias…</div><div id="newsGrid" class="news-grid"></div><div class="actionrow"><button class="action" id="refreshNews">↻ Actualizar noticias</button><a class="action alt" href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Abrir Hacker News ↗</a></div></section>
-<section class="page" data-page="contacto"><div class="micro glow">// 05 — ESTABLISH CONNECTION</div><h2 class="heading">Hablemos de ideas.</h2><p class="desc">Estoy abierto a aprender, colaborar y conocer propuestas interesantes.</p><div class="card"><div class="contactline"><span class="glow">01</span><div><b>GitHub</b><div class="dim">github.com/AlexB886</div></div><span style="margin-left:auto">↗</span></div><div class="contactline"><span class="glow">02</span><div><b>Ubicación</b><div class="dim">Valencia, España</div></div></div><div class="contactline"><span class="glow">03</span><div><b>Contacto directo</b><div class="dim">Añadiremos tu canal preferido en la versión final.</div></div></div><div class="actionrow"><button class="action" id="github">Abrir GitHub ↗</button><button class="action alt" data-jump="inicio">Volver al inicio ↑</button></div></div></section>
-<div class="footer"><span>© 2026 ALEX BAICU · PROTOTIPO 2.0</span><span class="glow">BUILT TO KEEP EVOLVING</span></div></main></div>
+<section class="page" data-page="contacto"><div class="micro glow">// 05 — ESTABLISH CONNECTION</div><h2 class="heading">Hablemos de ideas.</h2><p class="desc">Estoy abierto a aprender, colaborar y conocer propuestas interesantes.</p>
+<form class="contact-form" action="https://formsubmit.co/baicualex88@gmail.com" method="POST">
+  <input type="hidden" name="_subject" value="Nuevo mensaje desde alexbaicu.es">
+  <input type="hidden" name="_captcha" value="true">
+
+  <label for="contact-name">Tu nombre</label>
+  <input id="contact-name" type="text" name="name" placeholder="Escribe tu nombre" required>
+
+  <label for="contact-email">Tu correo</label>
+  <input id="contact-email" type="email" name="email" placeholder="tu@email.com" required>
+
+  <label for="contact-message">Tu mensaje</label>
+  <textarea id="contact-message" name="message" placeholder="¿En qué puedo ayudarte?" rows="5" required></textarea>
+
+  <button type="submit">ENVIAR MENSAJE ↗</button>
+</form>
+<div class="card"><div class="contactline"><span class="glow">01</span><div><b>GitHub</b><div class="dim">github.com/AlexB886</div></div><span style="margin-left:auto">↗</span></div><div class="contactline"><span class="glow">02</span><div><b>Ubicación</b><div class="dim">Valencia, España</div></div></div><div class="contactline"><span class="glow">03</span><div><b>Contacto directo</b><div class="dim">Añadiremos tu canal preferido en la versión final.</div></div></div><div class="actionrow"><button class="action" id="github">Abrir GitHub ↗</button><button class="action alt" data-jump="inicio">Volver al inicio ↑</button></div></div></section>
+ 
+<footer class="footer-pro">
+  <div class="footer-brand">
+    <a href="#" data-jump="inicio" class="footer-logo">ALEX<span>BAICU_</span></a>
+    <p>Desarrollo, creatividad y tecnología.</p>
+    <p class="footer-location">Valencia, España · Estudiante de DAM</p>
+  </div>
+
+  <div class="footer-links">
+    <h3>NAVEGACIÓN</h3>
+    <button type="button" data-jump="inicio">Inicio</button>
+    <button type="button" data-jump="sobre">Sobre mí</button>
+    <button type="button" data-jump="proyectos">Proyectos</button>
+    <button type="button" data-jump="habilidades">Habilidades</button>
+    <button type="button" data-jump="intereses">Intereses</button>
+    <button type="button" data-jump="actualidad">Actualidad</button>
+    <button type="button" data-jump="contacto">Contacto</button>
+  </div>
+
+  <div class="footer-social">
+    <h3>ENCUÉNTRAME</h3>
+    <a href="https://github.com/AlexB886" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <p class="footer-status"><span class="led"></span> Siempre aprendiendo</p>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Alex Baicu. Todos los derechos reservados.</span>
+    <span>Diseñado y desarrollado con intención.</span>
+  </div>
+</footer>
 <script>
 (()=>{const pages=[...document.querySelectorAll('[data-page]')],nav=[...document.querySelectorAll('[data-section]')];function show(name){pages.forEach(p=>p.classList.toggle('active',p.dataset.page===name));nav.forEach(b=>b.classList.toggle('active',b.dataset.section===name));window.scrollTo({top:0,behavior:'smooth'})}nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.section)));document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.jump)));document.querySelector('#theme').addEventListener('click',()=>{document.body.classList.toggle('alternate');if(document.body.classList.contains('alternate')){document.documentElement.style.setProperty('--bg','#08151b');document.documentElement.style.setProperty('--cyan','#8eff5c');document.documentElement.style.setProperty('--line','#315a36')}else{document.documentElement.style.setProperty('--bg','#050913');document.documentElement.style.setProperty('--cyan','#42ffd2');document.documentElement.style.setProperty('--line','#16434e')}});document.querySelector('#github').addEventListener('click',()=>window.open('https://github.com/AlexB886','_blank','noopener'));
 const output=document.getElementById('output'),input=document.getElementById('command'),form=document.getElementById('terminal-form');const cmds={help:'Comandos disponibles: whoami · about · projects · skills · interests · contact · status · matrix · sudo · clear',whoami:'Alex Baicu | Estudiante de Desarrollo de Aplicaciones Multiplataforma.',about:'Me interesa el desarrollo web, crear proyectos y aprender nuevas tecnologías.',projects:'Proyectos: portfolio personal · modo videojuego · prácticas de DAM.',skills:'En práctica: HTML · CSS · JavaScript · Git · GitHub · VS Code.',interests:'Intereses: tecnología · videojuegos · deporte · música · planes.',contact:'GitHub: github.com/AlexB886 | Ubicación: Valencia, España.',status:'SYSTEM ONLINE | USER: ALEX | MODE: LEARNING',matrix:'Wake up, Alex... el código te está llamando.',sudo:'Acceso denegado 🙂 Todavía estás en modo estudiante.'};function runCommand(){if(!output||!input)return;const cmd=input.value.trim().toLowerCase();if(!cmd){input.focus();return}const line=document.createElement('div');line.className='green';line.textContent='> '+cmd;output.appendChild(line);if(cmd==='clear'){output.innerHTML='<div class="dim">Terminal limpia. Escribe <span class="green">help</span> para continuar.</div>'}else{const ans=document.createElement('div');ans.className='dim';ans.textContent=cmds[cmd]||'Comando no reconocido: '+cmd+'. Escribe help para ver los comandos.';output.appendChild(ans)}input.value='';output.scrollTop=output.scrollHeight;input.focus()}if(form){form.addEventListener('submit',function(e){e.preventDefault();runCommand()})}const runButton=form&&form.querySelector('button[type="submit"]');if(runButton){runButton.addEventListener('click',function(e){e.preventDefault();runCommand()})}if(input){input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();runCommand()}})}

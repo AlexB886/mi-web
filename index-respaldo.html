@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alex Baicu | Cyber Terminal</title>
+<style>
+:root{--bg:#050913;--panel:#080e1a;--cyan:#42ffd2;--blue:#46a8ff;--text:#edf7ff;--muted:#91a9bc;--line:#16434e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;min-height:100vh;background-image:radial-gradient(ellipse at 80% 0%,#102a45 0,transparent 40%),linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:auto,24px 24px,24px 24px}
+button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:100vh;max-width:1500px;margin:auto}.side{background:#080e1af2;border-right:1px solid var(--line);padding:24px 14px;display:flex;flex-direction:column;gap:8px}.logo{font-size:24px;font-weight:850;letter-spacing:-1px;padding:4px 8px 24px}.logo span,.glow{color:var(--cyan);text-shadow:0 0 14px #00ffc855}.micro{font:10px ui-monospace,monospace;color:#71949e;letter-spacing:1.5px;text-transform:uppercase}.navbtn{background:transparent;color:#9ab2c3;text-align:left;border:1px solid transparent;border-radius:5px;padding:12px 10px;font:12px ui-monospace,monospace}.navbtn.active,.navbtn:hover{color:var(--cyan);background:#0b292d;border-color:#147d77;box-shadow:inset 2px 0 var(--cyan),0 0 15px #00e8d10c}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;font:11px/1.8 ui-monospace,monospace;color:var(--muted)}.led{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);margin-right:5px}.action{border:1px solid #1d7b83;background:#073034;color:#55ffdb;border-radius:5px;padding:10px 12px;font:11px ui-monospace,monospace;transition:.2s}.action:hover{box-shadow:0 0 22px #00fbd633;transform:translateY(-2px);background:#0d4546}.action.alt{background:#0a1120;border-color:#34516c;color:#c7d9ee}.main{min-width:0;padding:22px 26px}.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:4px 0 16px;margin-bottom:24px;font:10px ui-monospace,monospace;color:#8aa8b8}.page{display:none;animation:enter .35s ease}.page.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.heading{font-size:clamp(32px,5vw,58px);line-height:1.05;letter-spacing:-2.5px;margin:16px 0;font-weight:800}.desc{font-size:13px;line-height:1.85;color:var(--muted);max-width:680px;margin-bottom:20px}.terminal{border:1px solid #177b86;background:#030812f2;border-radius:8px;overflow:hidden;box-shadow:0 0 28px #00e5ff0d}.termhead{display:flex;justify-content:space-between;padding:11px 13px;background:#0c1928;border-bottom:1px solid #173b4a;font:11px ui-monospace,monospace;color:#a9c5d8}.dots{color:#ff637f;letter-spacing:4px}.termout{padding:14px;min-height:200px;max-height:250px;overflow:auto;font:12px/1.8 ui-monospace,monospace;overflow-wrap:anywhere}.dim{color:#8ba2b9}.green{color:var(--cyan)}.prompt{display:flex;gap:8px;padding:0 12px 12px;align-items:center}.prompt span{color:var(--cyan)}.prompt input{width:100%;min-width:0;background:transparent;color:#e1f5ff;border:0;border-bottom:1px solid #163743;outline:none;padding:7px 2px;font:12px ui-monospace,monospace}.prompt input:focus{border-color:var(--cyan)}.visual{border:1px solid #264a68;border-radius:8px;min-height:300px;position:relative;overflow:hidden;padding:18px;background:radial-gradient(ellipse at 50% 100%,#064d60 0%,transparent 50%),linear-gradient(145deg,#111c40,#070c18 60%,#111a35);display:flex;flex-direction:column;justify-content:space-between}.ring{position:absolute;border:1px solid #3d94a45c;border-radius:50%;width:220px;height:220px;left:50%;top:49%;transform:translate(-50%,-50%);animation:spin 16s linear infinite}.ring.two{width:160px;height:160px;border-color:#a451ff77;animation-direction:reverse;animation-duration:10s}.orb{position:absolute;width:100px;height:100px;border-radius:50%;left:50%;top:49%;transform:translate(-50%,-50%);background:radial-gradient(circle at 30% 25%,#b5fff6,#1a9cb2 28%,#13235b 66%,#070c18);box-shadow:0 0 35px #2cfbe780,0 0 75px #4565ff60;animation:pulse 3s ease-in-out infinite}@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 48px #2cfbe7b0,0 0 95px #4565ff80}}
+/* JARVIS — estados del asistente */
+.visual {
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.visual.jarvis-listening {
+  border-color: #42ffd2;
+  box-shadow: inset 0 0 35px #00ffe51a, 0 0 24px #00ffe522;
+}
+
+.visual.jarvis-thinking {
+  border-color: #a451ff;
+  box-shadow: inset 0 0 35px #8b3dff18;
+}
+
+.visual.jarvis-speaking {
+  border-color: #42ffd2;
+  box-shadow: inset 0 0 45px #00ffe522, 0 0 30px #00ffe533;
+}
+
+.visual.jarvis-listening .orb {
+  animation: jarvis-listen 1.2s ease-in-out infinite;
+}
+
+.visual.jarvis-thinking .orb {
+  animation: jarvis-think .8s ease-in-out infinite alternate;
+}
+
+.visual.jarvis-speaking .orb {
+  animation: jarvis-speak .45s ease-in-out infinite alternate;
+}
+
+@keyframes jarvis-listen {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.13); }
+}
+
+@keyframes jarvis-think {
+  from { filter: hue-rotate(0deg); transform: translate(-50%, -50%) scale(.94); }
+  to { filter: hue-rotate(65deg); transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes jarvis-speak {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.18); }
+}
+
+.jarvis-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.jarvis-status {
+  color: #91a9bc;
+  font: 11px ui-monospace, monospace;
+}
+
+.jarvis-controls button:focus-visible {
+  outline: 2px solid #42ffd2;
+  outline-offset: 3px;
+}
+.quote{z-index:1;position:relative;align-self:flex-end;font:12px/1.8 ui-monospace,monospace;color:#b4c5e2}.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #173b4a;border-radius:7px;background:#09111e;margin:22px 0}.stat{padding:14px;border-right:1px solid #173b4a}.stat:last-child{border:0}.stat b{display:block;color:var(--cyan);font:700 15px ui-monospace,monospace;margin:7px 0}.stat small{color:#8198ae;font-size:11px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid #183e4c;background:linear-gradient(135deg,#0b1827ed,#070d18ed);padding:17px;border-radius:6px;transition:.22s;min-width:0}.card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 25px #00e8d11a}.card h3{font-size:15px;margin:10px 0}.card p{font-size:12px;line-height:1.8;color:#96aabd;margin:0}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.chip{border:1px solid #24535e;border-radius:3px;padding:5px 7px;color:#6fead9;font:10px ui-monospace,monospace}.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.contactline{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #18313d;font:12px ui-monospace,monospace}.footer{font:10px ui-monospace,monospace;color:#617d91;border-top:1px solid #173541;margin-top:28px;padding-top:15px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.mobile-nav{display:none}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.side{display:none}.mobile-nav{display:flex;gap:4px;overflow:auto;padding:10px 0 18px}.mobile-nav .navbtn{white-space:nowrap;padding:10px}.main{padding:14px}.hero{grid-template-columns:1fr}.visual{min-height:220px}.cards{grid-template-columns:1fr}.stats .stat{padding:10px 7px}.stat b{font-size:12px}.stat small{font-size:9px}.heading{letter-spacing:-1.5px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+.news-toolbar{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}
+.news-filter{border:1px solid #24535e;background:#081421;color:#a9c5d8;border-radius:4px;padding:8px 10px;font:11px ui-monospace,monospace}
+.news-filter.active,.news-filter:hover{color:var(--cyan);border-color:var(--cyan);background:#0b292d}
+.news-status{font:11px ui-monospace,monospace;color:#91a9bc;margin:14px 0}
+.news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.news-card{display:flex;flex-direction:column;gap:9px;border:1px solid #183e4c;background:linear-gradient(135deg,#0b1827ed,#070d18ed);padding:16px;border-radius:6px;min-width:0}
+.news-card h3{font-size:14px;line-height:1.5;margin:0}
+.news-card p{font:11px/1.7 ui-monospace,monospace;color:#91a9bc;margin:0}
+.news-card a{color:var(--cyan);font:11px ui-monospace,monospace;text-decoration:none;margin-top:auto}
+.news-card a:hover{text-decoration:underline}
+@media(max-width:760px){.news-grid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="layout">
+<aside class="side"><div class="logo">ALEX<br><span>BAICU_</span></div><div class="micro">Developer mode</div><div style="font:11px/1.8 ui-monospace;color:#91a9bc;margin:4px 8px 18px">Valencia, España<br><span class="glow">● Learning mode</span></div>
+<button class="navbtn active" data-section="inicio">⌂ &nbsp; Inicio</button><button class="navbtn" data-section="sobre">◈ &nbsp; Sobre mí</button><button class="navbtn" data-section="proyectos">▣ &nbsp; Proyectos</button><button class="navbtn" data-section="habilidades">⌘ &nbsp; Habilidades</button><button class="navbtn" data-section="intereses">✳ &nbsp; Intereses</button><button class="navbtn" data-section="actualidad">▤ &nbsp; Actualidad</button><button class="navbtn" data-section="contacto">↗ &nbsp; Contacto</button>
+<div class="sidebottom"><div class="micro">System status</div><span class="led"></span>All systems learning<br><button class="action" id="theme" style="width:100%;margin-top:12px">◐ Cambiar tema</button></div></aside>
+<main class="main"><div class="topline"><span>&gt; PORTFOLIO_V2.0</span><span>&gt; <span class="glow">VALENCIA, ESPAÑA</span></span><span>&gt; STATUS: ONLINE</span></div>
+<div class="mobile-nav"><button class="navbtn active" data-section="inicio">⌂ Inicio</button><button class="navbtn" data-section="sobre">Sobre mí</button><button class="navbtn" data-section="proyectos">Proyectos</button><button class="navbtn" data-section="habilidades">Habilidades</button><button class="navbtn" data-section="intereses">Intereses</button><button class="navbtn" data-section="actualidad">Actualidad</button><button class="navbtn" data-section="contacto">Contacto</button></div>
+<section class="page active" data-page="inicio"><div class="hero"><div><div class="micro glow">WELCOME TO MY DIGITAL SPACE</div><h1 class="heading">Diseño web con<br><span class="glow">criterio, código</span><br>con intención<span class="glow">_</span></h1><p class="desc">Soy Alex Baicu, estudiante de Desarrollo de Aplicaciones Multiplataforma. Explorando la tecnología, creando proyectos y siempre aprendiendo algo nuevo.</p>
+<div class="terminal"><div class="termhead"><span><span class="dots">● ● ●</span> &nbsp; alex@portfolio:~</span><span>⌘</span></div><div class="termout" id="output"><div class="dim">Bienvenido a mi espacio digital.</div><div class="dim">Escribe <span class="green">help</span> para ver los comandos disponibles.</div><br><div class="green">&gt; whoami</div><div>Alex Baicu — estudiante de DAM</div><div class="green">&gt; estado</div><div>Aprendiendo, creando y evolucionando<span class="glow">_</span></div></div><form class="prompt" id="terminal-form"><span>&gt;</span><input id="command" autocomplete="off" placeholder="Escribe help y pulsa Enter..." aria-label="Comando de terminal"><button class="action" type="submit">RUN</button></form></div>
+<div class="actionrow"><button class="action" data-jump="proyectos">▶ Ver mis proyectos</button><button class="action alt" data-jump="sobre">Conocer mi perfil ↗</button><a class="action" href="https://alexb886.github.io/mi-web/modo-videojuego.html" style="text-decoration:none;display:inline-block">▶ Entrar al modo videojuego</a></div></div>
+<div class="visual"><div class="micro glow">LIVE INTERFACE / 01</div><div class="ring"></div><div class="ring two"></div><div class="orb"></div>
+<div class="quote">
+  <div id="jarvis-status" class="jarvis-status" role="status">
+    JARVIS // EN ESPERA
+  </div>
+
+  <p id="jarvis-message" aria-live="polite">
+    Bienvenido a la web de Alex. ¿En qué te puedo ayudar?
+  </p>
+
+  <div class="jarvis-controls">
+    <button class="action" id="jarvis-start" type="button">
+      ACTIVAR JARVIS
+    </button>
+    <button class="action alt" id="jarvis-stop" type="button">
+      DESACTIVAR
+    </button>
+  </div>
+
+  <span class="micro glow">ALEX BAICU // AI ASSISTANT</span>
+</div>
+</div></div>
+<div class="stats"><div class="stat"><span class="micro">01 / Formación</span><b>DAM</b><small>Aprendizaje actual</small></div><div class="stat"><span class="micro">02 / Enfoque</span><b>WEB + CODE</b><small>Creación de proyectos</small></div><div class="stat"><span class="micro">03 / Objetivo</span><b>EVOLUCIÓN</b><small>Mejorar cada día</small></div></div><div class="micro glow">// SYSTEM MESSAGE</div><p class="desc" style="margin:8px 0">Esta web es una demo independiente. Prueba los comandos y explora las secciones.</p></section>
+<section class="page" data-page="sobre"><div class="micro glow">// 01 — IDENTIDAD</div><h2 class="heading">Más que código,<br>una mentalidad.</h2><p class="desc">Me gusta aprender haciendo, experimentar con tecnología y transformar ideas en proyectos reales.</p><div class="cards"><article class="card"><div class="micro">01 / FORMACIÓN</div><h3>Desarrollo de Aplicaciones Multiplataforma</h3><p>Actualmente curso primero de DAM en el IES Dr. Simarro. Estoy construyendo fundamentos de programación y desarrollo de software.</p></article><article class="card"><div class="micro">02 / ENFOQUE</div><h3>Aprender construyendo</h3><p>Me interesa crear proyectos propios, resolver problemas y mejorar tanto el código como la experiencia visual.</p></article><article class="card"><div class="micro">03 / PRÓXIMO NIVEL</div><h3>Desarrollo y ciberseguridad</h3><p>Quiero profundizar en desarrollo web y aplicaciones, con ciberseguridad como objetivo a largo plazo.</p></article><article class="card"><div class="micro">04 / PRINCIPIOS</div><h3>Constancia y curiosidad</h3><p>Prefiero avanzar con práctica, disciplina y proyectos que pueda enseñar.</p></article></div></section>
+<section class="page" data-page="proyectos"><div class="micro glow">// 02 — BUILD LOG</div><h2 class="heading">Proyectos destacados<span class="glow">_</span></h2><p class="desc">Una selección provisional de trabajos y experimentos.</p><div class="cards"><article class="card"><div class="micro">PROJECT_001 · WEB</div><h3>Mi portfolio personal</h3><p>Una web para presentar mi perfil, proyectos y evolución como desarrollador.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div></article><article class="card"><div class="micro">PROJECT_002 · ARCADE</div><h3>Modo videojuego</h3><p>Un experimento de interfaz arcade con personajes, efectos y mecánicas interactivas.</p><div class="chips"><span class="chip">JS</span><span class="chip">Animación</span><span class="chip">Game UI</span></div></article><article class="card"><div class="micro">PROJECT_003 · LEARNING</div><h3>Prácticas de DAM</h3><p>Ejercicios de formación para mejorar programación, organización y control de versiones.</p><div class="chips"><span class="chip">Git</span><span class="chip">Programación</span></div></article><article class="card"><div class="micro">PROJECT_004 · FUTURE</div><h3>La próxima idea</h3><p>Un espacio para una futura aplicación que resuelva una necesidad real.</p><div class="chips"><span class="chip">En exploración</span></div></article></div></section>
+<section class="page" data-page="habilidades"><div class="micro glow">// 03 — TECH STACK</div><h2 class="heading">Herramientas en evolución.</h2><p class="desc">Tecnologías y herramientas que estoy practicando o quiero seguir profundizando.</p><div class="cards"><article class="card"><div class="micro">WEB / 01</div><h3>HTML</h3><p>Estructura semántica para páginas y experiencias web.</p><div class="chips"><span class="chip">Estructura</span><span class="chip">Accesibilidad</span></div></article><article class="card"><div class="micro">WEB / 02</div><h3>CSS</h3><p>Diseño visual, layouts adaptables, animaciones y responsive.</p><div class="chips"><span class="chip">Diseño</span><span class="chip">Responsive</span></div></article><article class="card"><div class="micro">WEB / 03</div><h3>JavaScript</h3><p>Lógica e interacción para hacer interfaces dinámicas.</p><div class="chips"><span class="chip">DOM</span><span class="chip">Interacción</span></div></article><article class="card"><div class="micro">TOOLS / 04</div><h3>Git, GitHub y VS Code</h3><p>Herramientas de desarrollo, control de versiones y organización del código.</p><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span></div></article><article class="card"><div class="micro">FUTURE / 05</div><h3>Ciberseguridad</h3><p>Área en la que quiero profundizar conforme avance mi formación.</p><div class="chips"><span class="chip">En aprendizaje</span></div></article></div></section>
+<section class="page" data-page="intereses"><div class="micro glow">// 04 — OFFLINE & ONLINE</div><h2 class="heading">Lo que me mueve.</h2><p class="desc">La curiosidad no se queda delante de la pantalla.</p><div class="cards"><article class="card"><div class="micro">01 / EXPLORAR</div><h3>⌘ Tecnología</h3><p>Programación, inteligencia artificial, ordenadores y ciberseguridad.</p></article><article class="card"><div class="micro">02 / COMPETIR</div><h3>◈ Videojuegos</h3><p>Retos, estrategia y experiencias digitales bien construidas.</p></article><article class="card"><div class="micro">03 / DISCIPLINA</div><h3>✳ Deporte</h3><p>Gimnasio y actividad física para mantener la constancia.</p></article><article class="card"><div class="micro">04 / DESCUBRIR</div><h3>♫ Música y planes</h3><p>Descubrir cosas nuevas y compartir tiempo con amigos.</p></article></div></section>
+<section class="page" data-page="actualidad"><div class="micro glow">// 05 — ACTUALIDAD EN TIEMPO REAL</div><h2 class="heading">Noticias de tecnología<span class="glow">_</span></h2><p class="desc">Noticias recientes sobre tecnología, inteligencia artificial, programación y ciberseguridad. Los titulares se cargan desde una API pública; el contenido y los enlaces pertenecen a sus fuentes originales.</p><div class="news-toolbar" aria-label="Filtrar noticias"><button class="news-filter active" data-category="todas">Todas</button><button class="news-filter" data-category="tecnologia">Tecnología</button><button class="news-filter" data-category="ia">Inteligencia artificial</button><button class="news-filter" data-category="programacion">Programación</button><button class="news-filter" data-category="ciberseguridad">Ciberseguridad</button></div><div id="newsStatus" class="news-status" aria-live="polite">Conectando con la API de noticias…</div><div id="newsGrid" class="news-grid"></div><div class="actionrow"><button class="action" id="refreshNews">↻ Actualizar noticias</button><a class="action alt" href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Abrir Hacker News ↗</a></div></section>
+<section class="page" data-page="contacto"><div class="micro glow">// 05 — ESTABLISH CONNECTION</div><h2 class="heading">Hablemos de ideas.</h2><p class="desc">Estoy abierto a aprender, colaborar y conocer propuestas interesantes.</p><div class="card"><div class="contactline"><span class="glow">01</span><div><b>GitHub</b><div class="dim">github.com/AlexB886</div></div><span style="margin-left:auto">↗</span></div><div class="contactline"><span class="glow">02</span><div><b>Ubicación</b><div class="dim">Valencia, España</div></div></div><div class="contactline"><span class="glow">03</span><div><b>Contacto directo</b><div class="dim">Añadiremos tu canal preferido en la versión final.</div></div></div><div class="actionrow"><button class="action" id="github">Abrir GitHub ↗</button><button class="action alt" data-jump="inicio">Volver al inicio ↑</button></div></div></section>
+<div class="footer"><span>© 2026 ALEX BAICU · PROTOTIPO 2.0</span><span class="glow">BUILT TO KEEP EVOLVING</span></div></main></div>
+<script>
+(()=>{const pages=[...document.querySelectorAll('[data-page]')],nav=[...document.querySelectorAll('[data-section]')];function show(name){pages.forEach(p=>p.classList.toggle('active',p.dataset.page===name));nav.forEach(b=>b.classList.toggle('active',b.dataset.section===name));window.scrollTo({top:0,behavior:'smooth'})}nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.section)));document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.jump)));document.querySelector('#theme').addEventListener('click',()=>{document.body.classList.toggle('alternate');if(document.body.classList.contains('alternate')){document.documentElement.style.setProperty('--bg','#08151b');document.documentElement.style.setProperty('--cyan','#8eff5c');document.documentElement.style.setProperty('--line','#315a36')}else{document.documentElement.style.setProperty('--bg','#050913');document.documentElement.style.setProperty('--cyan','#42ffd2');document.documentElement.style.setProperty('--line','#16434e')}});document.querySelector('#github').addEventListener('click',()=>window.open('https://github.com/AlexB886','_blank','noopener'));
+const output=document.getElementById('output'),input=document.getElementById('command'),form=document.getElementById('terminal-form');const cmds={help:'Comandos disponibles: whoami · about · projects · skills · interests · contact · status · matrix · sudo · clear',whoami:'Alex Baicu | Estudiante de Desarrollo de Aplicaciones Multiplataforma.',about:'Me interesa el desarrollo web, crear proyectos y aprender nuevas tecnologías.',projects:'Proyectos: portfolio personal · modo videojuego · prácticas de DAM.',skills:'En práctica: HTML · CSS · JavaScript · Git · GitHub · VS Code.',interests:'Intereses: tecnología · videojuegos · deporte · música · planes.',contact:'GitHub: github.com/AlexB886 | Ubicación: Valencia, España.',status:'SYSTEM ONLINE | USER: ALEX | MODE: LEARNING',matrix:'Wake up, Alex... el código te está llamando.',sudo:'Acceso denegado 🙂 Todavía estás en modo estudiante.'};function runCommand(){if(!output||!input)return;const cmd=input.value.trim().toLowerCase();if(!cmd){input.focus();return}const line=document.createElement('div');line.className='green';line.textContent='> '+cmd;output.appendChild(line);if(cmd==='clear'){output.innerHTML='<div class="dim">Terminal limpia. Escribe <span class="green">help</span> para continuar.</div>'}else{const ans=document.createElement('div');ans.className='dim';ans.textContent=cmds[cmd]||'Comando no reconocido: '+cmd+'. Escribe help para ver los comandos.';output.appendChild(ans)}input.value='';output.scrollTop=output.scrollHeight;input.focus()}if(form){form.addEventListener('submit',function(e){e.preventDefault();runCommand()})}const runButton=form&&form.querySelector('button[type="submit"]');if(runButton){runButton.addEventListener('click',function(e){e.preventDefault();runCommand()})}if(input){input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();runCommand()}})}
+const newsGrid=document.getElementById('newsGrid'),newsStatus=document.getElementById('newsStatus');
+const newsFilters=[...document.querySelectorAll('.news-filter')];
+let activeNewsCategory='todas',newsCache=[];
+const categoryTerms={todas:'technology OR programming OR cybersecurity OR AI',tecnologia:'technology OR tech',ia:'AI OR artificial intelligence OR machine learning',programacion:'programming OR JavaScript OR software',ciberseguridad:'cybersecurity OR security OR vulnerability'};
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function newsCategoryMatches(item,category){
+ if(category==='todas') return true;
+ const text=((item.title||'')+' '+(item.story_title||'')+' '+(item.url||'')).toLowerCase();
+ const terms={tecnologia:['technology','tech','computer','digital','startup','gadget'],ia:[' ai ','artificial intelligence','machine learning','llm','openai','chatgpt','gemini'],programacion:['programming','javascript','python','software','developer','github','coding'],ciberseguridad:['cybersecurity','security','vulnerability','hacker','malware','ransomware','breach']};
+ const padded=' '+text+' ';
+ return terms[category].some(t=>padded.includes(t));
+}
+function renderNews(){
+ if(!newsGrid)return;
+ const filtered=newsCache.filter(item=>newsCategoryMatches(item,activeNewsCategory)).slice(0,12);
+ if(!filtered.length){newsGrid.innerHTML='';newsStatus.textContent='No hay noticias de esta categoría en la respuesta actual. Prueba otra categoría o actualiza.';return}
+ newsGrid.innerHTML=filtered.map(item=>{
+  const title=item.title||item.story_title||'Noticia sin título';
+  const url=item.url||item.story_url||('https://news.ycombinator.com/item?id='+item.objectID);
+  const date=item.created_at?new Date(item.created_at).toLocaleDateString('es-ES'):'Fecha no disponible';
+  const source=url.startsWith('https://news.ycombinator.com/')?'Hacker News':'Fuente externa';
+  return `<article class="news-card"><div class="micro glow">${escapeHTML(source)} · ${escapeHTML(date)}</div><h3>${escapeHTML(title)}</h3><p>Publicado en la comunidad tecnológica. Abre el enlace para consultar la noticia completa en su fuente original.</p><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">Leer noticia ↗</a></article>`;
+ }).join('');
+ newsStatus.textContent=`Mostrando ${filtered.length} noticia(s) · API pública de Hacker News/Algolia`;
+}
+async function loadNews(){
+ if(!newsStatus||!newsGrid)return;
+ newsStatus.textContent='Cargando noticias…';newsGrid.innerHTML='';
+ try{
+  const query=activeNewsCategory==='todas'?'technology OR programming OR cybersecurity OR AI':categoryTerms[activeNewsCategory];
+  const endpoint='https://hn.algolia.com/api/v1/search_by_date?query='+encodeURIComponent(query)+'&tags=story&hitsPerPage=40';
+  const response=await fetch(endpoint);
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  const data=await response.json();
+  newsCache=(data.hits||[]).filter(item=>item.title||item.story_title);
+  renderNews();
+ }catch(error){
+  newsStatus.textContent='No se han podido cargar las noticias. Comprueba tu conexión o vuelve a intentarlo.';
+  newsGrid.innerHTML='<article class="news-card"><h3>Noticias temporalmente no disponibles</h3><p>La API pública puede fallar temporalmente o el navegador puede bloquear la petición si abres el HTML directamente como archivo.</p><a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer">Consultar Hacker News ↗</a></article>';
+ }
+}
+newsFilters.forEach(button=>button.addEventListener('click',()=>{
+ newsFilters.forEach(item=>item.classList.toggle('active',item===button));
+ activeNewsCategory=button.dataset.category||'todas';loadNews();
+}));
+const refreshNewsButton=document.getElementById('refreshNews');
+if(refreshNewsButton)refreshNewsButton.addEventListener('click',loadNews);
+loadNews();
+})();
+</script><script src="jarvis.js"></script></body></html>
