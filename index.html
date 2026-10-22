@@ -289,6 +289,55 @@ button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-templa
   }
 }
 
+
+/* ARREGLO RÁPIDO DEL FORMULARIO */
+.contact-form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 680px !important;
+  margin: 28px 0 !important;
+  padding: 24px !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  background: rgba(5, 18, 30, 0.72) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+}
+
+.contact-form label {
+  display: block !important;
+  margin: 6px 0 0 !important;
+  color: var(--cyan) !important;
+  font-size: 11px !important;
+}
+
+.contact-form input,
+.contact-form textarea {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  padding: 13px 14px !important;
+  color: var(--text) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 7px !important;
+}
+
+.contact-form textarea {
+  min-height: 130px !important;
+}
+
+.contact-form button {
+  align-self: flex-start !important;
+}
+
+@media (max-width: 600px) {
+  .contact-form { padding: 16px !important; }
+  .contact-form button { width: 100% !important; }
+}
 </style></head>
 <body><div class="layout">
 <aside class="side"><div class="logo">ALEX<br><span>BAICU_</span></div><div class="micro">Developer mode</div><div style="font:11px/1.8 ui-monospace;color:#91a9bc;margin:4px 8px 18px">Valencia, España<br><span class="glow">● Learning mode</span></div>
@@ -328,7 +377,7 @@ button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-templa
 <section class="page" data-page="intereses"><div class="micro glow">// 04 — OFFLINE & ONLINE</div><h2 class="heading">Lo que me mueve.</h2><p class="desc">La curiosidad no se queda delante de la pantalla.</p><div class="cards"><article class="card"><div class="micro">01 / EXPLORAR</div><h3>⌘ Tecnología</h3><p>Programación, inteligencia artificial, ordenadores y ciberseguridad.</p></article><article class="card"><div class="micro">02 / COMPETIR</div><h3>◈ Videojuegos</h3><p>Retos, estrategia y experiencias digitales bien construidas.</p></article><article class="card"><div class="micro">03 / DISCIPLINA</div><h3>✳ Deporte</h3><p>Gimnasio y actividad física para mantener la constancia.</p></article><article class="card"><div class="micro">04 / DESCUBRIR</div><h3>♫ Música y planes</h3><p>Descubrir cosas nuevas y compartir tiempo con amigos.</p></article></div></section>
 <section class="page" data-page="actualidad"><div class="micro glow">// 05 — ACTUALIDAD EN TIEMPO REAL</div><h2 class="heading">Noticias de tecnología<span class="glow">_</span></h2><p class="desc">Noticias recientes sobre tecnología, inteligencia artificial, programación y ciberseguridad. Los titulares se cargan desde una API pública; el contenido y los enlaces pertenecen a sus fuentes originales.</p><div class="news-toolbar" aria-label="Filtrar noticias"><button class="news-filter active" data-category="todas">Todas</button><button class="news-filter" data-category="tecnologia">Tecnología</button><button class="news-filter" data-category="ia">Inteligencia artificial</button><button class="news-filter" data-category="programacion">Programación</button><button class="news-filter" data-category="ciberseguridad">Ciberseguridad</button></div><div id="newsStatus" class="news-status" aria-live="polite">Conectando con la API de noticias…</div><div id="newsGrid" class="news-grid"></div><div class="actionrow"><button class="action" id="refreshNews">↻ Actualizar noticias</button><a class="action alt" href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Abrir Hacker News ↗</a></div></section>
 <section class="page" data-page="contacto"><div class="micro glow">// 05 — ESTABLISH CONNECTION</div><h2 class="heading">Hablemos de ideas.</h2><p class="desc">Estoy abierto a aprender, colaborar y conocer propuestas interesantes.</p>
-<form class="contact-form" id="contact-form"></form>
+<form class="contact-form" id="contact-form" action="https://formsubmit.co/ajax/baicualex88@gmail.com" method="POST">
   <input type="hidden" name="_subject" value="Nuevo mensaje desde alexbaicu.es">
   <input type="hidden" name="_captcha" value="true">
 
@@ -475,4 +524,4 @@ if (contactForm) {
 }
 </script>
 </body>
-</body></html>
+</html>
