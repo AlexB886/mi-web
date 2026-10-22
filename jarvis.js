@@ -40,7 +40,7 @@ async function startJarvis() {
   try {
     // 1. Obtener una credencial temporal de nuestro servidor.
     const tokenResponse = await fetch(
-      "http://localhost:3000/api/token"
+      "https://jarvis-server-u8o5.onrender.com/api/token"
     );
 
     if (!tokenResponse.ok) {
