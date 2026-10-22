@@ -1670,3 +1670,1246 @@ body.light-mode .theme-toggle {
   background-color: var(--surface);
   border-color: var(--border);
 }
+
+/* ==========================================
+   ALEX BAICU · VISUAL UPGRADE 2026
+   Profundidad, brillo e interacciones
+   ========================================== */
+
+:root {
+  --glow-mint: rgba(112, 225, 193, .18);
+  --glow-blue: rgba(124, 169, 255, .16);
+  --card-radius: 22px;
+}
+
+/* Desplazamiento y selección más pulidos */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 105px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #07121a;
+}
+
+/* Títulos con un toque de luz */
+.hero h1 {
+  text-wrap: balance;
+  text-shadow: 0 0 42px rgba(112, 225, 193, .07);
+}
+
+.content-section h2,
+.contact-section h2 {
+  text-wrap: balance;
+}
+
+/* Tarjetas: profundidad y brillo */
+.project-card,
+.skill-card,
+.news-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--card-radius);
+  transition:
+    transform .35s cubic-bezier(.22, 1, .36, 1),
+    border-color .35s ease,
+    box-shadow .35s ease,
+    background .35s ease;
+}
+
+.project-card::before,
+.skill-card::before,
+.news-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(112, 225, 193, .07),
+    transparent 42%,
+    rgba(124, 169, 255, .06)
+  );
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.project-card:hover,
+.skill-card:hover,
+.news-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(112, 225, 193, .42);
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, .22),
+    0 0 30px var(--glow-mint);
+}
+
+.project-card:hover::before,
+.skill-card:hover::before,
+.news-card:hover::before {
+  opacity: 1;
+}
+
+/* Imágenes y miniaturas con movimiento sutil */
+.project-visual {
+  overflow: hidden;
+}
+
+.project-visual > * {
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.project-card:hover .mini-window {
+  transform: rotate(0deg) scale(1.035);
+}
+
+.project-card:hover .big-symbol {
+  transform: rotate(12deg) scale(1.12);
+}
+
+/* Tarjetas de habilidades */
+.skill-card {
+  padding: 27px;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: linear-gradient(
+    145deg,
+    rgba(22, 35, 55, .92),
+    rgba(14, 23, 39, .88)
+  );
+}
+
+.skill-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 17px;
+  border: 1px solid rgba(112, 225, 193, .24);
+  border-radius: 15px;
+  background: rgba(112, 225, 193, .07);
+  box-shadow: 0 0 24px rgba(112, 225, 193, .05);
+  transition: transform .3s ease, background .3s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: translateY(-3px) rotate(-4deg);
+  background: rgba(112, 225, 193, .14);
+}
+
+.skill-card h3,
+.project-info h3,
+.news-card h3 {
+  letter-spacing: -.35px;
+}
+
+/* Consultas: tarjetas con aspecto más editorial */
+#consultas .project-grid,
+#intereses .project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#consultas .project-card,
+#intereses .project-card {
+  padding: 26px;
+}
+
+#consultas .project-card h3,
+#intereses .project-card h3 {
+  margin-top: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.12rem;
+}
+
+#consultas .project-card p,
+#intereses .project-card p {
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+/* Filtros de actualidad */
+.news-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-block: 24px;
+}
+
+.news-filter {
+  padding: 9px 15px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(19, 29, 48, .72);
+  cursor: pointer;
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.news-filter:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.news-filter.active {
+  color: #07151b;
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 5px 22px rgba(112, 225, 193, .13);
+}
+
+/* Botones: respuesta visual más clara */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button:active,
+.news-filter:active {
+  transform: scale(.97);
+}
+
+.button-primary {
+  box-shadow: 0 7px 25px rgba(112, 225, 193, .09);
+}
+
+.button-primary:hover {
+  box-shadow: 0 10px 32px rgba(112, 225, 193, .2);
+}
+
+/* Contacto destacado */
+.contact-inner {
+  position: relative;
+  overflow: hidden;
+  padding-block: 52px;
+}
+
+.contact-inner::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -110px;
+  width: 320px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-mint), transparent 70%);
+  pointer-events: none;
+}
+
+.contact-actions,
+.contact-meta {
+  position: relative;
+}
+
+/* Barra de progreso: se activa desde JavaScript */
+#readingProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  box-shadow: 0 0 14px rgba(112, 225, 193, .4);
+  pointer-events: none;
+}
+
+/* Movimiento accesible */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Adaptación a móviles */
+@media (max-width: 640px) {
+  #consultas .project-grid,
+  #intereses .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #consultas .project-card,
+  #intereses .project-card {
+    padding: 21px;
+  }
+
+  .project-card:hover,
+  .skill-card:hover,
+  .news-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .news-filters {
+    gap: 7px;
+  }
+
+  .news-filter {
+    padding: 8px 12px;
+    font-size: .82rem;
+  }
+}
+
+
+/* Cuadrícula equilibrada para estas secciones */
+#intereses .project-grid,
+#consultas .project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+
+/* Acabado general */
+.project-card,
+.skill-card,
+.news-card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+/* Línea de luz superior */
+#intereses .project-card,
+#consultas .project-card,
+.skill-card {
+  overflow: hidden;
+}
+
+#intereses .project-card::before,
+#consultas .project-card::before,
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0.55;
+  transition: opacity 0.28s ease;
+}
+
+/* Elevación suave al pasar el ratón */
+#intereses .project-card:hover,
+#consultas .project-card:hover,
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(112, 225, 193, 0.45);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+}
+
+#intereses .project-card:hover::before,
+#consultas .project-card:hover::before,
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+/* Tarjetas informativas */
+#intereses .project-card,
+#consultas .project-card {
+  padding: 26px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(112, 225, 193, 0.055),
+      transparent 48%
+    ),
+    var(--surface);
+}
+
+#intereses .project-card h3,
+#consultas .project-card h3 {
+  margin: 0 0 13px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+}
+
+#intereses .project-card p,
+#consultas .project-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+/* Habilidades: mejor espacio y lectura */
+.skill-card {
+  padding: 28px;
+}
+
+.skill-card h3 {
+  line-height: 1.4;
+}
+
+.skill-icon {
+  box-shadow: 0 5px 18px rgba(112, 225, 193, 0.08);
+  transition: transform 0.28s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.skill-tags span {
+  border-radius: 999px;
+  padding: 6px 11px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.skill-card:hover .skill-tags span {
+  border-color: rgba(112, 225, 193, 0.25);
+}
+
+/* El modo claro conserva su propia paleta */
+body.light-mode #intereses .project-card,
+body.light-mode #consultas .project-card,
+body.light-mode .skill-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(102, 138, 120, 0.07),
+      transparent 48%
+    ),
+    var(--surface);
+  box-shadow: 0 10px 28px rgba(52, 61, 58, 0.055);
+}
+
+body.light-mode #intereses .project-card:hover,
+body.light-mode #consultas .project-card:hover,
+body.light-mode .skill-card:hover {
+  border-color: rgba(102, 138, 120, 0.48);
+  box-shadow: 0 16px 34px rgba(52, 61, 58, 0.10);
+}
+
+/* Móvil */
+@media (max-width: 680px) {
+  #intereses .project-grid,
+  #consultas .project-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  #intereses .project-card,
+  #consultas .project-card,
+  .skill-card {
+    padding: 22px;
+  }
+}
+
+/* Accesibilidad: menos movimiento si se solicita */
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .skill-card,
+  .news-card,
+  .skill-icon {
+    transition: none;
+  }
+}
+
+/* =====================================
+   REDISEÑO VISUAL — PORTADA PRINCIPAL
+   ===================================== */
+
+.hero {
+  min-height: min(820px, calc(100svh - 78px));
+  gap: clamp(35px, 5vw, 78px);
+  padding-top: 85px;
+  padding-bottom: 125px;
+}
+
+.hero-copy {
+  max-width: 650px;
+}
+
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid rgba(112, 225, 193, 0.19);
+  border-radius: 999px;
+  background: rgba(112, 225, 193, 0.045);
+  font-size: 0.66rem;
+  letter-spacing: 1.5px;
+}
+
+.hero h1 {
+  font-size: clamp(3.3rem, 6.2vw, 5.8rem);
+  line-height: 1.01;
+  letter-spacing: -4.5px;
+  text-wrap: balance;
+}
+
+.hero h1 > span:not(.outline) {
+  text-shadow: 0 0 36px rgba(112, 225, 193, 0.12);
+}
+
+.outline {
+  -webkit-text-stroke: 1.3px var(--blue);
+}
+
+.hero-description {
+  max-width: 490px;
+  margin-top: 28px;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.hero-actions {
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.hero-actions .button {
+  min-height: 53px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hero-actions .button-primary {
+  box-shadow: 0 7px 26px rgba(112, 225, 193, 0.12);
+}
+
+.hero-actions .button-primary:hover {
+  box-shadow: 0 10px 34px rgba(112, 225, 193, 0.23);
+}
+
+.hero-actions .button-game {
+  backdrop-filter: blur(10px);
+}
+
+.hero-note {
+  margin-top: 28px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15px;
+}
+
+/* Ilustración con más profundidad */
+.hero-visual {
+  min-height: 440px;
+}
+
+.visual-glow {
+  width: 85%;
+  background: radial-gradient(
+    circle,
+    rgba(112, 225, 193, 0.17),
+    rgba(65, 103, 180, 0.10) 42%,
+    transparent 72%
+  );
+  filter: blur(16px);
+}
+
+.orbit {
+  width: 94%;
+  border-color: rgba(124, 169, 255, 0.19);
+}
+
+.orbit-two {
+  border-color: rgba(112, 225, 193, 0.22);
+}
+
+.visual-card {
+  border-color: rgba(184, 203, 233, 0.22);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+}
+
+.card-back {
+  background: linear-gradient(
+    135deg,
+    rgba(35, 57, 82, 0.97),
+    rgba(15, 24, 41, 0.96)
+  );
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+}
+
+.card-front {
+  background: linear-gradient(
+    145deg,
+    rgba(23, 36, 57, 0.98),
+    rgba(12, 19, 34, 0.98)
+  );
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.34),
+    0 0 35px rgba(112, 225, 193, 0.035);
+}
+
+.floating-chip {
+  border-radius: 13px;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease;
+}
+
+.floating-chip:hover {
+  transform: translateY(-4px) rotate(3deg);
+}
+
+.scroll-cue {
+  opacity: 0.76;
+  transition: opacity 0.2s ease;
+}
+
+.scroll-cue:hover {
+  opacity: 1;
+}
+
+/* Ajustes en pantallas medianas */
+@media (max-width: 950px) {
+  .hero {
+    gap: 25px;
+    padding-top: 65px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 6.2vw, 4.4rem);
+    letter-spacing: -3px;
+  }
+
+  .hero-visual {
+    min-height: 350px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 680px) {
+  .hero {
+    padding-top: 60px;
+    padding-bottom: 105px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 12vw, 4.4rem);
+    letter-spacing: -2.8px;
+    line-height: 1.04;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.59rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-description {
+    margin-top: 22px;
+    font-size: 0.94rem;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .hero-actions .button {
+    min-height: 49px;
+    padding-inline: 15px;
+    font-size: 0.81rem;
+  }
+
+  .hero-visual {
+    min-height: 340px;
+  }
+
+  .hero-note {
+    margin-top: 24px;
+  }
+}
+
+
+/* ==================================================
+   ALEX BAICU — REDISEÑO PROFESIONAL
+   Estética editorial · Tecnología · Portfolio
+   ================================================== */
+
+/* Identidad visual */
+:root {
+  --bg: #0c1117;
+  --bg-soft: #111922;
+  --surface: #151f29;
+  --surface-hover: #1b2934;
+  --text: #f3f5f2;
+  --muted: #a6b0b8;
+  --accent: #9cdbb8;
+  --blue: #a9c4d8;
+  --border: rgba(220, 233, 226, 0.13);
+  --header-bg: rgba(12, 17, 23, 0.94);
+  --max-width: 1200px;
+  --radius: 14px;
+}
+
+/* Fondo sobrio, sin exceso de efectos */
+body {
+  background: var(--bg);
+  line-height: 1.75;
+  letter-spacing: -0.12px;
+}
+
+body::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.95%,
+      rgba(220, 233, 226, 0.025) 50%,
+      transparent 50.05%
+    );
+}
+
+/* Cabecera más formal */
+.topbar {
+  min-height: 76px;
+  border-bottom: 1px solid var(--border);
+  background: var(--header-bg);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  letter-spacing: 1.4px;
+  font-size: 0.76rem;
+}
+
+.brand-mark {
+  border-radius: 9px;
+  background: var(--accent);
+  color: #14221b;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.nav {
+  gap: clamp(10px, 1.45vw, 22px);
+}
+
+.nav a {
+  font-size: 0.79rem;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+}
+
+/* Portada editorial */
+.hero {
+  min-height: min(790px, calc(100svh - 76px));
+  padding-top: 85px;
+  padding-bottom: 115px;
+  gap: clamp(28px, 5vw, 75px);
+}
+
+.hero-copy {
+  max-width: 660px;
+}
+
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.018);
+  font-size: 0.65rem;
+  letter-spacing: 1.3px;
+}
+
+.status-dot {
+  box-shadow: none;
+}
+
+.hero h1 {
+  max-width: 680px;
+  margin-top: 16px;
+  font-size: clamp(3.5rem, 6.4vw, 6.2rem);
+  line-height: 0.99;
+  letter-spacing: -5px;
+  font-weight: 600;
+}
+
+.hero h1 > span:not(.outline) {
+  color: var(--accent);
+  text-shadow: none;
+}
+
+.outline {
+  -webkit-text-stroke: 1px var(--blue);
+}
+
+.hero-description {
+  max-width: 500px;
+  margin-top: 28px;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.hero-actions {
+  margin-top: 29px;
+  gap: 11px;
+}
+
+.button {
+  min-height: 49px;
+  padding: 12px 18px;
+  border-radius: 7px;
+  font-size: 0.84rem;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #102018;
+}
+
+.button-primary:hover {
+  background: #b6e8ca;
+}
+
+.button-game {
+  border-color: var(--border);
+  background: transparent;
+}
+
+.button-game:hover {
+  border-color: var(--accent);
+  background: rgba(156, 219, 184, 0.06);
+}
+
+.hero-note {
+  margin-top: 25px;
+  font-size: 0.73rem;
+}
+
+.note-line {
+  background: var(--accent);
+}
+
+/* Ilustración: más limpia y menos arcade */
+.hero-visual {
+  min-height: 420px;
+}
+
+.visual-glow {
+  width: 85%;
+  filter: blur(20px);
+  background: radial-gradient(
+    circle,
+    rgba(156, 219, 184, 0.10),
+    transparent 68%
+  );
+}
+
+.orbit {
+  border-color: rgba(169, 196, 216, 0.13);
+}
+
+.orbit-two {
+  border-color: rgba(156, 219, 184, 0.16);
+}
+
+.visual-card {
+  border-radius: 12px;
+  border-color: rgba(220, 233, 226, 0.16);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.24);
+}
+
+.card-back {
+  background: linear-gradient(140deg, #202e38, #121b24);
+}
+
+.card-front {
+  background: linear-gradient(140deg, #17232c, #10171e);
+}
+
+.floating-chip {
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.visual-caption {
+  font-size: 0.58rem;
+  letter-spacing: 1.8px;
+}
+
+/* Todas las secciones: más aire y mejor ritmo */
+.content-section {
+  padding-top: 112px;
+  padding-bottom: 112px;
+}
+
+.content-section h2,
+.contact-section h2 {
+  font-size: clamp(2.6rem, 4.8vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -3px;
+}
+
+.eyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 1.7px;
+}
+
+.section-lead {
+  max-width: 680px;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+/* Sobre mí: aspecto de presentación profesional */
+#sobre-mi {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  column-gap: clamp(35px, 7vw, 100px);
+  row-gap: 25px;
+}
+
+#sobre-mi .section-heading {
+  position: sticky;
+  top: 125px;
+}
+
+#sobre-mi .section-heading h2 {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+}
+
+#sobre-mi .about-content {
+  margin-top: 0;
+}
+
+#sobre-mi .about-content p {
+  color: var(--muted);
+  line-height: 1.95;
+}
+
+#sobre-mi .about-content .section-lead {
+  color: var(--text);
+  font-size: 1.08rem;
+}
+
+/* Separación sutil entre secciones */
+.projects-section,
+.now-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.projects-section {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.section-topline {
+  align-items: center;
+}
+
+.project-grid {
+  gap: 20px;
+}
+
+.project-card,
+.skill-card,
+.news-card {
+  border-radius: 12px;
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.project-card:hover,
+.skill-card:hover,
+.news-card:hover {
+  border-color: rgba(156, 219, 184, 0.42);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+.project-visual {
+  min-height: 250px;
+}
+
+.project-web {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(156, 219, 184, 0.08),
+      transparent 55%
+    ),
+    #17232c;
+}
+
+.project-interests {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(169, 196, 216, 0.10),
+      transparent 65%
+    ),
+    #18222c;
+}
+
+.project-info {
+  padding: 25px;
+}
+
+.project-info h3,
+.skill-card h3 {
+  letter-spacing: -0.4px;
+}
+
+.arrow-circle {
+  border-radius: 8px;
+}
+
+/* Habilidades */
+.skills-grid {
+  gap: 18px;
+}
+
+.skill-card {
+  padding: 27px;
+  background: var(--surface);
+}
+
+.skill-icon {
+  border-radius: 9px;
+  background: rgba(156, 219, 184, 0.07);
+  border-color: rgba(156, 219, 184, 0.20);
+}
+
+.skill-tags span {
+  border-radius: 5px;
+}
+
+/* Intereses y consultas */
+#intereses .project-grid,
+#consultas .project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+
+#intereses .project-card,
+#consultas .project-card {
+  padding: 27px;
+  background: var(--surface);
+}
+
+#intereses .project-card h3,
+#consultas .project-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.08rem;
+}
+
+#intereses .project-card p,
+#consultas .project-card p {
+  font-size: 0.91rem;
+  line-height: 1.85;
+}
+
+/* Noticias: mantenemos intactos sus filtros y funcionamiento */
+.news-filters {
+  gap: 8px;
+}
+
+.news-filter {
+  border-radius: 6px;
+}
+
+.news-filter.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #102018;
+}
+
+.news-card {
+  background: var(--surface);
+}
+
+/* Contacto */
+.contact-section {
+  padding-top: 115px;
+  padding-bottom: 115px;
+  border-top: 1px solid var(--border);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(156, 219, 184, 0.025),
+      transparent 60%
+    ),
+    var(--bg-soft);
+}
+
+.contact-section h2 {
+  max-width: 800px;
+}
+
+.contact-section > .section-wrap > p:not(.eyebrow) {
+  max-width: 560px;
+  color: var(--muted);
+}
+
+.contact-meta {
+  border-color: var(--border);
+}
+
+.footer {
+  border-color: var(--border);
+  background: var(--bg);
+}
+
+/* Modo claro: paleta profesional coherente */
+body.light-mode {
+  --bg: #f5f6f2;
+  --bg-soft: #ecefe9;
+  --surface: #ffffff;
+  --surface-hover: #f0f4ef;
+  --text: #202a26;
+  --muted: #65716b;
+  --accent: #397b5b;
+  --blue: #587b98;
+  --border: rgba(32, 52, 41, 0.14);
+  --header-bg: rgba(245, 246, 242, 0.94);
+}
+
+body.light-mode .brand-mark {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+body.light-mode .hero .eyebrow {
+  background: rgba(57, 123, 91, 0.045);
+}
+
+body.light-mode .card-back {
+  background: linear-gradient(140deg, #e5eae4, #f5f6f2);
+}
+
+body.light-mode .card-front {
+  background: linear-gradient(140deg, #ffffff, #edf1ec);
+}
+
+body.light-mode .card-back span,
+body.light-mode .card-back b,
+body.light-mode .card-front p,
+body.light-mode .card-front em,
+body.light-mode .card-front strong {
+  color: var(--text);
+}
+
+body.light-mode .project-web,
+body.light-mode .project-interests {
+  background: linear-gradient(135deg, #e4ebe4, #f0f2ed);
+}
+
+body.light-mode .button-primary {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+body.light-mode .news-filter.active {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+body.light-mode .contact-section {
+  background: var(--bg-soft);
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  #sobre-mi {
+    column-gap: 30px;
+  }
+
+  #sobre-mi .section-heading h2 {
+    font-size: clamp(2.2rem, 4.5vw, 3.3rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    letter-spacing: -3px;
+  }
+}
+
+@media (max-width: 680px) {
+  .content-section {
+    padding-top: 78px;
+    padding-bottom: 78px;
+  }
+
+  .hero {
+    padding-top: 55px;
+    padding-bottom: 100px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.85rem, 11.5vw, 4.2rem);
+    letter-spacing: -2.5px;
+  }
+
+  .hero-visual {
+    min-height: 320px;
+  }
+
+  #sobre-mi {
+    display: block;
+  }
+
+  #sobre-mi .section-heading {
+    position: static;
+    margin-bottom: 24px;
+  }
+
+  #sobre-mi .section-heading h2,
+  .content-section h2,
+  .contact-section h2 {
+    letter-spacing: -1.8px;
+  }
+
+  #intereses .project-grid,
+  #consultas .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #intereses .project-card,
+  #consultas .project-card,
+  .skill-card {
+    padding: 22px;
+  }
+
+  .project-visual {
+    min-height: 205px;
+  }
+
+  .contact-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
